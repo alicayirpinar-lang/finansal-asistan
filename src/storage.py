@@ -60,9 +60,10 @@ def recent_thesis_exists(symbol, hours=48):
 
 
 def insert_thesis(event, draft, redteam, final_confidence, tier, status,
-                  entry_price_ref=None):
+                  entry_price_ref=None, note=None):
     low, high = draft["buyukluk_araligi_pct"]
     row = {
+        "resolution_note": note,
         "symbol": event["symbol"],
         "market": event["market"],
         "category": event["category"],

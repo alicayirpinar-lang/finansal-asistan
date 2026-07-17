@@ -44,10 +44,24 @@ def run():
     events = f1.build_events(clusters, portfolio_syms)
     print(f"  {len(events)} skorlu olay adayı")
 
+    # Triage: normal kuyruk toplu ön elemeden geçer (1 Gemini çağrısı, tez
+    # kalitesi fazı); kritik hızlı yol elemesiz geçer.
+    kritik = [e for e in events if e["priority_lane"] == "kritik"]
+    normal = [e for e in events if e["priority_lane"] != "kritik"][:12]
+    if normal and storage.gemini_calls_today() + 1 <= cap:
+        normal, elenen = brain.triage(normal)
+        storage.log_gemini_call("triage")
+        if elenen:
+            print(f"  triage: {elenen} olay elendi, {len(normal)} kaldı")
+    events = kritik + normal
+
     produced = 0
+    per_cluster = {}  # aynı haber kümesinden en fazla 2 tez (kopya tez freni)
     for event in events:
         if produced >= MAX_THESES_PER_RUN:
             break
+        if per_cluster.get(event["cluster_id"], 0) >= 2:
+            continue
         used = storage.gemini_calls_today()
         if used + 2 > cap:
             print(f"Günlük Gemini tavanı doldu ({used}/{cap}) — kalan olaylar arşivleniyor (kuyruklanmaz).")
@@ -56,23 +70,31 @@ def run():
             continue  # aynı sembolde 48 saat içinde tez var: mükerrer önleme
         try:
             print(f'\n[{event["symbol"]}] {event["title"][:80]}...')
-            draft = brain.draft_chain(event)
+            snapshot = prices.market_snapshot(event["symbol"], event["market"])
+            draft = brain.draft_chain(event, snapshot)
             storage.log_gemini_call("taslak")
-            redteam = brain.red_team(event, draft)
+            if draft.get("tez_yok"):
+                print(f'  -> taslak beyni reddetti: {draft.get("neden", "?")[:100]}')
+                continue
+            redteam = brain.red_team(event, draft, snapshot)
             storage.log_gemini_call("redteam")
-            final, tier, status = brain.merge(event, draft, redteam)
+            final, tier, status, neden = brain.merge(event, draft, redteam)
             # Referans fiyat + stop (2×ATR) — tez takibi bunlarla çalışır (plan bölüm 7)
-            entry_ref = prices.current_price(event["symbol"], event["market"])
-            if entry_ref:
+            entry_ref = (snapshot or {}).get("price") or \
+                prices.current_price(event["symbol"], event["market"])
+            if entry_ref and status == "acik":
                 atr = prices.atr14(event["symbol"], event["market"])
                 if atr:
                     sign = 1 if draft["yon"] == "yukselis" else -1
                     inv = redteam.setdefault("gecersiz_kilma_kosulu", {})
                     inv["stop_fiyat"] = round(entry_ref - sign * 2 * atr, 2)
             thesis = storage.insert_thesis(event, draft, redteam, final, tier, status,
-                                           entry_price_ref=entry_ref)
-            produced += 1
-            print(f"  -> güven={final}, katman={tier}, durum={status}")
+                                           entry_price_ref=entry_ref, note=neden)
+            if status == "acik":
+                produced += 1
+                per_cluster[event["cluster_id"]] = per_cluster.get(event["cluster_id"], 0) + 1
+            print(f"  -> güven={final}, katman={tier}, durum={status}"
+                  + (f" ({neden})" if neden else ""))
             if status == "acik" and tier in ("kritik", "orta"):
                 notifier.send(notifier.format_thesis(event, draft, redteam, final, tier))
                 print("  -> Telegram bildirimi gönderildi")
@@ -80,7 +102,7 @@ def run():
             print(f'  ! {event["symbol"]} işlenirken hata (pipeline devam ediyor):')
             traceback.print_exc(limit=2)
 
-    print(f"\nBitti: {produced} tez üretildi. Bugünkü Gemini kullanımı: {storage.gemini_calls_today()}")
+    print(f"\nBitti: {produced} açık tez. Bugünkü Gemini kullanımı: {storage.gemini_calls_today()}")
 
 
 if __name__ == "__main__":

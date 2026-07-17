@@ -39,6 +39,29 @@ def current_price(symbol, market):
     return None
 
 
+def market_snapshot(symbol, market):
+    """Beyin promptları için kısa piyasa bağlamı (tez kalitesi fazı):
+    güncel fiyat, 1 aylık değişim, 52h zirveye uzaklık, hacim z-skoru.
+    'Zaten fiyatlanmış mı' sorusu ancak bu veriyle dürüstçe cevaplanabilir."""
+    try:
+        hist = yf.Ticker(yf_ticker(symbol, market)).history(period="1y")
+        hist = hist.dropna(subset=["Close"])
+        if len(hist) < 25:
+            return None
+        close, vol = hist["Close"], hist["Volume"]
+        price = _clean(close.iloc[-1], 2)
+        chg_1m = _clean((close.iloc[-1] / close.iloc[-22] - 1) * 100, 1)
+        hi52 = close.tail(252).max()
+        from_hi = _clean((hi52 - close.iloc[-1]) / hi52 * 100, 1)
+        vol_std = vol.rolling(20).std().iloc[-1]
+        volume_z = _clean((vol.iloc[-1] - vol.rolling(20).mean().iloc[-1]) / vol_std, 1) \
+            if vol_std else None
+        return {"price": price, "chg_1m_pct": chg_1m,
+                "pct_from_52w_high": from_hi, "volume_z": volume_z}
+    except Exception:
+        return None
+
+
 def atr14(symbol, market):
     """ATR(14) — stop mesafesi hesabı için (plan: stop = 2×ATR)."""
     try:

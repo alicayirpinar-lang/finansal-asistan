@@ -111,11 +111,19 @@ def process_queue(clusters, cap):
         event = _event_from_cluster(symbol, market, cluster)
         try:
             print(f'  [{symbol}] geriye dönük tez: {event["title"][:70]}...')
-            draft = brain.draft_chain(event)
+            snapshot = prices.market_snapshot(symbol, market)
+            draft = brain.draft_chain(event, snapshot)
             storage.log_gemini_call("taslak")
-            redteam = brain.red_team(event, draft)
+            if draft.get("tez_yok"):
+                storage.update_retro(req["id"], "tez_bulunamadi",
+                                     f'beyin reddetti: {draft.get("neden", "")[:150]}')
+                notifier.send(f"ℹ️ {symbol}: geriye dönük tez kurulamadı — bulunan haber "
+                              f"gerçek bir katalizör değil ({draft.get('neden', '')[:100]}). "
+                              f"Pozisyon 'tez yok' olarak izlenir.")
+                continue
+            redteam = brain.red_team(event, draft, snapshot)
             storage.log_gemini_call("redteam")
-            final, tier, status = brain.merge(event, draft, redteam)
+            final, tier, status, neden = brain.merge(event, draft, redteam)
             # Referans = kullanıcının gerçek alış fiyatı; stop = 2×ATR (plan bölüm 7)
             entry_ref = float(pos["entry_price"]) if pos else \
                 prices.current_price(symbol, market)
@@ -126,7 +134,7 @@ def process_queue(clusters, cap):
                     inv = redteam.setdefault("gecersiz_kilma_kosulu", {})
                     inv["stop_fiyat"] = round(entry_ref - sign * 2 * atr, 2)
             thesis = storage.insert_thesis(event, draft, redteam, final, tier, status,
-                                           entry_price_ref=entry_ref)
+                                           entry_price_ref=entry_ref, note=neden)
             if pos:
                 storage.link_thesis_to_position(pos["id"], thesis["id"])
             storage.update_retro(req["id"], "islendi", f"tez üretildi ({status})")

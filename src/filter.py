@@ -107,7 +107,7 @@ def _freshness(published_at):
 def build_events(clusters, portfolio_symbols=frozenset()):
     """Kümelerden skorlu olay listesi üret (sembol başına bir olay)."""
     events = []
-    for cluster in clusters:
+    for cluster_id, cluster in enumerate(clusters):
         rep = cluster["rep"]
         text = rep["title"] + " " + rep.get("summary", "")
         matches = _match_symbols(text)
@@ -124,6 +124,7 @@ def build_events(clusters, portfolio_symbols=frozenset()):
             if score < RELEVANCE_MIN_SCORE and not critical:
                 continue
             events.append({
+                "cluster_id": cluster_id,  # aynı olaydan kopya tez sınırı için
                 "symbol": symbol,
                 "market": SYMBOLS[symbol]["market"],
                 "category": category,
