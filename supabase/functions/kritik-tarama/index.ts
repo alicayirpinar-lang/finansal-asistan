@@ -36,7 +36,11 @@ function normalize(title: string) {
 
 async function fetchTitles(url: string): Promise<string[]> {
   try {
-    const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
+    // User-Agent şart: Google, kimliksiz istekleri boş/403 çevirir
+    const res = await fetch(url, {
+      signal: AbortSignal.timeout(8000),
+      headers: { "User-Agent": "Mozilla/5.0 (compatible; finansal-asistan/1.0)" },
+    });
     const xml = await res.text();
     const matches = xml.matchAll(
       /<item>[\s\S]*?<title>(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?<\/title>/g,
