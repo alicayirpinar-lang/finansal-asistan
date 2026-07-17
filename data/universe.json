@@ -1,0 +1,5027 @@
+{
+ "generated_at": "2026-07-17",
+ "symbols": {
+  "MMM": {
+   "name": "3M",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "3m company"
+   ]
+  },
+  "AOS": {
+   "name": "A. O. Smith",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "a o smith"
+   ]
+  },
+  "ABT": {
+   "name": "Abbott Laboratories",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "abbott laboratories"
+   ]
+  },
+  "ABBV": {
+   "name": "AbbVie",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "abbv",
+    "abbvie"
+   ]
+  },
+  "ACN": {
+   "name": "Accenture",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "accenture"
+   ]
+  },
+  "ADBE": {
+   "name": "Adobe Inc.",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "adbe",
+    "adobe"
+   ]
+  },
+  "AMD": {
+   "name": "Advanced Micro Devices",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "advanced micro devices"
+   ]
+  },
+  "AES": {
+   "name": "AES Corporation",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "aes corporation"
+   ]
+  },
+  "AFL": {
+   "name": "Aflac",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "aflac"
+   ]
+  },
+  "A": {
+   "name": "Agilent Technologies",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "agilent technologies"
+   ]
+  },
+  "APD": {
+   "name": "Air Products",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "air products"
+   ]
+  },
+  "ABNB": {
+   "name": "Airbnb",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "abnb",
+    "airbnb"
+   ]
+  },
+  "AKAM": {
+   "name": "Akamai Technologies",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "akam",
+    "akamai technologies"
+   ]
+  },
+  "ALB": {
+   "name": "Albemarle Corporation",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "albemarle"
+   ]
+  },
+  "ARE": {
+   "name": "Alexandria Real Estate Equities",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "alexandria real estate"
+   ]
+  },
+  "ALGN": {
+   "name": "Align Technology",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "algn",
+    "align technology"
+   ]
+  },
+  "ALLE": {
+   "name": "Allegion",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "alle",
+    "allegion"
+   ]
+  },
+  "LNT": {
+   "name": "Alliant Energy",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "alliant energy"
+   ]
+  },
+  "ALL": {
+   "name": "Allstate",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "allstate"
+   ]
+  },
+  "GOOGL": {
+   "name": "Alphabet Inc. (Class A)",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "alphabet",
+    "googl"
+   ]
+  },
+  "GOOG": {
+   "name": "Alphabet Inc. (Class C)",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "alphabet",
+    "goog"
+   ]
+  },
+  "MO": {
+   "name": "Altria",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "altria"
+   ]
+  },
+  "AMZN": {
+   "name": "Amazon",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "amazon",
+    "amzn"
+   ]
+  },
+  "AMCR": {
+   "name": "Amcor",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "amcor",
+    "amcr"
+   ]
+  },
+  "AEE": {
+   "name": "Ameren",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "ameren"
+   ]
+  },
+  "AEP": {
+   "name": "American Electric Power",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "american electric power"
+   ]
+  },
+  "AXP": {
+   "name": "American Express",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "american express"
+   ]
+  },
+  "AIG": {
+   "name": "American International Group",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "american international"
+   ]
+  },
+  "AMT": {
+   "name": "American Tower",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "american tower"
+   ]
+  },
+  "AWK": {
+   "name": "American Water Works",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "american water works"
+   ]
+  },
+  "AMP": {
+   "name": "Ameriprise Financial",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "ameriprise financial"
+   ]
+  },
+  "AME": {
+   "name": "Ametek",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "ametek"
+   ]
+  },
+  "AMGN": {
+   "name": "Amgen",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "amgen",
+    "amgn"
+   ]
+  },
+  "APH": {
+   "name": "Amphenol",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "amphenol"
+   ]
+  },
+  "ADI": {
+   "name": "Analog Devices",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "analog devices"
+   ]
+  },
+  "AON": {
+   "name": "Aon plc",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "aon plc"
+   ]
+  },
+  "APA": {
+   "name": "APA Corporation",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "apa corporation"
+   ]
+  },
+  "APO": {
+   "name": "Apollo Global Management",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "apollo global management"
+   ]
+  },
+  "AAPL": {
+   "name": "Apple Inc.",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "aapl",
+    "apple"
+   ]
+  },
+  "AMAT": {
+   "name": "Applied Materials",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "amat",
+    "applied materials"
+   ]
+  },
+  "APP": {
+   "name": "AppLovin",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "applovin"
+   ]
+  },
+  "APTV": {
+   "name": "Aptiv",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "aptiv",
+    "aptv"
+   ]
+  },
+  "ACGL": {
+   "name": "Arch Capital Group",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "acgl",
+    "arch capital"
+   ]
+  },
+  "ADM": {
+   "name": "Archer Daniels Midland",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "archer daniels midland"
+   ]
+  },
+  "ARES": {
+   "name": "Ares Management",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "ares",
+    "ares management"
+   ]
+  },
+  "ANET": {
+   "name": "Arista Networks",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "anet",
+    "arista networks"
+   ]
+  },
+  "AJG": {
+   "name": "Arthur J. Gallagher & Co.",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "arthur j gallagher"
+   ]
+  },
+  "AIZ": {
+   "name": "Assurant",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "assurant"
+   ]
+  },
+  "T": {
+   "name": "AT&T",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "at&t"
+   ]
+  },
+  "ATO": {
+   "name": "Atmos Energy",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "atmos energy"
+   ]
+  },
+  "ADSK": {
+   "name": "Autodesk",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "adsk",
+    "autodesk"
+   ]
+  },
+  "ADP": {
+   "name": "Automatic Data Processing",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "automatic data processing"
+   ]
+  },
+  "AZO": {
+   "name": "AutoZone",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "autozone"
+   ]
+  },
+  "AVB": {
+   "name": "AvalonBay Communities",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "avalonbay communities"
+   ]
+  },
+  "AVY": {
+   "name": "Avery Dennison",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "avery dennison"
+   ]
+  },
+  "AXON": {
+   "name": "Axon Enterprise",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "axon",
+    "axon enterprise"
+   ]
+  },
+  "BKR": {
+   "name": "Baker Hughes",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "baker hughes"
+   ]
+  },
+  "BALL": {
+   "name": "Ball Corporation",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "ball corporation"
+   ]
+  },
+  "BAC": {
+   "name": "Bank of America",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "bank of america"
+   ]
+  },
+  "BAX": {
+   "name": "Baxter International",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "baxter international"
+   ]
+  },
+  "BDX": {
+   "name": "Becton Dickinson",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "becton dickinson"
+   ]
+  },
+  "BRK-B": {
+   "name": "Berkshire Hathaway",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "berkshire hathaway",
+    "brk-b"
+   ]
+  },
+  "BBY": {
+   "name": "Best Buy",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "best buy"
+   ]
+  },
+  "TECH": {
+   "name": "Bio-Techne",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "bio-techne"
+   ]
+  },
+  "BIIB": {
+   "name": "Biogen",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "biib",
+    "biogen"
+   ]
+  },
+  "BLK": {
+   "name": "BlackRock",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "blackrock"
+   ]
+  },
+  "BX": {
+   "name": "Blackstone Inc.",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "blackstone"
+   ]
+  },
+  "XYZ": {
+   "name": "Block, Inc.",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "block, inc"
+   ]
+  },
+  "BNY": {
+   "name": "BNY Mellon",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "bny mellon"
+   ]
+  },
+  "BA": {
+   "name": "Boeing",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "boeing"
+   ]
+  },
+  "BKNG": {
+   "name": "Booking Holdings",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "bkng"
+   ]
+  },
+  "BSX": {
+   "name": "Boston Scientific",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "boston scientific"
+   ]
+  },
+  "BMY": {
+   "name": "Bristol Myers Squibb",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "bristol myers squibb"
+   ]
+  },
+  "AVGO": {
+   "name": "Broadcom",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "avgo",
+    "broadcom"
+   ]
+  },
+  "BR": {
+   "name": "Broadridge Financial Solutions",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "broadridge financial solutions"
+   ]
+  },
+  "BRO": {
+   "name": "Brown & Brown",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "brown & brown"
+   ]
+  },
+  "BF-B": {
+   "name": "Brown–Forman",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "bf-b",
+    "brown–forman"
+   ]
+  },
+  "BLDR": {
+   "name": "Builders FirstSource",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "bldr",
+    "builders firstsource"
+   ]
+  },
+  "BG": {
+   "name": "Bunge Global",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "bunge global"
+   ]
+  },
+  "BXP": {
+   "name": "BXP, Inc.",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "bxp, inc"
+   ]
+  },
+  "CHRW": {
+   "name": "C.H. Robinson",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "c h robinson",
+    "chrw"
+   ]
+  },
+  "CDNS": {
+   "name": "Cadence Design Systems",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "cadence design systems",
+    "cdns"
+   ]
+  },
+  "CPT": {
+   "name": "Camden Property Trust",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "camden property trust"
+   ]
+  },
+  "COF": {
+   "name": "Capital One",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "capital one"
+   ]
+  },
+  "CAH": {
+   "name": "Cardinal Health",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "cardinal health"
+   ]
+  },
+  "CCL": {
+   "name": "Carnival Corporation",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "carnival corporation"
+   ]
+  },
+  "CARR": {
+   "name": "Carrier Global",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "carr",
+    "carrier global"
+   ]
+  },
+  "CVNA": {
+   "name": "Carvana",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "carvana",
+    "cvna"
+   ]
+  },
+  "CASY": {
+   "name": "Casey's",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "casey's",
+    "casy"
+   ]
+  },
+  "CAT": {
+   "name": "Caterpillar Inc.",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "caterpillar"
+   ]
+  },
+  "CBOE": {
+   "name": "Cboe Global Markets",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "cboe",
+    "cboe global markets"
+   ]
+  },
+  "CBRE": {
+   "name": "CBRE Group",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "cbre"
+   ]
+  },
+  "CDW": {
+   "name": "CDW Corporation",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "cdw corporation"
+   ]
+  },
+  "COR": {
+   "name": "Cencora",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "cencora"
+   ]
+  },
+  "CNC": {
+   "name": "Centene Corporation",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "centene"
+   ]
+  },
+  "CNP": {
+   "name": "CenterPoint Energy",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "centerpoint energy"
+   ]
+  },
+  "CF": {
+   "name": "CF Industries",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "cf industries"
+   ]
+  },
+  "CRL": {
+   "name": "Charles River Laboratories",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "charles river laboratories"
+   ]
+  },
+  "SCHW": {
+   "name": "Charles Schwab Corporation",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "charles schwab",
+    "schw"
+   ]
+  },
+  "CHTR": {
+   "name": "Charter Communications",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "charter communications",
+    "chtr"
+   ]
+  },
+  "CVX": {
+   "name": "Chevron Corporation",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "chevron"
+   ]
+  },
+  "CMG": {
+   "name": "Chipotle Mexican Grill",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "chipotle mexican grill"
+   ]
+  },
+  "CB": {
+   "name": "Chubb Limited",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "chubb limited"
+   ]
+  },
+  "CHD": {
+   "name": "Church & Dwight",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "church & dwight"
+   ]
+  },
+  "CIEN": {
+   "name": "Ciena",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "cien",
+    "ciena"
+   ]
+  },
+  "CI": {
+   "name": "Cigna",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "cigna"
+   ]
+  },
+  "CINF": {
+   "name": "Cincinnati Financial",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "cincinnati financial",
+    "cinf"
+   ]
+  },
+  "CTAS": {
+   "name": "Cintas",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "cintas",
+    "ctas"
+   ]
+  },
+  "CSCO": {
+   "name": "Cisco",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "cisco",
+    "csco"
+   ]
+  },
+  "C": {
+   "name": "Citigroup",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "citigroup"
+   ]
+  },
+  "CFG": {
+   "name": "Citizens Financial Group",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "citizens financial"
+   ]
+  },
+  "CLX": {
+   "name": "Clorox",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "clorox"
+   ]
+  },
+  "CME": {
+   "name": "CME Group",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "cme group"
+   ]
+  },
+  "CMS": {
+   "name": "CMS Energy",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "cms energy"
+   ]
+  },
+  "KO": {
+   "name": "Coca-Cola Company (The)",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "coca-cola"
+   ]
+  },
+  "CTSH": {
+   "name": "Cognizant",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "cognizant",
+    "ctsh"
+   ]
+  },
+  "COHR": {
+   "name": "Coherent Corp.",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "coherent",
+    "cohr"
+   ]
+  },
+  "COIN": {
+   "name": "Coinbase",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "coin",
+    "coinbase"
+   ]
+  },
+  "CL": {
+   "name": "Colgate-Palmolive",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "colgate-palmolive"
+   ]
+  },
+  "CMCSA": {
+   "name": "Comcast",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "cmcsa",
+    "comcast"
+   ]
+  },
+  "FIX": {
+   "name": "Comfort Systems USA",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "comfort systems usa"
+   ]
+  },
+  "COP": {
+   "name": "ConocoPhillips",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "conocophillips"
+   ]
+  },
+  "ED": {
+   "name": "Consolidated Edison",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "consolidated edison"
+   ]
+  },
+  "STZ": {
+   "name": "Constellation Brands",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "constellation brands"
+   ]
+  },
+  "CEG": {
+   "name": "Constellation Energy",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "constellation energy"
+   ]
+  },
+  "COO": {
+   "name": "Cooper Companies (The)",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "cooper companies"
+   ]
+  },
+  "CPRT": {
+   "name": "Copart",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "copart",
+    "cprt"
+   ]
+  },
+  "GLW": {
+   "name": "Corning Inc.",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "corning"
+   ]
+  },
+  "CPAY": {
+   "name": "Corpay",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "corpay",
+    "cpay"
+   ]
+  },
+  "CTVA": {
+   "name": "Corteva",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "corteva",
+    "ctva"
+   ]
+  },
+  "CSGP": {
+   "name": "CoStar Group",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "costar",
+    "csgp"
+   ]
+  },
+  "COST": {
+   "name": "Costco",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "costco"
+   ]
+  },
+  "CRH": {
+   "name": "CRH plc",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "crh plc"
+   ]
+  },
+  "CRWD": {
+   "name": "CrowdStrike",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "crowdstrike",
+    "crwd"
+   ]
+  },
+  "CCI": {
+   "name": "Crown Castle",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "crown castle"
+   ]
+  },
+  "CSX": {
+   "name": "CSX Corporation",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "csx corporation"
+   ]
+  },
+  "CMI": {
+   "name": "Cummins",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "cummins"
+   ]
+  },
+  "CVS": {
+   "name": "CVS Health",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "cvs health"
+   ]
+  },
+  "DHR": {
+   "name": "Danaher Corporation",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "danaher"
+   ]
+  },
+  "DRI": {
+   "name": "Darden Restaurants",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "darden restaurants"
+   ]
+  },
+  "DDOG": {
+   "name": "Datadog",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "datadog",
+    "ddog"
+   ]
+  },
+  "DVA": {
+   "name": "DaVita",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "davita"
+   ]
+  },
+  "DECK": {
+   "name": "Deckers Brands",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "deck",
+    "deckers brands"
+   ]
+  },
+  "DE": {
+   "name": "Deere & Company",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "deere &"
+   ]
+  },
+  "DELL": {
+   "name": "Dell Technologies",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "dell",
+    "dell technologies"
+   ]
+  },
+  "DAL": {
+   "name": "Delta Air Lines",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "delta air lines"
+   ]
+  },
+  "DVN": {
+   "name": "Devon Energy",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "devon energy"
+   ]
+  },
+  "DXCM": {
+   "name": "Dexcom",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "dexcom",
+    "dxcm"
+   ]
+  },
+  "FANG": {
+   "name": "Diamondback Energy",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "diamondback energy",
+    "fang"
+   ]
+  },
+  "DLR": {
+   "name": "Digital Realty",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "digital realty"
+   ]
+  },
+  "DG": {
+   "name": "Dollar General",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "dollar general"
+   ]
+  },
+  "DLTR": {
+   "name": "Dollar Tree",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "dltr",
+    "dollar tree"
+   ]
+  },
+  "D": {
+   "name": "Dominion Energy",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "dominion energy"
+   ]
+  },
+  "DPZ": {
+   "name": "Domino's",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "domino's"
+   ]
+  },
+  "DASH": {
+   "name": "DoorDash",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "doordash"
+   ]
+  },
+  "DOV": {
+   "name": "Dover Corporation",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "dover corporation"
+   ]
+  },
+  "DOW": {
+   "name": "Dow Inc.",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "dow inc"
+   ]
+  },
+  "DHI": {
+   "name": "D. R. Horton",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "d r horton"
+   ]
+  },
+  "DTE": {
+   "name": "DTE Energy",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "dte energy"
+   ]
+  },
+  "DUK": {
+   "name": "Duke Energy",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "duke energy"
+   ]
+  },
+  "DD": {
+   "name": "DuPont",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "dupont"
+   ]
+  },
+  "ETN": {
+   "name": "Eaton Corporation",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "eaton"
+   ]
+  },
+  "EBAY": {
+   "name": "eBay Inc.",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "ebay"
+   ]
+  },
+  "ECHO": {
+   "name": "EchoStar",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "echo",
+    "echostar"
+   ]
+  },
+  "ECL": {
+   "name": "Ecolab",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "ecolab"
+   ]
+  },
+  "EIX": {
+   "name": "Edison International",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "edison international"
+   ]
+  },
+  "EW": {
+   "name": "Edwards Lifesciences",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "edwards lifesciences"
+   ]
+  },
+  "EA": {
+   "name": "Electronic Arts",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "electronic arts"
+   ]
+  },
+  "ELV": {
+   "name": "Elevance Health",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "elevance health"
+   ]
+  },
+  "EME": {
+   "name": "Emcor",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "emcor"
+   ]
+  },
+  "EMR": {
+   "name": "Emerson Electric",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "emerson electric"
+   ]
+  },
+  "ETR": {
+   "name": "Entergy",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "entergy"
+   ]
+  },
+  "EOG": {
+   "name": "EOG Resources",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "eog resources"
+   ]
+  },
+  "EQT": {
+   "name": "EQT Corporation",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "eqt corporation"
+   ]
+  },
+  "EFX": {
+   "name": "Equifax",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "equifax"
+   ]
+  },
+  "EQIX": {
+   "name": "Equinix",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "eqix",
+    "equinix"
+   ]
+  },
+  "EQR": {
+   "name": "Equity Residential",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "equity residential"
+   ]
+  },
+  "ERIE": {
+   "name": "Erie Indemnity",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "erie",
+    "erie indemnity"
+   ]
+  },
+  "ESS": {
+   "name": "Essex Property Trust",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "essex property trust"
+   ]
+  },
+  "EL": {
+   "name": "Estée Lauder Companies (The)",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "estée lauder companies"
+   ]
+  },
+  "EG": {
+   "name": "Everest Group",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "everest group"
+   ]
+  },
+  "EVRG": {
+   "name": "Evergy",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "evergy",
+    "evrg"
+   ]
+  },
+  "ES": {
+   "name": "Eversource Energy",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "eversource energy"
+   ]
+  },
+  "EXC": {
+   "name": "Exelon",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "exelon"
+   ]
+  },
+  "EXE": {
+   "name": "Expand Energy",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "expand energy"
+   ]
+  },
+  "EXPE": {
+   "name": "Expedia Group",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "expe",
+    "expedia"
+   ]
+  },
+  "EXPD": {
+   "name": "Expeditors International",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "expd",
+    "expeditors international"
+   ]
+  },
+  "EXR": {
+   "name": "Extra Space Storage",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "extra space storage"
+   ]
+  },
+  "XOM": {
+   "name": "ExxonMobil",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "exxonmobil"
+   ]
+  },
+  "FFIV": {
+   "name": "F5, Inc.",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "ffiv"
+   ]
+  },
+  "FDS": {
+   "name": "FactSet",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "factset"
+   ]
+  },
+  "FICO": {
+   "name": "Fair Isaac",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "fair isaac",
+    "fico"
+   ]
+  },
+  "FAST": {
+   "name": "Fastenal",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "fastenal"
+   ]
+  },
+  "FRT": {
+   "name": "Federal Realty Investment Trust",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "federal realty investment"
+   ]
+  },
+  "FDX": {
+   "name": "FedEx",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "fedex"
+   ]
+  },
+  "FDXF": {
+   "name": "FedEx Freight",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "fdxf",
+    "fedex freight"
+   ]
+  },
+  "FIS": {
+   "name": "Fidelity National Information Services",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "fidelity national information"
+   ]
+  },
+  "FITB": {
+   "name": "Fifth Third Bancorp",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "fifth third bancorp",
+    "fitb"
+   ]
+  },
+  "FSLR": {
+   "name": "First Solar",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "first solar",
+    "fslr"
+   ]
+  },
+  "FE": {
+   "name": "FirstEnergy",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "firstenergy"
+   ]
+  },
+  "FISV": {
+   "name": "Fiserv",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "fiserv",
+    "fisv"
+   ]
+  },
+  "FLEX": {
+   "name": "Flex Ltd.",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "flex"
+   ]
+  },
+  "F": {
+   "name": "Ford Motor Company",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "ford motor"
+   ]
+  },
+  "FTNT": {
+   "name": "Fortinet",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "fortinet",
+    "ftnt"
+   ]
+  },
+  "FTV": {
+   "name": "Fortive",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "fortive"
+   ]
+  },
+  "FOXA": {
+   "name": "Fox Corporation (Class A)",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "foxa"
+   ]
+  },
+  "FOX": {
+   "name": "Fox Corporation (Class B)",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "fox corporation (class b)"
+   ]
+  },
+  "BEN": {
+   "name": "Franklin Resources",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "franklin resources"
+   ]
+  },
+  "FCX": {
+   "name": "Freeport-McMoRan",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "freeport-mcmoran"
+   ]
+  },
+  "GRMN": {
+   "name": "Garmin",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "garmin",
+    "grmn"
+   ]
+  },
+  "IT": {
+   "name": "Gartner",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "gartner"
+   ]
+  },
+  "GE": {
+   "name": "GE Aerospace",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "ge aerospace"
+   ]
+  },
+  "GEHC": {
+   "name": "GE HealthCare",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "ge healthcare",
+    "gehc"
+   ]
+  },
+  "GEV": {
+   "name": "GE Vernova",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "ge vernova"
+   ]
+  },
+  "GEN": {
+   "name": "Gen Digital",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "gen digital"
+   ]
+  },
+  "GNRC": {
+   "name": "Generac",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "generac",
+    "gnrc"
+   ]
+  },
+  "GD": {
+   "name": "General Dynamics",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "general dynamics"
+   ]
+  },
+  "GIS": {
+   "name": "General Mills",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "general mills"
+   ]
+  },
+  "GM": {
+   "name": "General Motors",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "general motors"
+   ]
+  },
+  "GPC": {
+   "name": "Genuine Parts Company",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "genuine parts"
+   ]
+  },
+  "GILD": {
+   "name": "Gilead Sciences",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "gild",
+    "gilead sciences"
+   ]
+  },
+  "GPN": {
+   "name": "Global Payments",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "global payments"
+   ]
+  },
+  "GL": {
+   "name": "Globe Life",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "globe life"
+   ]
+  },
+  "GDDY": {
+   "name": "GoDaddy",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "gddy",
+    "godaddy"
+   ]
+  },
+  "GS": {
+   "name": "Goldman Sachs",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "goldman sachs"
+   ]
+  },
+  "HAL": {
+   "name": "Halliburton",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "halliburton"
+   ]
+  },
+  "HIG": {
+   "name": "Hartford (The)",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "hartford"
+   ]
+  },
+  "HAS": {
+   "name": "Hasbro",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "hasbro"
+   ]
+  },
+  "HCA": {
+   "name": "HCA Healthcare",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "hca healthcare"
+   ]
+  },
+  "DOC": {
+   "name": "Healthpeak Properties",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "healthpeak properties"
+   ]
+  },
+  "HSIC": {
+   "name": "Henry Schein",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "henry schein",
+    "hsic"
+   ]
+  },
+  "HSY": {
+   "name": "Hershey Company (The)",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "hershey"
+   ]
+  },
+  "HPE": {
+   "name": "Hewlett Packard Enterprise",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "hewlett packard enterprise"
+   ]
+  },
+  "HLT": {
+   "name": "Hilton Worldwide",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "hilton worldwide"
+   ]
+  },
+  "HD": {
+   "name": "Home Depot (The)",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "home depot"
+   ]
+  },
+  "HONA": {
+   "name": "Honeywell Aerospace",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "hona",
+    "honeywell aerospace"
+   ]
+  },
+  "HON": {
+   "name": "Honeywell Technologies",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "honeywell technologies"
+   ]
+  },
+  "HRL": {
+   "name": "Hormel Foods",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "hormel foods"
+   ]
+  },
+  "HST": {
+   "name": "Host Hotels & Resorts",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "host hotels &"
+   ]
+  },
+  "HWM": {
+   "name": "Howmet Aerospace",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "howmet aerospace"
+   ]
+  },
+  "HPQ": {
+   "name": "HP Inc.",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "hp inc"
+   ]
+  },
+  "HUBB": {
+   "name": "Hubbell Incorporated",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "hubb",
+    "hubbell"
+   ]
+  },
+  "HUM": {
+   "name": "Humana",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "humana"
+   ]
+  },
+  "HBAN": {
+   "name": "Huntington Bancshares",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "hban",
+    "huntington bancshares"
+   ]
+  },
+  "HII": {
+   "name": "Huntington Ingalls Industries",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "huntington ingalls industries"
+   ]
+  },
+  "IBM": {
+   "name": "IBM",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "ibm"
+   ]
+  },
+  "IEX": {
+   "name": "IDEX Corporation",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "idex corporation"
+   ]
+  },
+  "IDXX": {
+   "name": "Idexx Laboratories",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "idexx laboratories",
+    "idxx"
+   ]
+  },
+  "ITW": {
+   "name": "Illinois Tool Works",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "illinois tool works"
+   ]
+  },
+  "INCY": {
+   "name": "Incyte",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "incy",
+    "incyte"
+   ]
+  },
+  "IR": {
+   "name": "Ingersoll Rand",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "ingersoll rand"
+   ]
+  },
+  "PODD": {
+   "name": "Insulet Corporation",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "insulet",
+    "podd"
+   ]
+  },
+  "INTC": {
+   "name": "Intel",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "intc",
+    "intel"
+   ]
+  },
+  "IBKR": {
+   "name": "Interactive Brokers",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "ibkr",
+    "interactive brokers"
+   ]
+  },
+  "ICE": {
+   "name": "Intercontinental Exchange",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "intercontinental exchange"
+   ]
+  },
+  "IFF": {
+   "name": "International Flavors & Fragrances",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "international flavors &"
+   ]
+  },
+  "IP": {
+   "name": "International Paper",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "international paper"
+   ]
+  },
+  "INTU": {
+   "name": "Intuit",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "intu",
+    "intuit"
+   ]
+  },
+  "ISRG": {
+   "name": "Intuitive Surgical",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "intuitive surgical",
+    "isrg"
+   ]
+  },
+  "IVZ": {
+   "name": "Invesco",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "invesco"
+   ]
+  },
+  "INVH": {
+   "name": "Invitation Homes",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "invh",
+    "invitation homes"
+   ]
+  },
+  "IQV": {
+   "name": "IQVIA",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "iqvia"
+   ]
+  },
+  "IRM": {
+   "name": "Iron Mountain",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "iron mountain"
+   ]
+  },
+  "JBHT": {
+   "name": "J.B. Hunt",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "j b hunt",
+    "jbht"
+   ]
+  },
+  "JBL": {
+   "name": "Jabil",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "jabil"
+   ]
+  },
+  "JKHY": {
+   "name": "Jack Henry & Associates",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "jack henry &",
+    "jkhy"
+   ]
+  },
+  "J": {
+   "name": "Jacobs Solutions",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "jacobs solutions"
+   ]
+  },
+  "JNJ": {
+   "name": "Johnson & Johnson",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "johnson & johnson"
+   ]
+  },
+  "JCI": {
+   "name": "Johnson Controls",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "johnson controls"
+   ]
+  },
+  "JPM": {
+   "name": "JPMorgan Chase",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "jpmorgan chase"
+   ]
+  },
+  "KVUE": {
+   "name": "Kenvue",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "kenvue",
+    "kvue"
+   ]
+  },
+  "KDP": {
+   "name": "Keurig Dr Pepper",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "keurig dr pepper"
+   ]
+  },
+  "KEY": {
+   "name": "KeyCorp",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "keycorp"
+   ]
+  },
+  "KEYS": {
+   "name": "Keysight Technologies",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "keysight technologies"
+   ]
+  },
+  "KMB": {
+   "name": "Kimberly-Clark",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "kimberly-clark"
+   ]
+  },
+  "KIM": {
+   "name": "Kimco Realty",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "kimco realty"
+   ]
+  },
+  "KMI": {
+   "name": "Kinder Morgan",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "kinder morgan"
+   ]
+  },
+  "KKR": {
+   "name": "KKR & Co.",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "kkr &"
+   ]
+  },
+  "KLAC": {
+   "name": "KLA Corporation",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "klac"
+   ]
+  },
+  "KHC": {
+   "name": "Kraft Heinz",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "kraft heinz"
+   ]
+  },
+  "KR": {
+   "name": "Kroger",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "kroger"
+   ]
+  },
+  "LHX": {
+   "name": "L3Harris",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "l3harris"
+   ]
+  },
+  "LH": {
+   "name": "Labcorp",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "labcorp"
+   ]
+  },
+  "LRCX": {
+   "name": "Lam Research",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "lam research",
+    "lrcx"
+   ]
+  },
+  "LVS": {
+   "name": "Las Vegas Sands",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "las vegas sands"
+   ]
+  },
+  "LDOS": {
+   "name": "Leidos",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "ldos",
+    "leidos"
+   ]
+  },
+  "LEN": {
+   "name": "Lennar",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "lennar"
+   ]
+  },
+  "LII": {
+   "name": "Lennox International",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "lennox international"
+   ]
+  },
+  "LLY": {
+   "name": "Lilly (Eli)",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "lilly"
+   ]
+  },
+  "LIN": {
+   "name": "Linde plc",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "linde"
+   ]
+  },
+  "LYV": {
+   "name": "Live Nation Entertainment",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "live nation entertainment"
+   ]
+  },
+  "LMT": {
+   "name": "Lockheed Martin",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "lockheed martin"
+   ]
+  },
+  "L": {
+   "name": "Loews Corporation",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "loews"
+   ]
+  },
+  "LOW": {
+   "name": "Lowe's",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "lowe's"
+   ]
+  },
+  "LULU": {
+   "name": "Lululemon Athletica",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "lulu",
+    "lululemon athletica"
+   ]
+  },
+  "LITE": {
+   "name": "Lumentum",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "lite",
+    "lumentum"
+   ]
+  },
+  "LYB": {
+   "name": "LyondellBasell",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "lyondellbasell"
+   ]
+  },
+  "MTB": {
+   "name": "M&T Bank",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "m&t bank"
+   ]
+  },
+  "MPC": {
+   "name": "Marathon Petroleum",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "marathon petroleum"
+   ]
+  },
+  "MAR": {
+   "name": "Marriott International",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "marriott international"
+   ]
+  },
+  "MRSH": {
+   "name": "Marsh McLennan",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "marsh mclennan",
+    "mrsh"
+   ]
+  },
+  "MLM": {
+   "name": "Martin Marietta Materials",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "martin marietta materials"
+   ]
+  },
+  "MRVL": {
+   "name": "Marvell Technology",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "marvell technology",
+    "mrvl"
+   ]
+  },
+  "MAS": {
+   "name": "Masco",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "masco"
+   ]
+  },
+  "MA": {
+   "name": "Mastercard",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "mastercard"
+   ]
+  },
+  "MKC": {
+   "name": "McCormick & Company",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "mccormick &"
+   ]
+  },
+  "MCD": {
+   "name": "McDonald's",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "mcdonald's"
+   ]
+  },
+  "MCK": {
+   "name": "McKesson Corporation",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "mckesson"
+   ]
+  },
+  "MDT": {
+   "name": "Medtronic",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "medtronic"
+   ]
+  },
+  "MRK": {
+   "name": "Merck & Co.",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "merck &"
+   ]
+  },
+  "META": {
+   "name": "Meta Platforms",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "meta platforms"
+   ]
+  },
+  "MET": {
+   "name": "MetLife",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "metlife"
+   ]
+  },
+  "MTD": {
+   "name": "Mettler Toledo",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "mettler toledo"
+   ]
+  },
+  "MGM": {
+   "name": "MGM Resorts",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "mgm resorts"
+   ]
+  },
+  "MCHP": {
+   "name": "Microchip Technology",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "mchp",
+    "microchip technology"
+   ]
+  },
+  "MU": {
+   "name": "Micron Technology",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "micron technology"
+   ]
+  },
+  "MSFT": {
+   "name": "Microsoft",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "microsoft",
+    "msft"
+   ]
+  },
+  "MAA": {
+   "name": "Mid-America Apartment Communities",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "mid-america apartment communities"
+   ]
+  },
+  "MRNA": {
+   "name": "Moderna",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "moderna",
+    "mrna"
+   ]
+  },
+  "TAP": {
+   "name": "Molson Coors Beverage Company",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "molson coors beverage"
+   ]
+  },
+  "MDLZ": {
+   "name": "Mondelez International",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "mdlz",
+    "mondelez international"
+   ]
+  },
+  "MPWR": {
+   "name": "Monolithic Power Systems",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "monolithic power systems",
+    "mpwr"
+   ]
+  },
+  "MNST": {
+   "name": "Monster Beverage",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "mnst",
+    "monster beverage"
+   ]
+  },
+  "MCO": {
+   "name": "Moody's Corporation",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "moody's"
+   ]
+  },
+  "MS": {
+   "name": "Morgan Stanley",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "morgan stanley"
+   ]
+  },
+  "MOS": {
+   "name": "Mosaic Company (The)",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "mosaic company (the)"
+   ]
+  },
+  "MSI": {
+   "name": "Motorola Solutions",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "motorola solutions"
+   ]
+  },
+  "MSCI": {
+   "name": "MSCI Inc.",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "msci"
+   ]
+  },
+  "NDAQ": {
+   "name": "Nasdaq, Inc.",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "nasdaq",
+    "ndaq"
+   ]
+  },
+  "NTAP": {
+   "name": "NetApp",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "netapp",
+    "ntap"
+   ]
+  },
+  "NFLX": {
+   "name": "Netflix",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "netflix",
+    "nflx"
+   ]
+  },
+  "NEM": {
+   "name": "Newmont",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "newmont"
+   ]
+  },
+  "NWSA": {
+   "name": "News Corp (Class A)",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "nwsa"
+   ]
+  },
+  "NWS": {
+   "name": "News Corp (Class B)",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "news corp (class b)"
+   ]
+  },
+  "NEE": {
+   "name": "NextEra Energy",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "nextera energy"
+   ]
+  },
+  "NKE": {
+   "name": "Nike, Inc.",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "nike, inc"
+   ]
+  },
+  "NI": {
+   "name": "NiSource",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "nisource"
+   ]
+  },
+  "NDSN": {
+   "name": "Nordson Corporation",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "ndsn",
+    "nordson"
+   ]
+  },
+  "NSC": {
+   "name": "Norfolk Southern",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "norfolk southern"
+   ]
+  },
+  "NTRS": {
+   "name": "Northern Trust",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "northern trust",
+    "ntrs"
+   ]
+  },
+  "NOC": {
+   "name": "Northrop Grumman",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "northrop grumman"
+   ]
+  },
+  "NCLH": {
+   "name": "Norwegian Cruise Line Holdings",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "nclh",
+    "norwegian cruise line"
+   ]
+  },
+  "NRG": {
+   "name": "NRG Energy",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "nrg energy"
+   ]
+  },
+  "NUE": {
+   "name": "Nucor",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "nucor"
+   ]
+  },
+  "NVDA": {
+   "name": "Nvidia",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "nvda",
+    "nvidia"
+   ]
+  },
+  "NVR": {
+   "name": "NVR, Inc.",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "nvr, inc"
+   ]
+  },
+  "NXPI": {
+   "name": "NXP Semiconductors",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "nxp semiconductors",
+    "nxpi"
+   ]
+  },
+  "ORLY": {
+   "name": "O’Reilly Automotive",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "orly",
+    "o’reilly automotive"
+   ]
+  },
+  "OXY": {
+   "name": "Occidental Petroleum",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "occidental petroleum"
+   ]
+  },
+  "ODFL": {
+   "name": "Old Dominion",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "odfl",
+    "old dominion"
+   ]
+  },
+  "OMC": {
+   "name": "Omnicom Group",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "omnicom"
+   ]
+  },
+  "ON": {
+   "name": "ON Semiconductor",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "on semiconductor"
+   ]
+  },
+  "OKE": {
+   "name": "Oneok",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "oneok"
+   ]
+  },
+  "ORCL": {
+   "name": "Oracle Corporation",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "oracle",
+    "orcl"
+   ]
+  },
+  "OTIS": {
+   "name": "Otis Worldwide",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "otis",
+    "otis worldwide"
+   ]
+  },
+  "PCAR": {
+   "name": "Paccar",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "paccar",
+    "pcar"
+   ]
+  },
+  "PKG": {
+   "name": "Packaging Corporation of America",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "packaging of america"
+   ]
+  },
+  "PLTR": {
+   "name": "Palantir Technologies",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "palantir technologies",
+    "pltr"
+   ]
+  },
+  "PANW": {
+   "name": "Palo Alto Networks",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "palo alto networks",
+    "panw"
+   ]
+  },
+  "PSKY": {
+   "name": "Paramount Skydance Corporation",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "paramount skydance",
+    "psky"
+   ]
+  },
+  "PH": {
+   "name": "Parker Hannifin",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "parker hannifin"
+   ]
+  },
+  "PAYX": {
+   "name": "Paychex",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "paychex",
+    "payx"
+   ]
+  },
+  "PYPL": {
+   "name": "PayPal",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "paypal",
+    "pypl"
+   ]
+  },
+  "PNR": {
+   "name": "Pentair",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "pentair"
+   ]
+  },
+  "PEP": {
+   "name": "PepsiCo",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "pepsico"
+   ]
+  },
+  "PFE": {
+   "name": "Pfizer",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "pfizer"
+   ]
+  },
+  "PCG": {
+   "name": "PG&E Corporation",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "pg&e corporation"
+   ]
+  },
+  "PM": {
+   "name": "Philip Morris International",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "philip morris international"
+   ]
+  },
+  "PSX": {
+   "name": "Phillips 66",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "phillips 66"
+   ]
+  },
+  "PNW": {
+   "name": "Pinnacle West Capital",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "pinnacle west capital"
+   ]
+  },
+  "PNC": {
+   "name": "PNC Financial Services",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "pnc financial services"
+   ]
+  },
+  "PPG": {
+   "name": "PPG Industries",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "ppg industries"
+   ]
+  },
+  "PPL": {
+   "name": "PPL Corporation",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "ppl corporation"
+   ]
+  },
+  "PFG": {
+   "name": "Principal Financial Group",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "principal financial"
+   ]
+  },
+  "PG": {
+   "name": "Procter & Gamble",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "procter & gamble"
+   ]
+  },
+  "PGR": {
+   "name": "Progressive Corporation",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "progressive corporation"
+   ]
+  },
+  "PLD": {
+   "name": "Prologis",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "prologis"
+   ]
+  },
+  "PRU": {
+   "name": "Prudential Financial",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "prudential financial"
+   ]
+  },
+  "PEG": {
+   "name": "Public Service Enterprise Group",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "public service enterprise"
+   ]
+  },
+  "PTC": {
+   "name": "PTC Inc.",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "ptc inc"
+   ]
+  },
+  "PSA": {
+   "name": "Public Storage",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "public storage"
+   ]
+  },
+  "PHM": {
+   "name": "PulteGroup",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "pultegroup"
+   ]
+  },
+  "PWR": {
+   "name": "Quanta Services",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "quanta services"
+   ]
+  },
+  "QCOM": {
+   "name": "Qualcomm",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "qcom",
+    "qualcomm"
+   ]
+  },
+  "DGX": {
+   "name": "Quest Diagnostics",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "quest diagnostics"
+   ]
+  },
+  "Q": {
+   "name": "Qnity Electronics",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "qnity electronics"
+   ]
+  },
+  "RL": {
+   "name": "Ralph Lauren Corporation",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "ralph lauren"
+   ]
+  },
+  "RJF": {
+   "name": "Raymond James Financial",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "raymond james financial"
+   ]
+  },
+  "RTX": {
+   "name": "RTX Corporation",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "rtx corporation"
+   ]
+  },
+  "O": {
+   "name": "Realty Income",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "realty income"
+   ]
+  },
+  "REG": {
+   "name": "Regency Centers",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "regency centers"
+   ]
+  },
+  "REGN": {
+   "name": "Regeneron Pharmaceuticals",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "regeneron pharmaceuticals",
+    "regn"
+   ]
+  },
+  "RF": {
+   "name": "Regions Financial Corporation",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "regions financial"
+   ]
+  },
+  "RSG": {
+   "name": "Republic Services",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "republic services"
+   ]
+  },
+  "RMD": {
+   "name": "ResMed",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "resmed"
+   ]
+  },
+  "RVTY": {
+   "name": "Revvity",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "revvity",
+    "rvty"
+   ]
+  },
+  "HOOD": {
+   "name": "Robinhood Markets",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "hood",
+    "robinhood markets"
+   ]
+  },
+  "ROK": {
+   "name": "Rockwell Automation",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "rockwell automation"
+   ]
+  },
+  "ROL": {
+   "name": "Rollins, Inc.",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "rollins"
+   ]
+  },
+  "ROP": {
+   "name": "Roper Technologies",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "roper technologies"
+   ]
+  },
+  "ROST": {
+   "name": "Ross Stores",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "ross stores",
+    "rost"
+   ]
+  },
+  "RCL": {
+   "name": "Royal Caribbean Group",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "royal caribbean"
+   ]
+  },
+  "SPGI": {
+   "name": "S&P Global",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "s&p global",
+    "spgi"
+   ]
+  },
+  "CRM": {
+   "name": "Salesforce",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "salesforce"
+   ]
+  },
+  "SNDK": {
+   "name": "Sandisk",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "sandisk",
+    "sndk"
+   ]
+  },
+  "SBAC": {
+   "name": "SBA Communications",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "sba communications",
+    "sbac"
+   ]
+  },
+  "SLB": {
+   "name": "Schlumberger",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "schlumberger"
+   ]
+  },
+  "STX": {
+   "name": "Seagate Technology",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "seagate technology"
+   ]
+  },
+  "SRE": {
+   "name": "Sempra",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "sempra"
+   ]
+  },
+  "NOW": {
+   "name": "ServiceNow",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "servicenow"
+   ]
+  },
+  "SHW": {
+   "name": "Sherwin-Williams",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "sherwin-williams"
+   ]
+  },
+  "SPG": {
+   "name": "Simon Property Group",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "simon property"
+   ]
+  },
+  "SWKS": {
+   "name": "Skyworks Solutions",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "skyworks solutions",
+    "swks"
+   ]
+  },
+  "SJM": {
+   "name": "J.M. Smucker Company (The)",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "j m smucker"
+   ]
+  },
+  "SW": {
+   "name": "Smurfit Westrock",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "smurfit westrock"
+   ]
+  },
+  "SNA": {
+   "name": "Snap-on",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "snap-on"
+   ]
+  },
+  "SOLV": {
+   "name": "Solventum",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "solv",
+    "solventum"
+   ]
+  },
+  "SO": {
+   "name": "Southern Company",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "southern company"
+   ]
+  },
+  "LUV": {
+   "name": "Southwest Airlines",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "southwest airlines"
+   ]
+  },
+  "SWK": {
+   "name": "Stanley Black & Decker",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "stanley black &"
+   ]
+  },
+  "SBUX": {
+   "name": "Starbucks",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "sbux",
+    "starbucks"
+   ]
+  },
+  "STT": {
+   "name": "State Street Corporation",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "state street"
+   ]
+  },
+  "STLD": {
+   "name": "Steel Dynamics",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "steel dynamics",
+    "stld"
+   ]
+  },
+  "STE": {
+   "name": "Steris",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "steris"
+   ]
+  },
+  "SYK": {
+   "name": "Stryker Corporation",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "stryker"
+   ]
+  },
+  "SMCI": {
+   "name": "Supermicro",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "smci",
+    "supermicro"
+   ]
+  },
+  "SYF": {
+   "name": "Synchrony Financial",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "synchrony financial"
+   ]
+  },
+  "SNPS": {
+   "name": "Synopsys",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "snps",
+    "synopsys"
+   ]
+  },
+  "SYY": {
+   "name": "Sysco",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "sysco"
+   ]
+  },
+  "TMUS": {
+   "name": "T-Mobile US",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "t-mobile us",
+    "tmus"
+   ]
+  },
+  "TROW": {
+   "name": "T. Rowe Price",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "t rowe price",
+    "trow"
+   ]
+  },
+  "TTWO": {
+   "name": "Take-Two Interactive",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "take-two interactive",
+    "ttwo"
+   ]
+  },
+  "TPR": {
+   "name": "Tapestry, Inc.",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "tapestry, inc"
+   ]
+  },
+  "TRGP": {
+   "name": "Targa Resources",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "targa resources",
+    "trgp"
+   ]
+  },
+  "TGT": {
+   "name": "Target Corporation",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "target corporation"
+   ]
+  },
+  "TEL": {
+   "name": "TE Connectivity",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "te connectivity"
+   ]
+  },
+  "TDY": {
+   "name": "Teledyne Technologies",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "teledyne technologies"
+   ]
+  },
+  "TER": {
+   "name": "Teradyne",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "teradyne"
+   ]
+  },
+  "TSLA": {
+   "name": "Tesla, Inc.",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "tesla",
+    "tsla"
+   ]
+  },
+  "TXN": {
+   "name": "Texas Instruments",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "texas instruments"
+   ]
+  },
+  "TPL": {
+   "name": "Texas Pacific Land Corporation",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "texas pacific land"
+   ]
+  },
+  "TXT": {
+   "name": "Textron",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "textron"
+   ]
+  },
+  "TMO": {
+   "name": "Thermo Fisher Scientific",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "thermo fisher scientific"
+   ]
+  },
+  "TJX": {
+   "name": "TJX Companies",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "tjx companies"
+   ]
+  },
+  "TKO": {
+   "name": "TKO Group Holdings",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "tko group holdings"
+   ]
+  },
+  "TTD": {
+   "name": "Trade Desk (The)",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "trade desk"
+   ]
+  },
+  "TSCO": {
+   "name": "Tractor Supply",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "tractor supply",
+    "tsco"
+   ]
+  },
+  "TT": {
+   "name": "Trane Technologies",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "trane technologies"
+   ]
+  },
+  "TDG": {
+   "name": "TransDigm Group",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "transdigm"
+   ]
+  },
+  "TRV": {
+   "name": "Travelers Companies (The)",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "travelers companies"
+   ]
+  },
+  "TRMB": {
+   "name": "Trimble Inc.",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "trimble",
+    "trmb"
+   ]
+  },
+  "TFC": {
+   "name": "Truist Financial",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "truist financial"
+   ]
+  },
+  "TYL": {
+   "name": "Tyler Technologies",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "tyler technologies"
+   ]
+  },
+  "TSN": {
+   "name": "Tyson Foods",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "tyson foods"
+   ]
+  },
+  "USB": {
+   "name": "U.S. Bancorp",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "u s bancorp"
+   ]
+  },
+  "UBER": {
+   "name": "Uber",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "uber"
+   ]
+  },
+  "UDR": {
+   "name": "UDR, Inc.",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "udr, inc"
+   ]
+  },
+  "ULTA": {
+   "name": "Ulta Beauty",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "ulta",
+    "ulta beauty"
+   ]
+  },
+  "UNP": {
+   "name": "Union Pacific Corporation",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "union pacific"
+   ]
+  },
+  "UAL": {
+   "name": "United Airlines Holdings",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "united airlines"
+   ]
+  },
+  "UPS": {
+   "name": "United Parcel Service",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "united parcel service"
+   ]
+  },
+  "URI": {
+   "name": "United Rentals",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "united rentals"
+   ]
+  },
+  "UNH": {
+   "name": "UnitedHealth Group",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "unitedhealth"
+   ]
+  },
+  "UHS": {
+   "name": "Universal Health Services",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "universal health services"
+   ]
+  },
+  "VLO": {
+   "name": "Valero Energy",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "valero energy"
+   ]
+  },
+  "VEEV": {
+   "name": "Veeva Systems",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "veev",
+    "veeva systems"
+   ]
+  },
+  "VTR": {
+   "name": "Ventas",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "ventas"
+   ]
+  },
+  "VLTO": {
+   "name": "Veralto",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "veralto",
+    "vlto"
+   ]
+  },
+  "VRSN": {
+   "name": "Verisign",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "verisign",
+    "vrsn"
+   ]
+  },
+  "VRSK": {
+   "name": "Verisk Analytics",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "verisk analytics",
+    "vrsk"
+   ]
+  },
+  "VZ": {
+   "name": "Verizon",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "verizon"
+   ]
+  },
+  "VRTX": {
+   "name": "Vertex Pharmaceuticals",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "vertex pharmaceuticals",
+    "vrtx"
+   ]
+  },
+  "VRT": {
+   "name": "Vertiv",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "vertiv"
+   ]
+  },
+  "VTRS": {
+   "name": "Viatris",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "viatris",
+    "vtrs"
+   ]
+  },
+  "VICI": {
+   "name": "Vici Properties",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "vici",
+    "vici properties"
+   ]
+  },
+  "V": {
+   "name": "Visa Inc.",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "visa inc"
+   ]
+  },
+  "VST": {
+   "name": "Vistra Corp.",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "vistra"
+   ]
+  },
+  "VMC": {
+   "name": "Vulcan Materials Company",
+   "market": "US",
+   "sector": "Materials",
+   "variants": [
+    "vulcan materials"
+   ]
+  },
+  "WRB": {
+   "name": "W. R. Berkley Corporation",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "w r berkley"
+   ]
+  },
+  "GWW": {
+   "name": "W. W. Grainger",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "w w grainger"
+   ]
+  },
+  "WAB": {
+   "name": "Wabtec",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "wabtec"
+   ]
+  },
+  "WMT": {
+   "name": "Walmart",
+   "market": "US",
+   "sector": "Consumer Staples",
+   "variants": [
+    "walmart"
+   ]
+  },
+  "DIS": {
+   "name": "Walt Disney Company (The)",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "walt disney"
+   ]
+  },
+  "WBD": {
+   "name": "Warner Bros. Discovery",
+   "market": "US",
+   "sector": "Communication Services",
+   "variants": [
+    "warner bros discovery"
+   ]
+  },
+  "WM": {
+   "name": "Waste Management",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "waste management"
+   ]
+  },
+  "WAT": {
+   "name": "Waters Corporation",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "waters corporation"
+   ]
+  },
+  "WEC": {
+   "name": "WEC Energy Group",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "wec energy"
+   ]
+  },
+  "WFC": {
+   "name": "Wells Fargo",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "wells fargo"
+   ]
+  },
+  "WELL": {
+   "name": "Welltower",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "welltower"
+   ]
+  },
+  "WST": {
+   "name": "West Pharmaceutical Services",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "west pharmaceutical services"
+   ]
+  },
+  "WDC": {
+   "name": "Western Digital",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "western digital"
+   ]
+  },
+  "WY": {
+   "name": "Weyerhaeuser",
+   "market": "US",
+   "sector": "Real Estate",
+   "variants": [
+    "weyerhaeuser"
+   ]
+  },
+  "WSM": {
+   "name": "Williams-Sonoma, Inc.",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "williams-sonoma"
+   ]
+  },
+  "WMB": {
+   "name": "Williams Companies",
+   "market": "US",
+   "sector": "Energy",
+   "variants": [
+    "williams companies"
+   ]
+  },
+  "WTW": {
+   "name": "Willis Towers Watson",
+   "market": "US",
+   "sector": "Financials",
+   "variants": [
+    "willis towers watson"
+   ]
+  },
+  "WDAY": {
+   "name": "Workday, Inc.",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "wday",
+    "workday"
+   ]
+  },
+  "WYNN": {
+   "name": "Wynn Resorts",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "wynn",
+    "wynn resorts"
+   ]
+  },
+  "XEL": {
+   "name": "Xcel Energy",
+   "market": "US",
+   "sector": "Utilities",
+   "variants": [
+    "xcel energy"
+   ]
+  },
+  "XYL": {
+   "name": "Xylem Inc.",
+   "market": "US",
+   "sector": "Industrials",
+   "variants": [
+    "xylem"
+   ]
+  },
+  "YUM": {
+   "name": "Yum! Brands",
+   "market": "US",
+   "sector": "Consumer Discretionary",
+   "variants": [
+    "yum! brands"
+   ]
+  },
+  "ZBRA": {
+   "name": "Zebra Technologies",
+   "market": "US",
+   "sector": "Information Technology",
+   "variants": [
+    "zbra",
+    "zebra technologies"
+   ]
+  },
+  "ZBH": {
+   "name": "Zimmer Biomet",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "zimmer biomet"
+   ]
+  },
+  "ZTS": {
+   "name": "Zoetis",
+   "market": "US",
+   "sector": "Health Care",
+   "variants": [
+    "zoetis"
+   ]
+  },
+  "AEFES": {
+   "name": "Anadolu Efes Biracılık Ve Malt Sanayii A.Ş.",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "aefes",
+    "anadolu efes biracılık"
+   ]
+  },
+  "AGHOL": {
+   "name": "AG Anadolu Grubu Holding",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "ag anadolu grubu",
+    "aghol"
+   ]
+  },
+  "AKBNK": {
+   "name": "Akbank",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "akbank",
+    "akbnk"
+   ]
+  },
+  "AKCNS": {
+   "name": "Akçansa Çimento",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "akcns",
+    "akçansa çimento"
+   ]
+  },
+  "AKFGY": {
+   "name": "Akfen Gayrimenkul Yatırım Ortaklığı",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "akfen gayrimenkul",
+    "akfgy"
+   ]
+  },
+  "AKFYE": {
+   "name": "Akfen Yenilenebilir Enerji",
+   "market": "BIST",
+   "sector": "Elektrik, Gaz ve Su",
+   "variants": [
+    "akfen yenilenebilir enerji",
+    "akfye"
+   ]
+  },
+  "AKSA": {
+   "name": "AKSA Akrilik Kimya",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "aksa akrilik kimya"
+   ]
+  },
+  "AKSEN": {
+   "name": "AKSA Enerji Üretim",
+   "market": "BIST",
+   "sector": "Elektrik, Gaz ve Su",
+   "variants": [
+    "aksa enerji üretim",
+    "aksen"
+   ]
+  },
+  "ALARK": {
+   "name": "Alarko Holding",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "alark",
+    "alarko"
+   ]
+  },
+  "ALBRK": {
+   "name": "Albaraka Türk Katılım Bankası",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "albaraka türk katılım",
+    "albrk"
+   ]
+  },
+  "ALFAS": {
+   "name": "Alfa Solar Enerji",
+   "market": "BIST",
+   "sector": "Elektrik, Gaz ve Su",
+   "variants": [
+    "alfa solar enerji",
+    "alfas"
+   ]
+  },
+  "ARCLK": {
+   "name": "Arçelik",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "arclk",
+    "arçelik"
+   ]
+  },
+  "ASELS": {
+   "name": "Aselsan",
+   "market": "BIST",
+   "sector": "Teknoloji",
+   "variants": [
+    "asels",
+    "aselsan"
+   ]
+  },
+  "ASTOR": {
+   "name": "Astor Enerji",
+   "market": "BIST",
+   "sector": "Elektrik, Gaz ve Su",
+   "variants": [
+    "astor",
+    "astor enerji"
+   ]
+  },
+  "BERA": {
+   "name": "Bera Holding",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "bera holding"
+   ]
+  },
+  "BIENY": {
+   "name": "Bien Yapı Ürünleri",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "bien yapı ürünleri",
+    "bieny"
+   ]
+  },
+  "BIMAS": {
+   "name": "BİM Birleşik Mağazalar",
+   "market": "BIST",
+   "sector": "Toptan ve Perakende Ticaret, Lokantalar ve Oteller",
+   "variants": [
+    "bim birleşik mağazalar",
+    "bimas"
+   ]
+  },
+  "BRSAN": {
+   "name": "Borusan Mannesmann",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "borusan mannesmann",
+    "brsan"
+   ]
+  },
+  "BRYAT": {
+   "name": "Borusan Yatırım Pazarlama",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "borusan pazarlama",
+    "bryat"
+   ]
+  },
+  "BUCIM": {
+   "name": "Bursa Çimento",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "bucim",
+    "bursa çimento"
+   ]
+  },
+  "CANTE": {
+   "name": "Çan2 Termik",
+   "market": "BIST",
+   "sector": "Elektrik, Gaz ve Su",
+   "variants": [
+    "cante",
+    "çan2 termik"
+   ]
+  },
+  "CCOLA": {
+   "name": "Coca-Cola İçecek",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "ccola",
+    "coca-cola içecek"
+   ]
+  },
+  "CIMSA": {
+   "name": "Çimsa Çimento",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "cimsa",
+    "çimsa çimento"
+   ]
+  },
+  "CWENE": {
+   "name": "CW Enerji Mühendislik Ticaret ve Sanayi",
+   "market": "BIST",
+   "sector": "Elektrik, Gaz ve Su",
+   "variants": [
+    "cw enerji mühendislik",
+    "cwene"
+   ]
+  },
+  "DOHOL": {
+   "name": "Doğan Şirketler Grubu Holding",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "dohol",
+    "doğan şirketler grubu"
+   ]
+  },
+  "DOAS": {
+   "name": "Doğuş Otomotiv",
+   "market": "BIST",
+   "sector": "Toptan ve Perakende Ticaret, Lokantalar ve Oteller",
+   "variants": [
+    "doğuş otomotiv"
+   ]
+  },
+  "ECILC": {
+   "name": "EİS Eczacıbaşı İlaç",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "ecilc",
+    "eis eczacıbaşı ilaç"
+   ]
+  },
+  "ECZYT": {
+   "name": "Eczacıbaşı Yatırım Holding Ortaklığı",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "eczacıbaşı",
+    "eczyt"
+   ]
+  },
+  "EGEEN": {
+   "name": "Ege Endüstri",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "ege endüstri",
+    "egeen"
+   ]
+  },
+  "EKGYO": {
+   "name": "Emlak Konut Gayrimenkul Yatırım Ortaklığı",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "ekgyo",
+    "emlak konut gayrimenkul"
+   ]
+  },
+  "ENJSA": {
+   "name": "Enerjisa",
+   "market": "BIST",
+   "sector": "Elektrik, Gaz ve Su",
+   "variants": [
+    "enerjisa",
+    "enjsa"
+   ]
+  },
+  "ENKAI": {
+   "name": "Enka İnşaat",
+   "market": "BIST",
+   "sector": "İnşaat ve Bayındırlık",
+   "variants": [
+    "enka inşaat",
+    "enkai"
+   ]
+  },
+  "EREGL": {
+   "name": "Ereğli Demir ve Çelik Fabrikaları",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "eregl",
+    "ereğli demir çelik"
+   ]
+  },
+  "EUPWR": {
+   "name": "Europower Enerji ve Otomasyon Sanayileri Ticaret",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "eupwr",
+    "europower enerji otomasyon"
+   ]
+  },
+  "EUREN": {
+   "name": "Europen Endüstri İnşaat Sanayi ve Ticaret",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "euren",
+    "europen endüstri inşaat"
+   ]
+  },
+  "FROTO": {
+   "name": "Ford Otosan",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "ford otosan",
+    "froto"
+   ]
+  },
+  "GARAN": {
+   "name": "Türkiye Garanti Bankası",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "garan",
+    "türkiye garanti bankası"
+   ]
+  },
+  "GENIL": {
+   "name": "Gen İlaç ve Sağlık Ürünleri Sanayi ve Ticaret",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "gen ilaç sağlık",
+    "genil"
+   ]
+  },
+  "GESAN": {
+   "name": "Girişim Elektrik Sanayi Taahhüt ve Ticaret",
+   "market": "BIST",
+   "sector": "İnşaat ve Bayındırlık",
+   "variants": [
+    "gesan",
+    "girişim elektrik taahhüt"
+   ]
+  },
+  "GLYHO": {
+   "name": "Global Yatırım Holding",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "glyho"
+   ]
+  },
+  "GUBRF": {
+   "name": "Gübre Fabrikaları",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "gubrf",
+    "gübre fabrikaları"
+   ]
+  },
+  "GWIND": {
+   "name": "Galata Wind Enerji",
+   "market": "BIST",
+   "sector": "Elektrik, Gaz ve Su",
+   "variants": [
+    "galata wind enerji",
+    "gwind"
+   ]
+  },
+  "HALKB": {
+   "name": "Türkiye Halk Bankası",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "halkb",
+    "türkiye halk bankası"
+   ]
+  },
+  "HEKTS": {
+   "name": "Hektaş Ticaret",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "hektaş",
+    "hekts"
+   ]
+  },
+  "IMASM": {
+   "name": "İmaş Makina Sanayi",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "imasm",
+    "imaş makina"
+   ]
+  },
+  "IPEKE": {
+   "name": "İpek Doğal Enerji Kaynakları Araştırma ve Üretim",
+   "market": "BIST",
+   "sector": "Madencilik ve Taş Ocakçılığı",
+   "variants": [
+    "ipek doğal enerji",
+    "ipeke"
+   ]
+  },
+  "ISCTR": {
+   "name": "Türkiye İş Bankası",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "isctr",
+    "türkiye iş bankası"
+   ]
+  },
+  "ISDMR": {
+   "name": "İskenderun Demir ve Çelik",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "isdmr",
+    "iskenderun demir çelik"
+   ]
+  },
+  "ISGYO": {
+   "name": "İş Gayrimenkul Yatırım Ortaklığı",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "isgyo",
+    "iş gayrimenkul"
+   ]
+  },
+  "ISMEN": {
+   "name": "İş Yatırım Menkul Değerler",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "ismen",
+    "iş menkul değerler"
+   ]
+  },
+  "IZDMC": {
+   "name": "İzmir Demir Çelik Sanayi",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "izdmc",
+    "izmir demir çelik"
+   ]
+  },
+  "KARSN": {
+   "name": "Karsan Otomotiv",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "karsan otomotiv",
+    "karsn"
+   ]
+  },
+  "KAYSE": {
+   "name": "Kayseri Şeker Fabrikası",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "kayse",
+    "kayseri şeker fabrikası"
+   ]
+  },
+  "KCAER": {
+   "name": "Kocaer Çelik Sanayi ve Ticaret",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "kcaer",
+    "kocaer çelik"
+   ]
+  },
+  "KCHOL": {
+   "name": "Koç Holding",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "kchol"
+   ]
+  },
+  "KMPUR": {
+   "name": "Kimteks Poliüretan Sanayi ve Ticaret",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "kimteks poliüretan",
+    "kmpur"
+   ]
+  },
+  "KONTR": {
+   "name": "Kontrolmatik Teknoloji Enerji ve Mühendislik",
+   "market": "BIST",
+   "sector": "Mesleki, Bilimsel ve Teknik Faaliyetler",
+   "variants": [
+    "kontr",
+    "kontrolmatik teknoloji enerji"
+   ]
+  },
+  "KONYA": {
+   "name": "Konya Çimento",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "konya",
+    "konya çimento"
+   ]
+  },
+  "KORDS": {
+   "name": "Kordsa Teknik Tekstil",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "kords",
+    "kordsa teknik tekstil"
+   ]
+  },
+  "KOZAA": {
+   "name": "Koza Anadolu Metal Madencilik İşletmeleri",
+   "market": "BIST",
+   "sector": "Madencilik ve Taş Ocakçılığı",
+   "variants": [
+    "koza anadolu metal",
+    "kozaa"
+   ]
+  },
+  "KOZAL": {
+   "name": "Koza Altın İşletmeleri",
+   "market": "BIST",
+   "sector": "Madencilik ve Taş Ocakçılığı",
+   "variants": [
+    "koza altın işletmeleri",
+    "kozal"
+   ]
+  },
+  "KRDMD": {
+   "name": "Kardemir Karabük Demir Çelik",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "kardemir karabük demir",
+    "krdmd"
+   ]
+  },
+  "KZBGY": {
+   "name": "Kızılbük Gayrimenkul Yatırım Ortaklığı",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "kzbgy",
+    "kızılbük gayrimenkul"
+   ]
+  },
+  "MAVI": {
+   "name": "Mavi Giyim",
+   "market": "BIST",
+   "sector": "Toptan ve Perakende Ticaret, Lokantalar ve Oteller",
+   "variants": [
+    "mavi giyim"
+   ]
+  },
+  "MGROS": {
+   "name": "Migros Ticaret",
+   "market": "BIST",
+   "sector": "Toptan ve Perakende Ticaret, Lokantalar ve Oteller",
+   "variants": [
+    "mgros",
+    "migros"
+   ]
+  },
+  "MIATK": {
+   "name": "Mia Teknoloji",
+   "market": "BIST",
+   "sector": "Teknoloji",
+   "variants": [
+    "mia teknoloji",
+    "miatk"
+   ]
+  },
+  "ODAS": {
+   "name": "ODAŞ Elektrik Üretim",
+   "market": "BIST",
+   "sector": "Elektrik, Gaz ve Su",
+   "variants": [
+    "odaş elektrik üretim"
+   ]
+  },
+  "OTKAR": {
+   "name": "Otokar Otomotiv ve Savunma",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "otkar",
+    "otokar otomotiv savunma"
+   ]
+  },
+  "OYAKC": {
+   "name": "OYAK Çimento Fabrikaları",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "oyak çimento fabrikaları",
+    "oyakc"
+   ]
+  },
+  "PENTA": {
+   "name": "Penta Teknoloji Ürünleri Dağıtım Ticaret",
+   "market": "BIST",
+   "sector": "Teknoloji",
+   "variants": [
+    "penta",
+    "penta teknoloji ürünleri"
+   ]
+  },
+  "PETKM": {
+   "name": "Petkim Petrokimya Holding",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "petkim petrokimya",
+    "petkm"
+   ]
+  },
+  "PGSUS": {
+   "name": "Pegasus Hava Taşımacılığı",
+   "market": "BIST",
+   "sector": "Ulaştırma, Depolama ve Haberleşme",
+   "variants": [
+    "pegasus hava taşımacılığı",
+    "pgsus"
+   ]
+  },
+  "PSGYO": {
+   "name": "Pasifik Gayrimenkul Yatırım Ortaklığı",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "pasifik gayrimenkul",
+    "psgyo"
+   ]
+  },
+  "QUAGR": {
+   "name": "Qua Granite Hayal Yapı ve Ürünleri Sanayi Ticaret",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "qua granite hayal",
+    "quagr"
+   ]
+  },
+  "SAHOL": {
+   "name": "Hacı Ömer Sabancı Holding",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "hacı ömer sabancı",
+    "sahol"
+   ]
+  },
+  "SASA": {
+   "name": "SASA Polyester",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "sasa polyester"
+   ]
+  },
+  "SISE": {
+   "name": "Türkiye Şişe ve Cam Fabrikaları",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "türkiye şişe cam"
+   ]
+  },
+  "SKBNK": {
+   "name": "Şekerbank",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "skbnk",
+    "şekerbank"
+   ]
+  },
+  "SMRTG": {
+   "name": "Smart Güneş Enerjisi Teknolojileri Araştırma Geliştirme Üretim Sanayi ve Ticaret",
+   "market": "BIST",
+   "sector": "Elektrik, Gaz ve Su",
+   "variants": [
+    "smart güneş enerjisi",
+    "smrtg"
+   ]
+  },
+  "SOKM": {
+   "name": "Şok Marketler",
+   "market": "BIST",
+   "sector": "Toptan ve Perakende Ticaret, Lokantalar ve Oteller",
+   "variants": [
+    "şok marketler"
+   ]
+  },
+  "TAVHL": {
+   "name": "TAV Havalimanları Holding",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "tav havalimanları",
+    "tavhl"
+   ]
+  },
+  "TCELL": {
+   "name": "Turkcell İletişim Hizmetleri",
+   "market": "BIST",
+   "sector": "Ulaştırma, Depolama ve Haberleşme",
+   "variants": [
+    "tcell",
+    "turkcell iletişim hizmetleri"
+   ]
+  },
+  "THYAO": {
+   "name": "Türk Hava Yolları",
+   "market": "BIST",
+   "sector": "Ulaştırma, Depolama ve Haberleşme",
+   "variants": [
+    "thyao",
+    "türk hava yolları"
+   ]
+  },
+  "TKFEN": {
+   "name": "Tekfen Holding",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "tekfen",
+    "tkfen"
+   ]
+  },
+  "TOASO": {
+   "name": "Tofaş Türk Otomobil Fabrikası",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "toaso",
+    "tofaş türk otomobil"
+   ]
+  },
+  "TSKB": {
+   "name": "Türkiye Sınai Kalkınma Bankası",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "türkiye sınai kalkınma"
+   ]
+  },
+  "TTKOM": {
+   "name": "Türk Telekomünikasyon",
+   "market": "BIST",
+   "sector": "Ulaştırma, Depolama ve Haberleşme",
+   "variants": [
+    "ttkom",
+    "türk telekomünikasyon"
+   ]
+  },
+  "TTRAK": {
+   "name": "Türk Traktör ve Ziraat Makineleri",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "ttrak",
+    "türk traktör ziraat"
+   ]
+  },
+  "TUPRS": {
+   "name": "TÜPRAŞ-Türkiye Petrol Rafinerileri",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "tuprs",
+    "tüpraş-türkiye petrol rafinerileri"
+   ]
+  },
+  "ULKER": {
+   "name": "Ülker Bisküvi",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "ulker",
+    "ülker bisküvi"
+   ]
+  },
+  "VAKBN": {
+   "name": "Türkiye Vakıflar Bankası",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "türkiye vakıflar bankası",
+    "vakbn"
+   ]
+  },
+  "VESBE": {
+   "name": "Vestel Beyaz Eşya",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "vesbe",
+    "vestel beyaz eşya"
+   ]
+  },
+  "VESTL": {
+   "name": "Vestel Elektronik",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "vestel elektronik",
+    "vestl"
+   ]
+  },
+  "YKBNK": {
+   "name": "Yapı ve Kredi Bankası",
+   "market": "BIST",
+   "sector": "Mali Kuruluş",
+   "variants": [
+    "yapı kredi bankası",
+    "ykbnk"
+   ]
+  },
+  "YYLGD": {
+   "name": "Yayla Agro Gıda Sanayi ve Ticaret",
+   "market": "BIST",
+   "sector": "İmalat",
+   "variants": [
+    "yayla agro gıda",
+    "yylgd"
+   ]
+  },
+  "ZOREN": {
+   "name": "Zorlu Enerji Elektrik Üretim",
+   "market": "BIST",
+   "sector": "Elektrik, Gaz ve Su",
+   "variants": [
+    "zoren",
+    "zorlu enerji elektrik"
+   ]
+  }
+ }
+}

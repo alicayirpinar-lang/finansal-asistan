@@ -4,6 +4,7 @@ Plan bölüm 4. v1'de dedup sadece rapidfuzz başlık benzerliği
 (embedding kümeleme buluta taşıma aşamasında eklenecek).
 """
 import math
+import re
 from datetime import datetime, timezone
 
 from rapidfuzz import fuzz
@@ -37,13 +38,39 @@ def dedup(items):
     return clusters
 
 
+def _norm_text(text):
+    """Küçük harf + Türkçe İ düzeltmesi: Python'da 'İ'.lower() -> 'i̇' (birleşik
+    nokta) olur ve varyantlarla eşleşmez; noktayı temizliyoruz."""
+    return text.lower().replace("i̇", "i")
+
+
+_symbol_patterns = None  # {symbol: compiled_regex} — ilk kullanımda derlenir
+
+
+def _patterns():
+    """600 sembollük evrende substring eşleşme yanlış pozitif patlatır
+    ("garan" ⊂ "garanti", "uso" ⊂ "kullanılması"...). Varyantlar kelime
+    sınırıyla aranır; sembol başına tek birleşik regex derlenir (performans)."""
+    global _symbol_patterns
+    if _symbol_patterns is None:
+        _symbol_patterns = {}
+        for symbol, info in SYMBOLS.items():
+            alts = [re.escape(v.strip()) for v in info["variants"] if v.strip()]
+            if alts:
+                _symbol_patterns[symbol] = re.compile(
+                    r"(?<!\w)(?:" + "|".join(alts) + r")(?!\w)")
+    return _symbol_patterns
+
+
 def _match_symbols(text):
     """Metni sembollere bağla. Dönüş: {symbol: yakınlık} (doğrudan=1.0, tema=0.4)."""
-    text = text.lower()
+    text = _norm_text(text)
     matches = {}
-    for symbol, info in SYMBOLS.items():
-        if any(v in text for v in info["variants"]):
+    for symbol, pattern in _patterns().items():
+        if pattern.search(text):
             matches[symbol] = 1.0
+    # Tema yolu: sadece tema etiketi olan (çekirdek) semboller; anahtar
+    # kelimeler kasıtlı substring ("faiz karar" -> "faiz kararı" da yakalasın)
     for theme, keywords in THEME_KEYWORDS.items():
         if any(k in text for k in keywords):
             for symbol, info in SYMBOLS.items():

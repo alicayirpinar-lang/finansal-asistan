@@ -36,10 +36,18 @@ def log_gemini_call(call_type, count=1):
 
 
 def ensure_symbols(symbols_config):
-    """config.SYMBOLS sözlüğünü symbols tablosuna senkronla (upsert)."""
+    """config.SYMBOLS'ü symbols tablosuna senkronla — sadece EKSİK olanlar
+    yazılır (600 sembollük evreni her 30 dk'lık koşuda upsert etmemek için)."""
+    client = get_client()
+    existing = {r["symbol"] for r in
+                client.table("symbols").select("symbol").execute().data}
     rows = [{"symbol": s, "name": i["name"], "market": i["market"],
-             "theme_tags": i["themes"]} for s, i in symbols_config.items()]
-    get_client().table("symbols").upsert(rows).execute()
+             "sector": i.get("sector") or None, "theme_tags": i["themes"]}
+            for s, i in symbols_config.items() if s not in existing]
+    for start in range(0, len(rows), 200):
+        client.table("symbols").upsert(rows[start:start + 200]).execute()
+    if rows:
+        print(f"  symbols tablosuna {len(rows)} yeni sembol eklendi")
 
 
 def recent_thesis_exists(symbol, hours=48):

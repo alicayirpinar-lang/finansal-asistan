@@ -40,7 +40,8 @@ def build_and_send(market):
     signal_rows = signals.compute_signals(market)
     if signal_rows:
         db_rows = [{k: v for k, v in r.items() if not k.startswith("_")} for r in signal_rows]
-        storage.get_client().table("technical_signals").insert(db_rows).execute()
+        for start in range(0, len(db_rows), 200):  # 600 sembol tek insert'e sığmasın
+            storage.get_client().table("technical_signals").insert(db_rows[start:start + 200]).execute()
     gozlem = sorted([r for r in signal_rows if r["gozlem_skoru"]],
                     key=lambda r: -r["gozlem_skoru"])[:10]
 

@@ -1,14 +1,21 @@
-"""v1 yapılandırması: sembol sözlüğü (BIST + ABD), RSS kaynakları, filtre parametreleri.
+"""Yapılandırma: sembol sözlüğü (BIST + ABD), RSS kaynakları, filtre parametreleri.
 
-Sembol sözlüğü plan bölüm 4'teki 'statik sözlük' yaklaşımının dar (v1) hali.
-Geniş taramaya (600 sembol) geçerken bu yapı Supabase `symbols` tablosuna taşınacak.
+Sembol evreni iki katmanlı (plan bölüm 3-4, ~600 sembol geniş tarama):
+- CORE_SYMBOLS: el yapımı 30 sembol — zengin varyantlar + TEMA etiketleri
+  (tema yolu sadece bu katmanda çalışır; USO+XOM+TUPRS aynı anda yakalanır)
+- data/universe.json: BIST100 + S&P500 otomatik evreni (tools/build_universe.py,
+  aylık elle güncellenir) — sadece DOĞRUDAN ad/ticker eşleşmesi, tema yok
+  (bilinçli kısıt: tek Fed haberinin 70 sembollü temayı aday yapıp Gemini
+  kotasını yemesini önler). El yapımı tanımlar evrendekini ezer.
 """
+import json as _json
+from pathlib import Path as _Path
 
-# --- Sembol sözlüğü -------------------------------------------------------
-# variants: haber metninde aranan küçük-harf ad varyasyonları
+# --- Sembol sözlüğü (çekirdek katman) -------------------------------------
+# variants: haber metninde aranan küçük-harf ad varyasyonları (kelime sınırlı)
 # themes: tema yolu eşleşmesi için etiketler
 
-SYMBOLS = {
+CORE_SYMBOLS = {
     # ABD
     "XOM":   {"name": "Exxon Mobil",      "market": "US",   "themes": ["enerji", "petrol"],           "variants": ["exxon", "exxonmobil"]},
     "CVX":   {"name": "Chevron",           "market": "US",   "themes": ["enerji", "petrol"],           "variants": ["chevron"]},
@@ -42,6 +49,26 @@ SYMBOLS = {
     "TOASO": {"name": "Tofaş",             "market": "BIST", "themes": ["otomotiv"],                   "variants": ["tofaş", "tofas"]},
     "PETKM": {"name": "Petkim",            "market": "BIST", "themes": ["enerji", "petrokimya"],       "variants": ["petkim"]},
 }
+
+
+def _load_universe():
+    """data/universe.json'dan genişletilmiş evreni yükle; dosya yoksa boş dön
+    (sistem çekirdek 30 sembolle çalışmaya devam eder — evren opsiyonel katman)."""
+    path = _Path(__file__).resolve().parent / "data" / "universe.json"
+    try:
+        raw = _json.loads(path.read_text(encoding="utf-8"))["symbols"]
+    except (OSError, ValueError, KeyError):
+        return {}
+    return {
+        sym: {"name": info["name"], "market": info["market"],
+              "sector": info.get("sector", ""), "themes": [],
+              "variants": info.get("variants", [])}
+        for sym, info in raw.items()
+    }
+
+
+# Birleşik evren: el yapımı çekirdek her zaman kazanır (varyant/tema kalitesi)
+SYMBOLS = {**_load_universe(), **CORE_SYMBOLS}
 
 # Tema yolu: haberde bu kelimeler geçerse temaya etiketli TÜM semboller aday olur
 THEME_KEYWORDS = {

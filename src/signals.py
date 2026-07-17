@@ -88,22 +88,29 @@ def _analyze_one(df):
     }
 
 
+CHUNK = 100  # yf.download tek istekte bu kadar sembol (600'ü tek seferde istememek için)
+
+
 def compute_signals(market):
-    """Bir pazarın tüm sembollerini toplu indirip analiz et.
+    """Bir pazarın tüm sembollerini parçalı toplu indirip analiz et.
 
     Dönüş: technical_signals satırları (DB alanları) + rapor için ekstra alanlar.
     """
     symbols = [s for s, i in SYMBOLS.items() if i["market"] == market]
-    tickers = {yf_ticker(s, market): s for s in symbols}
-    data = yf.download(list(tickers), period="1y", group_by="ticker",
-                       auto_adjust=True, progress=False, threads=True)
     rows = []
-    for ticker, symbol in tickers.items():
+    for start in range(0, len(symbols), CHUNK):
+        tickers = {yf_ticker(s, market): s for s in symbols[start:start + CHUNK]}
         try:
-            df = data[ticker] if len(tickers) > 1 else data
-            result = _analyze_one(df)
-            if result:
-                rows.append({"symbol": symbol, "market": market, **result})
+            data = yf.download(list(tickers), period="1y", group_by="ticker",
+                               auto_adjust=True, progress=False, threads=True)
         except Exception:
-            continue
+            continue  # bir parça çökerse diğerleri devam eder
+        for ticker, symbol in tickers.items():
+            try:
+                df = data[ticker] if len(tickers) > 1 else data
+                result = _analyze_one(df)
+                if result:
+                    rows.append({"symbol": symbol, "market": market, **result})
+            except Exception:
+                continue
     return rows
