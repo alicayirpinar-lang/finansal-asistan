@@ -1,0 +1,30 @@
+# Genel tarama + tez üretimi — plan bölüm 11, workflow #1
+# Hafta içi 06:00-21:00 UTC arası 30 dakikada bir (BIST + ABD seans saatlerini kapsar).
+# Not: GitHub Actions cron gecikmeli çalışabilir; kritik hızlı yol ayrı sistemde (sonraki faz).
+name: tarama
+
+on:
+  schedule:
+    - cron: "*/30 6-21 * * 1-5"
+  workflow_dispatch: {}   # elle tetikleme (test için)
+
+jobs:
+  tarama:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python main.py
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: gemini-flash-latest
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+          DAILY_GEMINI_CAP: "60"
