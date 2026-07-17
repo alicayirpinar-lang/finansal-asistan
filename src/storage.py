@@ -118,6 +118,38 @@ def kurtarma_exists_recent(thesis_id, days=7):
     return len(rows) > 0
 
 
+# --- geriye dönük tez kuyruğu (plan bölüm 8, dashboard köprüsü) -------------
+
+def pending_retro_requests():
+    return (get_client().table("retro_thesis_queue").select("*")
+            .eq("status", "bekliyor").order("created_at").execute().data)
+
+
+def update_retro(req_id, status, note=None):
+    get_client().table("retro_thesis_queue").update({
+        "status": status, "note": note, "processed_at": "now()",
+    }).eq("id", req_id).execute()
+
+
+def get_position(position_id):
+    rows = (get_client().table("portfolio").select("*")
+            .eq("id", position_id).execute().data)
+    return rows[0] if rows else None
+
+
+def link_thesis_to_position(position_id, thesis_id):
+    get_client().table("portfolio").update({"thesis_id": thesis_id}) \
+        .eq("id", position_id).execute()
+
+
+def open_thesis_for(symbol):
+    """Sembolün en yeni açık tezi (geriye dönük talepte önce buna bağlanır)."""
+    rows = (get_client().table("theses").select("*")
+            .eq("symbol", symbol).eq("status", "acik")
+            .order("created_at", desc=True).limit(1).execute().data)
+    return rows[0] if rows else None
+
+
 def open_portfolio_symbols():
     rows = (get_client().table("portfolio").select("symbol")
             .eq("status", "acik").execute().data)

@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from config import SYMBOLS, MAX_THESES_PER_RUN
-from src import collector, filter as f1, brain, prices, storage, notifier
+from src import collector, filter as f1, brain, prices, retro, storage, notifier
 
 
 def run():
@@ -31,6 +31,14 @@ def run():
 
     clusters = f1.dedup(items)
     print(f"  dedup: {len(items)} haber -> {len(clusters)} küme")
+
+    # Geriye dönük tez talepleri (dashboard köprüsü) — kullanıcı talebi
+    # olduğu için normal olaylardan ÖNCE, kota önceliğiyle işlenir.
+    try:
+        retro.process_queue(clusters, cap)
+    except Exception:
+        print("Geriye dönük tez kuyruğu hatası (pipeline devam ediyor):")
+        traceback.print_exc(limit=2)
 
     portfolio_syms = storage.open_portfolio_symbols()
     events = f1.build_events(clusters, portfolio_syms)
