@@ -5,11 +5,14 @@
 // beyin burada KOPYALANMAZ, tek beyin ilkesi).
 import { createClient } from "npm:@supabase/supabase-js@2";
 
+// Not: Google News, bazı bulut IP'lerini engelleyebiliyor — bu yüzden liste
+// sunucu-dostu doğrudan RSS kaynakları ağırlıklı (BBC/CNBC/AA/BloombergHT).
 const FEEDS = [
-  "https://news.google.com/rss/search?q=sava%C5%9F+OR+ambargo+ekonomi&hl=tr&gl=TR&ceid=TR:tr",
-  "https://news.google.com/rss/search?q=merkez+bankas%C4%B1+ola%C4%9Fan%C3%BCst%C3%BC&hl=tr&gl=TR&ceid=TR:tr",
+  "https://feeds.bbci.co.uk/news/world/rss.xml",
+  "https://www.cnbc.com/id/100727362/device/rss/rss.html",
+  "https://www.aa.com.tr/tr/rss/default?cat=ekonomi",
+  "https://www.bloomberght.com/rss",
   "https://news.google.com/rss/search?q=war+declared+OR+embargo+markets&hl=en-US&gl=US&ceid=US:en",
-  "https://news.google.com/rss/search?q=emergency+rate+OR+strait+closed&hl=en-US&gl=US&ceid=US:en",
 ];
 
 // config.py CRITICAL_KEYWORDS ile senkron tutulmalı (dar set, bilinçli)
@@ -34,9 +37,8 @@ function normalize(title: string) {
   return title.toLowerCase().replace(/[^a-z0-9ğüşıöçâî ]/g, "").slice(0, 120);
 }
 
-async function fetchTitles(url: string): Promise<string[]> {
+async function fetchTitles(url: string): Promise<{ titles: string[]; diag: string }> {
   try {
-    // User-Agent şart: Google, kimliksiz istekleri boş/403 çevirir
     const res = await fetch(url, {
       signal: AbortSignal.timeout(8000),
       headers: { "User-Agent": "Mozilla/5.0 (compatible; finansal-asistan/1.0)" },
@@ -45,9 +47,10 @@ async function fetchTitles(url: string): Promise<string[]> {
     const matches = xml.matchAll(
       /<item>[\s\S]*?<title>(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?<\/title>/g,
     );
-    return [...matches].map((m) => m[1].trim()).slice(0, 25);
-  } catch {
-    return []; // kaynak hatası nöbeti durdurmaz
+    const titles = [...matches].map((m) => m[1].trim()).slice(0, 25);
+    return { titles, diag: `${res.status}/${xml.length}b/${titles.length}` };
+  } catch (e) {
+    return { titles: [], diag: `err:${String(e).slice(0, 60)}` }; // nöbet durmaz
   }
 }
 
@@ -64,7 +67,9 @@ Deno.serve(async (req) => {
   );
 
   // Tüm kaynakları paralel tara
-  const allTitles = (await Promise.all(FEEDS.map(fetchTitles))).flat();
+  const results = await Promise.all(FEEDS.map(fetchTitles));
+  const allTitles = results.flatMap((r) => r.titles);
+  const diag = results.map((r) => r.diag);
   const hits = allTitles.filter((t) => {
     const low = t.toLowerCase();
     return CRITICAL.some((k) => low.includes(k));
@@ -74,7 +79,7 @@ Deno.serve(async (req) => {
   await supabase.from("critical_seen").delete()
     .lt("created_at", new Date(Date.now() - 7 * 86400e3).toISOString());
 
-  if (!hits.length) return json({ checked: allTitles.length, fresh: 0 });
+  if (!hits.length) return json({ checked: allTitles.length, fresh: 0, diag });
 
   // Dedup: daha önce görülen başlık tekrar tetiklemez
   const fresh: string[] = [];
