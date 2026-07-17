@@ -11,6 +11,7 @@ const NAV = [
   { href: "/", label: "Özet" },
   { href: "/tezler", label: "Tezler" },
   { href: "/portfoy", label: "Portföy" },
+  { href: "/getiri", label: "Getiri" },
   { href: "/gozlem", label: "Gözlem" },
   { href: "/karne", label: "Karne" },
 ];

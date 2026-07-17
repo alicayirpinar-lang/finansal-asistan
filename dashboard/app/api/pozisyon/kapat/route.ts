@@ -12,7 +12,14 @@ export async function POST(request: NextRequest) {
   const form = await request.formData();
   const id = String(form.get("id") ?? "");
   const neden = String(form.get("neden") ?? "").trim().slice(0, 200);
+  // Satış fiyatı: getiri metrikleri (XIRR/gerçekleşen K/Z) için gerekli;
+  // boş bırakılırsa hesapta %0 varsayılır (metrics.py notlar'a yazar).
+  const fiyatHam = String(form.get("fiyat") ?? "").trim().replace(",", ".");
+  const fiyat = fiyatHam ? Number(fiyatHam) : null;
   if (!id) return geri(request, "hata=kapat");
+  if (fiyat !== null && (!Number.isFinite(fiyat) || fiyat <= 0)) {
+    return geri(request, "hata=kapatfiyat");
+  }
 
   const client = db();
   const { data: pos } = await client.from("portfolio").select("*")
@@ -24,6 +31,7 @@ export async function POST(request: NextRequest) {
     closed_at: new Date().toISOString(),
     closed_quantity: pos.quantity,
     close_reason: neden || null,
+    close_price: fiyat,
   }).eq("id", id);
   if (error) return geri(request, "hata=kapat");
 

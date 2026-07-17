@@ -167,8 +167,9 @@ def add_position(symbol, market, quantity, entry_price, entry_date,
     return get_client().table("portfolio").insert(row).execute().data[0]
 
 
-def close_position(symbol, quantity=None, reason=None):
-    """Pozisyonu kapat; bağlı tez varsa otomatik kullanici_satti yap (plan: entegrasyon #3)."""
+def close_position(symbol, quantity=None, reason=None, close_price=None):
+    """Pozisyonu kapat; bağlı tez varsa otomatik kullanici_satti yap (plan: entegrasyon #3).
+    close_price verilmezse gerçekleşen K/Z hesaplanamaz (metrics %0 varsayar)."""
     client = get_client()
     rows = (client.table("portfolio").select("*")
             .eq("symbol", symbol).eq("status", "acik").execute().data)
@@ -180,6 +181,7 @@ def close_position(symbol, quantity=None, reason=None):
         client.table("portfolio").update({
             "status": "kapali", "closed_at": "now()",
             "closed_quantity": pos["quantity"], "close_reason": reason,
+            "close_price": close_price,
         }).eq("id", pos["id"]).execute()
         if pos.get("thesis_id"):
             client.table("theses").update({
@@ -190,6 +192,7 @@ def close_position(symbol, quantity=None, reason=None):
         client.table("portfolio").update({
             "quantity": pos["quantity"] - quantity,
             "closed_quantity": (pos.get("closed_quantity") or 0) + quantity,
+            "close_price": close_price,  # son kısmi satış fiyatı (yaklaşıklık)
         }).eq("id", pos["id"]).execute()
     return pos
 

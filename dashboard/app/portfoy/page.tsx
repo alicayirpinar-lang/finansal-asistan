@@ -21,6 +21,7 @@ const MESAJ: Record<string, { text: string; ok: boolean }> = {
   tur: { text: "Gerçek / Deneme seçimi zorunlu (varsayılan yok — bilinçli seçim).", ok: false },
   kayit: { text: "Kayıt sırasında hata oluştu, tekrar dene.", ok: false },
   kapat: { text: "Pozisyon kapatılamadı (bulunamadı veya zaten kapalı).", ok: false },
+  kapatfiyat: { text: "Satış fiyatı geçersiz — sayı gir veya boş bırak.", ok: false },
 };
 
 async function sonFiyatlar(symbols: string[]): Promise<Record<string, number>> {

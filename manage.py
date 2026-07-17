@@ -29,11 +29,14 @@ def cmd_ekle(args):
     )
     print(f'Eklendi [{args.tur}]: {args.adet} x {args.sembol} @ {args.fiyat} (id={pos["id"][:8]})')
     if not args.tez:
-        print("Not: Bu dışarıdan bir pozisyon. Geriye dönük tez kurulumu bir sonraki fazda gelecek.")
+        print("Not: Bu dışarıdan bir pozisyon. Geriye dönük tez istersen dashboard'daki "
+              "formdan (kutucuğu işaretleyerek) girmen gerekir.")
 
 
 def cmd_kapat(args):
-    pos = storage.close_position(args.sembol, args.adet, args.neden)
+    if args.fiyat is None:
+        print("Uyarı: --fiyat verilmedi; gerçekleşen K/Z hesabında %0 varsayılacak.")
+    pos = storage.close_position(args.sembol, args.adet, args.neden, args.fiyat)
     if pos is None:
         print(f"{args.sembol} için açık pozisyon bulunamadı.")
     else:
@@ -79,6 +82,7 @@ def build_parser():
     k = sub.add_parser("kapat", help="pozisyon kapat")
     k.add_argument("--sembol", required=True)
     k.add_argument("--adet", type=float, default=None, help="kısmi kapama adedi")
+    k.add_argument("--fiyat", type=float, default=None, help="satış fiyatı (getiri hesabı için)")
     k.add_argument("--neden", default=None)
     k.set_defaults(func=cmd_kapat)
 

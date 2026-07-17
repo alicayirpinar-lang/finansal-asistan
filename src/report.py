@@ -6,7 +6,7 @@ technical_signals'a yazılır (tüm semboller; gözlem filtresi sadece görünü
 """
 from datetime import datetime, timedelta, timezone
 
-from src import notifier, prices, signals, storage
+from src import metrics, notifier, prices, signals, storage
 
 _GUVEN = {"dusuk": "düşük", "orta": "orta", "yuksek": "yüksek"}
 _TRIGGER_TXT = {
@@ -96,6 +96,16 @@ def build_and_send(market):
                 lines.append(f'• {p["symbol"]}: {p["quantity"]:g} adet @ {p["entry_price"]} → {pnl_txt}{tez_txt}')
         notifier.send("\n".join(lines))
         sections_sent.append("portfoy")
+
+    # Getiri metrikleri anlık görüntüsü (plan 7.4) — dashboard /getiri buradan okur.
+    # Hata raporu düşürmesin: metrik hesabı çökse de rapor gönderilmiş sayılır.
+    try:
+        metrics.compute_and_store()
+        sections_sent.append("metrikler")
+    except Exception:
+        import traceback
+        print("Getiri metrikleri hesaplanamadı (rapor etkilenmez):")
+        traceback.print_exc(limit=2)
 
     storage.get_client().table("daily_reports").insert({
         "market": market, "report_date": datetime.now(timezone.utc).date().isoformat(),
