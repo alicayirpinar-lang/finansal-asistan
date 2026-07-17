@@ -1,0 +1,28 @@
+# Günlük rapor + teknik sinyaller — plan bölüm 11, workflow #3+#5 birleşik
+# BIST: 06:30 UTC (09:30 TRT, açılış öncesi) · ABD: 21:20 UTC (kapanış sonrası)
+# report.py 'auto' modu UTC saatinden pazarı seçer.
+name: rapor
+
+on:
+  schedule:
+    - cron: "30 6 * * 1-5"
+    - cron: "20 21 * * 1-5"
+  workflow_dispatch: {}
+
+jobs:
+  rapor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python report.py auto
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
