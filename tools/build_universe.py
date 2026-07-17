@@ -9,8 +9,10 @@ Varyant üretimi otomatiktir ve yanlış eşleşmeye karşı bilinçli muhafazak
 - Tek kelimelik varyant ancak >=5 harfse ve belirsiz-kelime listesinde değilse
   eklenir ("Target", "General", "Global" gibi isimler tam adla aranır).
 - Eşleşme filter.py'de kelime sınırıyla yapılır (substring değil).
-- Genişletilmiş evren TEMA almaz (bilinçli kısıt: 70 sembollü bir temanın tek
-  Fed haberiyle kota yemesini önler); tema yolu el yapımı config.SYMBOLS'ta kalır.
+- Temalar sektörden türetilir (kullanıcı kararı: tüm evren iki eşleşme yoluna
+  da tabi). Kota koruması tema yerine mevcut frenlere bırakıldı:
+  MAX_THESES_PER_RUN=5, sembol başına 48 saat tez tekrarı yok, günlük Gemini
+  tavanı, alaka eşiği ve red-team'in "şirkete özgü mü" sorgusu.
 """
 import io
 import json
@@ -53,6 +55,32 @@ EXTRA_VARIANTS = {
     "T": ["at&t"],
     "IBM": ["ibm"],
 }
+# Sektör -> tema eşlemesi (config.THEME_KEYWORDS anahtarlarıyla aynı dil).
+# Karışık sektörlerde muhafazakar davranılır; boş liste = sadece ad eşleşmesi.
+SECTOR_THEMES_US = {
+    "Energy": ["enerji", "petrol"],
+    "Financials": ["banka", "faiz"],
+    "Information Technology": ["teknoloji"],
+    "Health Care": ["saglik"],
+    "Industrials": ["sanayi"],
+    "Materials": ["sanayi"],
+    "Consumer Staples": ["perakende"],
+    "Consumer Discretionary": ["perakende"],
+    "Communication Services": ["telekom"],
+    "Utilities": ["enerji"],
+    "Real Estate": [],
+}
+SECTOR_THEMES_TR = {
+    "İmalat": ["sanayi"],
+    "Mali Kuruluş": ["banka", "faiz"],
+    "Elektrik, Gaz ve Su": ["enerji"],
+    "Toptan ve Perakende Ticaret, Lokantalar ve Oteller": ["perakende", "turizm"],
+    "Ulaştırma, Depolama ve Haberleşme": ["telekom"],
+    "Teknoloji": ["teknoloji"],
+    "Madencilik ve Taş Ocakçılığı": ["sanayi"],
+    "İnşaat ve Bayındırlık": ["insaat"],
+}
+
 # Ünvan/legal ek kelimeleri (varyanttan atılır)
 SUFFIX_EN = re.compile(
     r"\b(incorporated|inc\.?|corporation|corp\.?|company|co\.?|plc|ltd\.?|"
@@ -119,9 +147,10 @@ def fetch_sp500():
     for _, row in t.iterrows():
         ticker = str(row["Symbol"]).strip().replace(".", "-")  # BRK.B -> BRK-B (Yahoo formatı)
         name = str(row["Security"]).strip()
+        sector = str(row.get("GICS Sector", "")).strip()
         out[ticker] = {
-            "name": name, "market": "US",
-            "sector": str(row.get("GICS Sector", "")).strip(),
+            "name": name, "market": "US", "sector": sector,
+            "themes": SECTOR_THEMES_US.get(sector, []),
             "variants": _variants(ticker, name, tr=False),
         }
     return out
@@ -138,9 +167,10 @@ def fetch_bist100():
         if not re.fullmatch(r"[A-Z0-9]{4,6}", ticker):
             continue
         name = str(row["Firma Adı"]).strip()
+        sector = str(row.get("Sektör", "")).strip()
         out[ticker] = {
-            "name": name, "market": "BIST",
-            "sector": str(row.get("Sektör", "")).strip(),
+            "name": name, "market": "BIST", "sector": sector,
+            "themes": SECTOR_THEMES_TR.get(sector, []),
             "variants": _variants(ticker, name, tr=True),
         }
     return out

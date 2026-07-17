@@ -5,6 +5,9 @@
    "name": "3M",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "3m company"
    ]
@@ -13,6 +16,9 @@
    "name": "A. O. Smith",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "a o smith"
    ]
@@ -21,6 +27,9 @@
    "name": "Abbott Laboratories",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "abbott laboratories"
    ]
@@ -29,6 +38,9 @@
    "name": "AbbVie",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "abbv",
     "abbvie"
@@ -38,6 +50,9 @@
    "name": "Accenture",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "accenture"
    ]
@@ -46,6 +61,9 @@
    "name": "Adobe Inc.",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "adbe",
     "adobe"
@@ -55,6 +73,9 @@
    "name": "Advanced Micro Devices",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "advanced micro devices"
    ]
@@ -63,6 +84,9 @@
    "name": "AES Corporation",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "aes corporation"
    ]
@@ -71,6 +95,10 @@
    "name": "Aflac",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "aflac"
    ]
@@ -79,6 +107,9 @@
    "name": "Agilent Technologies",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "agilent technologies"
    ]
@@ -87,6 +118,9 @@
    "name": "Air Products",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "air products"
    ]
@@ -95,6 +129,9 @@
    "name": "Airbnb",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "abnb",
     "airbnb"
@@ -104,6 +141,9 @@
    "name": "Akamai Technologies",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "akam",
     "akamai technologies"
@@ -113,6 +153,9 @@
    "name": "Albemarle Corporation",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "albemarle"
    ]
@@ -121,6 +164,7 @@
    "name": "Alexandria Real Estate Equities",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "alexandria real estate"
    ]
@@ -129,6 +173,9 @@
    "name": "Align Technology",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "algn",
     "align technology"
@@ -138,6 +185,9 @@
    "name": "Allegion",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "alle",
     "allegion"
@@ -147,6 +197,9 @@
    "name": "Alliant Energy",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "alliant energy"
    ]
@@ -155,6 +208,10 @@
    "name": "Allstate",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "allstate"
    ]
@@ -163,6 +220,9 @@
    "name": "Alphabet Inc. (Class A)",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "alphabet",
     "googl"
@@ -172,6 +232,9 @@
    "name": "Alphabet Inc. (Class C)",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "alphabet",
     "goog"
@@ -181,6 +244,9 @@
    "name": "Altria",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "altria"
    ]
@@ -189,6 +255,9 @@
    "name": "Amazon",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "amazon",
     "amzn"
@@ -198,6 +267,9 @@
    "name": "Amcor",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "amcor",
     "amcr"
@@ -207,6 +279,9 @@
    "name": "Ameren",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "ameren"
    ]
@@ -215,6 +290,9 @@
    "name": "American Electric Power",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "american electric power"
    ]
@@ -223,6 +301,10 @@
    "name": "American Express",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "american express"
    ]
@@ -231,6 +313,10 @@
    "name": "American International Group",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "american international"
    ]
@@ -239,6 +325,7 @@
    "name": "American Tower",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "american tower"
    ]
@@ -247,6 +334,9 @@
    "name": "American Water Works",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "american water works"
    ]
@@ -255,6 +345,10 @@
    "name": "Ameriprise Financial",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "ameriprise financial"
    ]
@@ -263,6 +357,9 @@
    "name": "Ametek",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "ametek"
    ]
@@ -271,6 +368,9 @@
    "name": "Amgen",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "amgen",
     "amgn"
@@ -280,6 +380,9 @@
    "name": "Amphenol",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "amphenol"
    ]
@@ -288,6 +391,9 @@
    "name": "Analog Devices",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "analog devices"
    ]
@@ -296,6 +402,10 @@
    "name": "Aon plc",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "aon plc"
    ]
@@ -304,6 +414,10 @@
    "name": "APA Corporation",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "apa corporation"
    ]
@@ -312,6 +426,10 @@
    "name": "Apollo Global Management",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "apollo global management"
    ]
@@ -320,6 +438,9 @@
    "name": "Apple Inc.",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "aapl",
     "apple"
@@ -329,6 +450,9 @@
    "name": "Applied Materials",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "amat",
     "applied materials"
@@ -338,6 +462,9 @@
    "name": "AppLovin",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "applovin"
    ]
@@ -346,6 +473,9 @@
    "name": "Aptiv",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "aptiv",
     "aptv"
@@ -355,6 +485,10 @@
    "name": "Arch Capital Group",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "acgl",
     "arch capital"
@@ -364,6 +498,9 @@
    "name": "Archer Daniels Midland",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "archer daniels midland"
    ]
@@ -372,6 +509,10 @@
    "name": "Ares Management",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "ares",
     "ares management"
@@ -381,6 +522,9 @@
    "name": "Arista Networks",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "anet",
     "arista networks"
@@ -390,6 +534,10 @@
    "name": "Arthur J. Gallagher & Co.",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "arthur j gallagher"
    ]
@@ -398,6 +546,10 @@
    "name": "Assurant",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "assurant"
    ]
@@ -406,6 +558,9 @@
    "name": "AT&T",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "at&t"
    ]
@@ -414,6 +569,9 @@
    "name": "Atmos Energy",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "atmos energy"
    ]
@@ -422,6 +580,9 @@
    "name": "Autodesk",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "adsk",
     "autodesk"
@@ -431,6 +592,9 @@
    "name": "Automatic Data Processing",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "automatic data processing"
    ]
@@ -439,6 +603,9 @@
    "name": "AutoZone",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "autozone"
    ]
@@ -447,6 +614,7 @@
    "name": "AvalonBay Communities",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "avalonbay communities"
    ]
@@ -455,6 +623,9 @@
    "name": "Avery Dennison",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "avery dennison"
    ]
@@ -463,6 +634,9 @@
    "name": "Axon Enterprise",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "axon",
     "axon enterprise"
@@ -472,6 +646,10 @@
    "name": "Baker Hughes",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "baker hughes"
    ]
@@ -480,6 +658,9 @@
    "name": "Ball Corporation",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "ball corporation"
    ]
@@ -488,6 +669,10 @@
    "name": "Bank of America",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "bank of america"
    ]
@@ -496,6 +681,9 @@
    "name": "Baxter International",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "baxter international"
    ]
@@ -504,6 +692,9 @@
    "name": "Becton Dickinson",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "becton dickinson"
    ]
@@ -512,6 +703,10 @@
    "name": "Berkshire Hathaway",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "berkshire hathaway",
     "brk-b"
@@ -521,6 +716,9 @@
    "name": "Best Buy",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "best buy"
    ]
@@ -529,6 +727,9 @@
    "name": "Bio-Techne",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "bio-techne"
    ]
@@ -537,6 +738,9 @@
    "name": "Biogen",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "biib",
     "biogen"
@@ -546,6 +750,10 @@
    "name": "BlackRock",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "blackrock"
    ]
@@ -554,6 +762,10 @@
    "name": "Blackstone Inc.",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "blackstone"
    ]
@@ -562,6 +774,10 @@
    "name": "Block, Inc.",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "block, inc"
    ]
@@ -570,6 +786,10 @@
    "name": "BNY Mellon",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "bny mellon"
    ]
@@ -578,6 +798,9 @@
    "name": "Boeing",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "boeing"
    ]
@@ -586,6 +809,9 @@
    "name": "Booking Holdings",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "bkng"
    ]
@@ -594,6 +820,9 @@
    "name": "Boston Scientific",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "boston scientific"
    ]
@@ -602,6 +831,9 @@
    "name": "Bristol Myers Squibb",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "bristol myers squibb"
    ]
@@ -610,6 +842,9 @@
    "name": "Broadcom",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "avgo",
     "broadcom"
@@ -619,6 +854,9 @@
    "name": "Broadridge Financial Solutions",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "broadridge financial solutions"
    ]
@@ -627,6 +865,10 @@
    "name": "Brown & Brown",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "brown & brown"
    ]
@@ -635,6 +877,9 @@
    "name": "Brown–Forman",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "bf-b",
     "brown–forman"
@@ -644,6 +889,9 @@
    "name": "Builders FirstSource",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "bldr",
     "builders firstsource"
@@ -653,6 +901,9 @@
    "name": "Bunge Global",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "bunge global"
    ]
@@ -661,6 +912,7 @@
    "name": "BXP, Inc.",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "bxp, inc"
    ]
@@ -669,6 +921,9 @@
    "name": "C.H. Robinson",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "c h robinson",
     "chrw"
@@ -678,6 +933,9 @@
    "name": "Cadence Design Systems",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "cadence design systems",
     "cdns"
@@ -687,6 +945,7 @@
    "name": "Camden Property Trust",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "camden property trust"
    ]
@@ -695,6 +954,10 @@
    "name": "Capital One",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "capital one"
    ]
@@ -703,6 +966,9 @@
    "name": "Cardinal Health",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "cardinal health"
    ]
@@ -711,6 +977,9 @@
    "name": "Carnival Corporation",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "carnival corporation"
    ]
@@ -719,6 +988,9 @@
    "name": "Carrier Global",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "carr",
     "carrier global"
@@ -728,6 +1000,9 @@
    "name": "Carvana",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "carvana",
     "cvna"
@@ -737,6 +1012,9 @@
    "name": "Casey's",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "casey's",
     "casy"
@@ -746,6 +1024,9 @@
    "name": "Caterpillar Inc.",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "caterpillar"
    ]
@@ -754,6 +1035,10 @@
    "name": "Cboe Global Markets",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "cboe",
     "cboe global markets"
@@ -763,6 +1048,7 @@
    "name": "CBRE Group",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "cbre"
    ]
@@ -771,6 +1057,9 @@
    "name": "CDW Corporation",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "cdw corporation"
    ]
@@ -779,6 +1068,9 @@
    "name": "Cencora",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "cencora"
    ]
@@ -787,6 +1079,9 @@
    "name": "Centene Corporation",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "centene"
    ]
@@ -795,6 +1090,9 @@
    "name": "CenterPoint Energy",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "centerpoint energy"
    ]
@@ -803,6 +1101,9 @@
    "name": "CF Industries",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "cf industries"
    ]
@@ -811,6 +1112,9 @@
    "name": "Charles River Laboratories",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "charles river laboratories"
    ]
@@ -819,6 +1123,10 @@
    "name": "Charles Schwab Corporation",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "charles schwab",
     "schw"
@@ -828,6 +1136,9 @@
    "name": "Charter Communications",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "charter communications",
     "chtr"
@@ -837,6 +1148,10 @@
    "name": "Chevron Corporation",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "chevron"
    ]
@@ -845,6 +1160,9 @@
    "name": "Chipotle Mexican Grill",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "chipotle mexican grill"
    ]
@@ -853,6 +1171,10 @@
    "name": "Chubb Limited",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "chubb limited"
    ]
@@ -861,6 +1183,9 @@
    "name": "Church & Dwight",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "church & dwight"
    ]
@@ -869,6 +1194,9 @@
    "name": "Ciena",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "cien",
     "ciena"
@@ -878,6 +1206,9 @@
    "name": "Cigna",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "cigna"
    ]
@@ -886,6 +1217,10 @@
    "name": "Cincinnati Financial",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "cincinnati financial",
     "cinf"
@@ -895,6 +1230,9 @@
    "name": "Cintas",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "cintas",
     "ctas"
@@ -904,6 +1242,9 @@
    "name": "Cisco",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "cisco",
     "csco"
@@ -913,6 +1254,10 @@
    "name": "Citigroup",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "citigroup"
    ]
@@ -921,6 +1266,10 @@
    "name": "Citizens Financial Group",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "citizens financial"
    ]
@@ -929,6 +1278,9 @@
    "name": "Clorox",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "clorox"
    ]
@@ -937,6 +1289,10 @@
    "name": "CME Group",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "cme group"
    ]
@@ -945,6 +1301,9 @@
    "name": "CMS Energy",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "cms energy"
    ]
@@ -953,6 +1312,9 @@
    "name": "Coca-Cola Company (The)",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "coca-cola"
    ]
@@ -961,6 +1323,9 @@
    "name": "Cognizant",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "cognizant",
     "ctsh"
@@ -970,6 +1335,9 @@
    "name": "Coherent Corp.",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "coherent",
     "cohr"
@@ -979,6 +1347,10 @@
    "name": "Coinbase",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "coin",
     "coinbase"
@@ -988,6 +1360,9 @@
    "name": "Colgate-Palmolive",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "colgate-palmolive"
    ]
@@ -996,6 +1371,9 @@
    "name": "Comcast",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "cmcsa",
     "comcast"
@@ -1005,6 +1383,9 @@
    "name": "Comfort Systems USA",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "comfort systems usa"
    ]
@@ -1013,6 +1394,10 @@
    "name": "ConocoPhillips",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "conocophillips"
    ]
@@ -1021,6 +1406,9 @@
    "name": "Consolidated Edison",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "consolidated edison"
    ]
@@ -1029,6 +1417,9 @@
    "name": "Constellation Brands",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "constellation brands"
    ]
@@ -1037,6 +1428,9 @@
    "name": "Constellation Energy",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "constellation energy"
    ]
@@ -1045,6 +1439,9 @@
    "name": "Cooper Companies (The)",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "cooper companies"
    ]
@@ -1053,6 +1450,9 @@
    "name": "Copart",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "copart",
     "cprt"
@@ -1062,6 +1462,9 @@
    "name": "Corning Inc.",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "corning"
    ]
@@ -1070,6 +1473,10 @@
    "name": "Corpay",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "corpay",
     "cpay"
@@ -1079,6 +1486,9 @@
    "name": "Corteva",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "corteva",
     "ctva"
@@ -1088,6 +1498,7 @@
    "name": "CoStar Group",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "costar",
     "csgp"
@@ -1097,6 +1508,9 @@
    "name": "Costco",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "costco"
    ]
@@ -1105,6 +1519,9 @@
    "name": "CRH plc",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "crh plc"
    ]
@@ -1113,6 +1530,9 @@
    "name": "CrowdStrike",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "crowdstrike",
     "crwd"
@@ -1122,6 +1542,7 @@
    "name": "Crown Castle",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "crown castle"
    ]
@@ -1130,6 +1551,9 @@
    "name": "CSX Corporation",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "csx corporation"
    ]
@@ -1138,6 +1562,9 @@
    "name": "Cummins",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "cummins"
    ]
@@ -1146,6 +1573,9 @@
    "name": "CVS Health",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "cvs health"
    ]
@@ -1154,6 +1584,9 @@
    "name": "Danaher Corporation",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "danaher"
    ]
@@ -1162,6 +1595,9 @@
    "name": "Darden Restaurants",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "darden restaurants"
    ]
@@ -1170,6 +1606,9 @@
    "name": "Datadog",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "datadog",
     "ddog"
@@ -1179,6 +1618,9 @@
    "name": "DaVita",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "davita"
    ]
@@ -1187,6 +1629,9 @@
    "name": "Deckers Brands",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "deck",
     "deckers brands"
@@ -1196,6 +1641,9 @@
    "name": "Deere & Company",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "deere &"
    ]
@@ -1204,6 +1652,9 @@
    "name": "Dell Technologies",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "dell",
     "dell technologies"
@@ -1213,6 +1664,9 @@
    "name": "Delta Air Lines",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "delta air lines"
    ]
@@ -1221,6 +1675,10 @@
    "name": "Devon Energy",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "devon energy"
    ]
@@ -1229,6 +1687,9 @@
    "name": "Dexcom",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "dexcom",
     "dxcm"
@@ -1238,6 +1699,10 @@
    "name": "Diamondback Energy",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "diamondback energy",
     "fang"
@@ -1247,6 +1712,7 @@
    "name": "Digital Realty",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "digital realty"
    ]
@@ -1255,6 +1721,9 @@
    "name": "Dollar General",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "dollar general"
    ]
@@ -1263,6 +1732,9 @@
    "name": "Dollar Tree",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "dltr",
     "dollar tree"
@@ -1272,6 +1744,9 @@
    "name": "Dominion Energy",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "dominion energy"
    ]
@@ -1280,6 +1755,9 @@
    "name": "Domino's",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "domino's"
    ]
@@ -1288,6 +1766,9 @@
    "name": "DoorDash",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "doordash"
    ]
@@ -1296,6 +1777,9 @@
    "name": "Dover Corporation",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "dover corporation"
    ]
@@ -1304,6 +1788,9 @@
    "name": "Dow Inc.",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "dow inc"
    ]
@@ -1312,6 +1799,9 @@
    "name": "D. R. Horton",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "d r horton"
    ]
@@ -1320,6 +1810,9 @@
    "name": "DTE Energy",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "dte energy"
    ]
@@ -1328,6 +1821,9 @@
    "name": "Duke Energy",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "duke energy"
    ]
@@ -1336,6 +1832,9 @@
    "name": "DuPont",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "dupont"
    ]
@@ -1344,6 +1843,9 @@
    "name": "Eaton Corporation",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "eaton"
    ]
@@ -1352,6 +1854,9 @@
    "name": "eBay Inc.",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "ebay"
    ]
@@ -1360,6 +1865,9 @@
    "name": "EchoStar",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "echo",
     "echostar"
@@ -1369,6 +1877,9 @@
    "name": "Ecolab",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "ecolab"
    ]
@@ -1377,6 +1888,9 @@
    "name": "Edison International",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "edison international"
    ]
@@ -1385,6 +1899,9 @@
    "name": "Edwards Lifesciences",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "edwards lifesciences"
    ]
@@ -1393,6 +1910,9 @@
    "name": "Electronic Arts",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "electronic arts"
    ]
@@ -1401,6 +1921,9 @@
    "name": "Elevance Health",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "elevance health"
    ]
@@ -1409,6 +1932,9 @@
    "name": "Emcor",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "emcor"
    ]
@@ -1417,6 +1943,9 @@
    "name": "Emerson Electric",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "emerson electric"
    ]
@@ -1425,6 +1954,9 @@
    "name": "Entergy",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "entergy"
    ]
@@ -1433,6 +1965,10 @@
    "name": "EOG Resources",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "eog resources"
    ]
@@ -1441,6 +1977,10 @@
    "name": "EQT Corporation",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "eqt corporation"
    ]
@@ -1449,6 +1989,9 @@
    "name": "Equifax",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "equifax"
    ]
@@ -1457,6 +2000,7 @@
    "name": "Equinix",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "eqix",
     "equinix"
@@ -1466,6 +2010,7 @@
    "name": "Equity Residential",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "equity residential"
    ]
@@ -1474,6 +2019,10 @@
    "name": "Erie Indemnity",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "erie",
     "erie indemnity"
@@ -1483,6 +2032,7 @@
    "name": "Essex Property Trust",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "essex property trust"
    ]
@@ -1491,6 +2041,9 @@
    "name": "Estée Lauder Companies (The)",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "estée lauder companies"
    ]
@@ -1499,6 +2052,10 @@
    "name": "Everest Group",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "everest group"
    ]
@@ -1507,6 +2064,9 @@
    "name": "Evergy",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "evergy",
     "evrg"
@@ -1516,6 +2076,9 @@
    "name": "Eversource Energy",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "eversource energy"
    ]
@@ -1524,6 +2087,9 @@
    "name": "Exelon",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "exelon"
    ]
@@ -1532,6 +2098,10 @@
    "name": "Expand Energy",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "expand energy"
    ]
@@ -1540,6 +2110,9 @@
    "name": "Expedia Group",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "expe",
     "expedia"
@@ -1549,6 +2122,9 @@
    "name": "Expeditors International",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "expd",
     "expeditors international"
@@ -1558,6 +2134,7 @@
    "name": "Extra Space Storage",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "extra space storage"
    ]
@@ -1566,6 +2143,10 @@
    "name": "ExxonMobil",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "exxonmobil"
    ]
@@ -1574,6 +2155,9 @@
    "name": "F5, Inc.",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "ffiv"
    ]
@@ -1582,6 +2166,10 @@
    "name": "FactSet",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "factset"
    ]
@@ -1590,6 +2178,9 @@
    "name": "Fair Isaac",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "fair isaac",
     "fico"
@@ -1599,6 +2190,9 @@
    "name": "Fastenal",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "fastenal"
    ]
@@ -1607,6 +2201,7 @@
    "name": "Federal Realty Investment Trust",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "federal realty investment"
    ]
@@ -1615,6 +2210,9 @@
    "name": "FedEx",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "fedex"
    ]
@@ -1623,6 +2221,9 @@
    "name": "FedEx Freight",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "fdxf",
     "fedex freight"
@@ -1632,6 +2233,10 @@
    "name": "Fidelity National Information Services",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "fidelity national information"
    ]
@@ -1640,6 +2245,10 @@
    "name": "Fifth Third Bancorp",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "fifth third bancorp",
     "fitb"
@@ -1649,6 +2258,9 @@
    "name": "First Solar",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "first solar",
     "fslr"
@@ -1658,6 +2270,9 @@
    "name": "FirstEnergy",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "firstenergy"
    ]
@@ -1666,6 +2281,10 @@
    "name": "Fiserv",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "fiserv",
     "fisv"
@@ -1675,6 +2294,9 @@
    "name": "Flex Ltd.",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "flex"
    ]
@@ -1683,6 +2305,9 @@
    "name": "Ford Motor Company",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "ford motor"
    ]
@@ -1691,6 +2316,9 @@
    "name": "Fortinet",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "fortinet",
     "ftnt"
@@ -1700,6 +2328,9 @@
    "name": "Fortive",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "fortive"
    ]
@@ -1708,6 +2339,9 @@
    "name": "Fox Corporation (Class A)",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "foxa"
    ]
@@ -1716,6 +2350,9 @@
    "name": "Fox Corporation (Class B)",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "fox corporation (class b)"
    ]
@@ -1724,6 +2361,10 @@
    "name": "Franklin Resources",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "franklin resources"
    ]
@@ -1732,6 +2373,9 @@
    "name": "Freeport-McMoRan",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "freeport-mcmoran"
    ]
@@ -1740,6 +2384,9 @@
    "name": "Garmin",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "garmin",
     "grmn"
@@ -1749,6 +2396,9 @@
    "name": "Gartner",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "gartner"
    ]
@@ -1757,6 +2407,9 @@
    "name": "GE Aerospace",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "ge aerospace"
    ]
@@ -1765,6 +2418,9 @@
    "name": "GE HealthCare",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "ge healthcare",
     "gehc"
@@ -1774,6 +2430,9 @@
    "name": "GE Vernova",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "ge vernova"
    ]
@@ -1782,6 +2441,9 @@
    "name": "Gen Digital",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "gen digital"
    ]
@@ -1790,6 +2452,9 @@
    "name": "Generac",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "generac",
     "gnrc"
@@ -1799,6 +2464,9 @@
    "name": "General Dynamics",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "general dynamics"
    ]
@@ -1807,6 +2475,9 @@
    "name": "General Mills",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "general mills"
    ]
@@ -1815,6 +2486,9 @@
    "name": "General Motors",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "general motors"
    ]
@@ -1823,6 +2497,9 @@
    "name": "Genuine Parts Company",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "genuine parts"
    ]
@@ -1831,6 +2508,9 @@
    "name": "Gilead Sciences",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "gild",
     "gilead sciences"
@@ -1840,6 +2520,10 @@
    "name": "Global Payments",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "global payments"
    ]
@@ -1848,6 +2532,10 @@
    "name": "Globe Life",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "globe life"
    ]
@@ -1856,6 +2544,9 @@
    "name": "GoDaddy",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "gddy",
     "godaddy"
@@ -1865,6 +2556,10 @@
    "name": "Goldman Sachs",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "goldman sachs"
    ]
@@ -1873,6 +2568,10 @@
    "name": "Halliburton",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "halliburton"
    ]
@@ -1881,6 +2580,10 @@
    "name": "Hartford (The)",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "hartford"
    ]
@@ -1889,6 +2592,9 @@
    "name": "Hasbro",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "hasbro"
    ]
@@ -1897,6 +2603,9 @@
    "name": "HCA Healthcare",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "hca healthcare"
    ]
@@ -1905,6 +2614,7 @@
    "name": "Healthpeak Properties",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "healthpeak properties"
    ]
@@ -1913,6 +2623,9 @@
    "name": "Henry Schein",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "henry schein",
     "hsic"
@@ -1922,6 +2635,9 @@
    "name": "Hershey Company (The)",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "hershey"
    ]
@@ -1930,6 +2646,9 @@
    "name": "Hewlett Packard Enterprise",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "hewlett packard enterprise"
    ]
@@ -1938,6 +2657,9 @@
    "name": "Hilton Worldwide",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "hilton worldwide"
    ]
@@ -1946,6 +2668,9 @@
    "name": "Home Depot (The)",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "home depot"
    ]
@@ -1954,6 +2679,9 @@
    "name": "Honeywell Aerospace",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "hona",
     "honeywell aerospace"
@@ -1963,6 +2691,9 @@
    "name": "Honeywell Technologies",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "honeywell technologies"
    ]
@@ -1971,6 +2702,9 @@
    "name": "Hormel Foods",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "hormel foods"
    ]
@@ -1979,6 +2713,7 @@
    "name": "Host Hotels & Resorts",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "host hotels &"
    ]
@@ -1987,6 +2722,9 @@
    "name": "Howmet Aerospace",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "howmet aerospace"
    ]
@@ -1995,6 +2733,9 @@
    "name": "HP Inc.",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "hp inc"
    ]
@@ -2003,6 +2744,9 @@
    "name": "Hubbell Incorporated",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "hubb",
     "hubbell"
@@ -2012,6 +2756,9 @@
    "name": "Humana",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "humana"
    ]
@@ -2020,6 +2767,10 @@
    "name": "Huntington Bancshares",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "hban",
     "huntington bancshares"
@@ -2029,6 +2780,9 @@
    "name": "Huntington Ingalls Industries",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "huntington ingalls industries"
    ]
@@ -2037,6 +2791,9 @@
    "name": "IBM",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "ibm"
    ]
@@ -2045,6 +2802,9 @@
    "name": "IDEX Corporation",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "idex corporation"
    ]
@@ -2053,6 +2813,9 @@
    "name": "Idexx Laboratories",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "idexx laboratories",
     "idxx"
@@ -2062,6 +2825,9 @@
    "name": "Illinois Tool Works",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "illinois tool works"
    ]
@@ -2070,6 +2836,9 @@
    "name": "Incyte",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "incy",
     "incyte"
@@ -2079,6 +2848,9 @@
    "name": "Ingersoll Rand",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "ingersoll rand"
    ]
@@ -2087,6 +2859,9 @@
    "name": "Insulet Corporation",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "insulet",
     "podd"
@@ -2096,6 +2871,9 @@
    "name": "Intel",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "intc",
     "intel"
@@ -2105,6 +2883,10 @@
    "name": "Interactive Brokers",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "ibkr",
     "interactive brokers"
@@ -2114,6 +2896,10 @@
    "name": "Intercontinental Exchange",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "intercontinental exchange"
    ]
@@ -2122,6 +2908,9 @@
    "name": "International Flavors & Fragrances",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "international flavors &"
    ]
@@ -2130,6 +2919,9 @@
    "name": "International Paper",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "international paper"
    ]
@@ -2138,6 +2930,9 @@
    "name": "Intuit",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "intu",
     "intuit"
@@ -2147,6 +2942,9 @@
    "name": "Intuitive Surgical",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "intuitive surgical",
     "isrg"
@@ -2156,6 +2954,10 @@
    "name": "Invesco",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "invesco"
    ]
@@ -2164,6 +2966,7 @@
    "name": "Invitation Homes",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "invh",
     "invitation homes"
@@ -2173,6 +2976,9 @@
    "name": "IQVIA",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "iqvia"
    ]
@@ -2181,6 +2987,7 @@
    "name": "Iron Mountain",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "iron mountain"
    ]
@@ -2189,6 +2996,9 @@
    "name": "J.B. Hunt",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "j b hunt",
     "jbht"
@@ -2198,6 +3008,9 @@
    "name": "Jabil",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "jabil"
    ]
@@ -2206,6 +3019,10 @@
    "name": "Jack Henry & Associates",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "jack henry &",
     "jkhy"
@@ -2215,6 +3032,9 @@
    "name": "Jacobs Solutions",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "jacobs solutions"
    ]
@@ -2223,6 +3043,9 @@
    "name": "Johnson & Johnson",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "johnson & johnson"
    ]
@@ -2231,6 +3054,9 @@
    "name": "Johnson Controls",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "johnson controls"
    ]
@@ -2239,6 +3065,10 @@
    "name": "JPMorgan Chase",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "jpmorgan chase"
    ]
@@ -2247,6 +3077,9 @@
    "name": "Kenvue",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "kenvue",
     "kvue"
@@ -2256,6 +3089,9 @@
    "name": "Keurig Dr Pepper",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "keurig dr pepper"
    ]
@@ -2264,6 +3100,10 @@
    "name": "KeyCorp",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "keycorp"
    ]
@@ -2272,6 +3112,9 @@
    "name": "Keysight Technologies",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "keysight technologies"
    ]
@@ -2280,6 +3123,9 @@
    "name": "Kimberly-Clark",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "kimberly-clark"
    ]
@@ -2288,6 +3134,7 @@
    "name": "Kimco Realty",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "kimco realty"
    ]
@@ -2296,6 +3143,10 @@
    "name": "Kinder Morgan",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "kinder morgan"
    ]
@@ -2304,6 +3155,10 @@
    "name": "KKR & Co.",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "kkr &"
    ]
@@ -2312,6 +3167,9 @@
    "name": "KLA Corporation",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "klac"
    ]
@@ -2320,6 +3178,9 @@
    "name": "Kraft Heinz",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "kraft heinz"
    ]
@@ -2328,6 +3189,9 @@
    "name": "Kroger",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "kroger"
    ]
@@ -2336,6 +3200,9 @@
    "name": "L3Harris",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "l3harris"
    ]
@@ -2344,6 +3211,9 @@
    "name": "Labcorp",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "labcorp"
    ]
@@ -2352,6 +3222,9 @@
    "name": "Lam Research",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "lam research",
     "lrcx"
@@ -2361,6 +3234,9 @@
    "name": "Las Vegas Sands",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "las vegas sands"
    ]
@@ -2369,6 +3245,9 @@
    "name": "Leidos",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "ldos",
     "leidos"
@@ -2378,6 +3257,9 @@
    "name": "Lennar",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "lennar"
    ]
@@ -2386,6 +3268,9 @@
    "name": "Lennox International",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "lennox international"
    ]
@@ -2394,6 +3279,9 @@
    "name": "Lilly (Eli)",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "lilly"
    ]
@@ -2402,6 +3290,9 @@
    "name": "Linde plc",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "linde"
    ]
@@ -2410,6 +3301,9 @@
    "name": "Live Nation Entertainment",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "live nation entertainment"
    ]
@@ -2418,6 +3312,9 @@
    "name": "Lockheed Martin",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "lockheed martin"
    ]
@@ -2426,6 +3323,10 @@
    "name": "Loews Corporation",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "loews"
    ]
@@ -2434,6 +3335,9 @@
    "name": "Lowe's",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "lowe's"
    ]
@@ -2442,6 +3346,9 @@
    "name": "Lululemon Athletica",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "lulu",
     "lululemon athletica"
@@ -2451,6 +3358,9 @@
    "name": "Lumentum",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "lite",
     "lumentum"
@@ -2460,6 +3370,9 @@
    "name": "LyondellBasell",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "lyondellbasell"
    ]
@@ -2468,6 +3381,10 @@
    "name": "M&T Bank",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "m&t bank"
    ]
@@ -2476,6 +3393,10 @@
    "name": "Marathon Petroleum",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "marathon petroleum"
    ]
@@ -2484,6 +3405,9 @@
    "name": "Marriott International",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "marriott international"
    ]
@@ -2492,6 +3416,10 @@
    "name": "Marsh McLennan",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "marsh mclennan",
     "mrsh"
@@ -2501,6 +3429,9 @@
    "name": "Martin Marietta Materials",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "martin marietta materials"
    ]
@@ -2509,6 +3440,9 @@
    "name": "Marvell Technology",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "marvell technology",
     "mrvl"
@@ -2518,6 +3452,9 @@
    "name": "Masco",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "masco"
    ]
@@ -2526,6 +3463,10 @@
    "name": "Mastercard",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "mastercard"
    ]
@@ -2534,6 +3475,9 @@
    "name": "McCormick & Company",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "mccormick &"
    ]
@@ -2542,6 +3486,9 @@
    "name": "McDonald's",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "mcdonald's"
    ]
@@ -2550,6 +3497,9 @@
    "name": "McKesson Corporation",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "mckesson"
    ]
@@ -2558,6 +3508,9 @@
    "name": "Medtronic",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "medtronic"
    ]
@@ -2566,6 +3519,9 @@
    "name": "Merck & Co.",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "merck &"
    ]
@@ -2574,6 +3530,9 @@
    "name": "Meta Platforms",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "meta platforms"
    ]
@@ -2582,6 +3541,10 @@
    "name": "MetLife",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "metlife"
    ]
@@ -2590,6 +3553,9 @@
    "name": "Mettler Toledo",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "mettler toledo"
    ]
@@ -2598,6 +3564,9 @@
    "name": "MGM Resorts",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "mgm resorts"
    ]
@@ -2606,6 +3575,9 @@
    "name": "Microchip Technology",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "mchp",
     "microchip technology"
@@ -2615,6 +3587,9 @@
    "name": "Micron Technology",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "micron technology"
    ]
@@ -2623,6 +3598,9 @@
    "name": "Microsoft",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "microsoft",
     "msft"
@@ -2632,6 +3610,7 @@
    "name": "Mid-America Apartment Communities",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "mid-america apartment communities"
    ]
@@ -2640,6 +3619,9 @@
    "name": "Moderna",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "moderna",
     "mrna"
@@ -2649,6 +3631,9 @@
    "name": "Molson Coors Beverage Company",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "molson coors beverage"
    ]
@@ -2657,6 +3642,9 @@
    "name": "Mondelez International",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "mdlz",
     "mondelez international"
@@ -2666,6 +3654,9 @@
    "name": "Monolithic Power Systems",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "monolithic power systems",
     "mpwr"
@@ -2675,6 +3666,9 @@
    "name": "Monster Beverage",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "mnst",
     "monster beverage"
@@ -2684,6 +3678,10 @@
    "name": "Moody's Corporation",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "moody's"
    ]
@@ -2692,6 +3690,10 @@
    "name": "Morgan Stanley",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "morgan stanley"
    ]
@@ -2700,6 +3702,9 @@
    "name": "Mosaic Company (The)",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "mosaic company (the)"
    ]
@@ -2708,6 +3713,9 @@
    "name": "Motorola Solutions",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "motorola solutions"
    ]
@@ -2716,6 +3724,10 @@
    "name": "MSCI Inc.",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "msci"
    ]
@@ -2724,6 +3736,10 @@
    "name": "Nasdaq, Inc.",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "nasdaq",
     "ndaq"
@@ -2733,6 +3749,9 @@
    "name": "NetApp",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "netapp",
     "ntap"
@@ -2742,6 +3761,9 @@
    "name": "Netflix",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "netflix",
     "nflx"
@@ -2751,6 +3773,9 @@
    "name": "Newmont",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "newmont"
    ]
@@ -2759,6 +3784,9 @@
    "name": "News Corp (Class A)",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "nwsa"
    ]
@@ -2767,6 +3795,9 @@
    "name": "News Corp (Class B)",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "news corp (class b)"
    ]
@@ -2775,6 +3806,9 @@
    "name": "NextEra Energy",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "nextera energy"
    ]
@@ -2783,6 +3817,9 @@
    "name": "Nike, Inc.",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "nike, inc"
    ]
@@ -2791,6 +3828,9 @@
    "name": "NiSource",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "nisource"
    ]
@@ -2799,6 +3839,9 @@
    "name": "Nordson Corporation",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "ndsn",
     "nordson"
@@ -2808,6 +3851,9 @@
    "name": "Norfolk Southern",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "norfolk southern"
    ]
@@ -2816,6 +3862,10 @@
    "name": "Northern Trust",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "northern trust",
     "ntrs"
@@ -2825,6 +3875,9 @@
    "name": "Northrop Grumman",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "northrop grumman"
    ]
@@ -2833,6 +3886,9 @@
    "name": "Norwegian Cruise Line Holdings",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "nclh",
     "norwegian cruise line"
@@ -2842,6 +3898,9 @@
    "name": "NRG Energy",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "nrg energy"
    ]
@@ -2850,6 +3909,9 @@
    "name": "Nucor",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "nucor"
    ]
@@ -2858,6 +3920,9 @@
    "name": "Nvidia",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "nvda",
     "nvidia"
@@ -2867,6 +3932,9 @@
    "name": "NVR, Inc.",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "nvr, inc"
    ]
@@ -2875,6 +3943,9 @@
    "name": "NXP Semiconductors",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "nxp semiconductors",
     "nxpi"
@@ -2884,6 +3955,9 @@
    "name": "O’Reilly Automotive",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "orly",
     "o’reilly automotive"
@@ -2893,6 +3967,10 @@
    "name": "Occidental Petroleum",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "occidental petroleum"
    ]
@@ -2901,6 +3979,9 @@
    "name": "Old Dominion",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "odfl",
     "old dominion"
@@ -2910,6 +3991,9 @@
    "name": "Omnicom Group",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "omnicom"
    ]
@@ -2918,6 +4002,9 @@
    "name": "ON Semiconductor",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "on semiconductor"
    ]
@@ -2926,6 +4013,10 @@
    "name": "Oneok",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "oneok"
    ]
@@ -2934,6 +4025,9 @@
    "name": "Oracle Corporation",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "oracle",
     "orcl"
@@ -2943,6 +4037,9 @@
    "name": "Otis Worldwide",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "otis",
     "otis worldwide"
@@ -2952,6 +4049,9 @@
    "name": "Paccar",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "paccar",
     "pcar"
@@ -2961,6 +4061,9 @@
    "name": "Packaging Corporation of America",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "packaging of america"
    ]
@@ -2969,6 +4072,9 @@
    "name": "Palantir Technologies",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "palantir technologies",
     "pltr"
@@ -2978,6 +4084,9 @@
    "name": "Palo Alto Networks",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "palo alto networks",
     "panw"
@@ -2987,6 +4096,9 @@
    "name": "Paramount Skydance Corporation",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "paramount skydance",
     "psky"
@@ -2996,6 +4108,9 @@
    "name": "Parker Hannifin",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "parker hannifin"
    ]
@@ -3004,6 +4119,9 @@
    "name": "Paychex",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "paychex",
     "payx"
@@ -3013,6 +4131,10 @@
    "name": "PayPal",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "paypal",
     "pypl"
@@ -3022,6 +4144,9 @@
    "name": "Pentair",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "pentair"
    ]
@@ -3030,6 +4155,9 @@
    "name": "PepsiCo",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "pepsico"
    ]
@@ -3038,6 +4166,9 @@
    "name": "Pfizer",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "pfizer"
    ]
@@ -3046,6 +4177,9 @@
    "name": "PG&E Corporation",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "pg&e corporation"
    ]
@@ -3054,6 +4188,9 @@
    "name": "Philip Morris International",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "philip morris international"
    ]
@@ -3062,6 +4199,10 @@
    "name": "Phillips 66",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "phillips 66"
    ]
@@ -3070,6 +4211,9 @@
    "name": "Pinnacle West Capital",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "pinnacle west capital"
    ]
@@ -3078,6 +4222,10 @@
    "name": "PNC Financial Services",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "pnc financial services"
    ]
@@ -3086,6 +4234,9 @@
    "name": "PPG Industries",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "ppg industries"
    ]
@@ -3094,6 +4245,9 @@
    "name": "PPL Corporation",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "ppl corporation"
    ]
@@ -3102,6 +4256,10 @@
    "name": "Principal Financial Group",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "principal financial"
    ]
@@ -3110,6 +4268,9 @@
    "name": "Procter & Gamble",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "procter & gamble"
    ]
@@ -3118,6 +4279,10 @@
    "name": "Progressive Corporation",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "progressive corporation"
    ]
@@ -3126,6 +4291,7 @@
    "name": "Prologis",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "prologis"
    ]
@@ -3134,6 +4300,10 @@
    "name": "Prudential Financial",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "prudential financial"
    ]
@@ -3142,6 +4312,9 @@
    "name": "Public Service Enterprise Group",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "public service enterprise"
    ]
@@ -3150,6 +4323,9 @@
    "name": "PTC Inc.",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "ptc inc"
    ]
@@ -3158,6 +4334,7 @@
    "name": "Public Storage",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "public storage"
    ]
@@ -3166,6 +4343,9 @@
    "name": "PulteGroup",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "pultegroup"
    ]
@@ -3174,6 +4354,9 @@
    "name": "Quanta Services",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "quanta services"
    ]
@@ -3182,6 +4365,9 @@
    "name": "Qualcomm",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "qcom",
     "qualcomm"
@@ -3191,6 +4377,9 @@
    "name": "Quest Diagnostics",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "quest diagnostics"
    ]
@@ -3199,6 +4388,9 @@
    "name": "Qnity Electronics",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "qnity electronics"
    ]
@@ -3207,6 +4399,9 @@
    "name": "Ralph Lauren Corporation",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "ralph lauren"
    ]
@@ -3215,6 +4410,10 @@
    "name": "Raymond James Financial",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "raymond james financial"
    ]
@@ -3223,6 +4422,9 @@
    "name": "RTX Corporation",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "rtx corporation"
    ]
@@ -3231,6 +4433,7 @@
    "name": "Realty Income",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "realty income"
    ]
@@ -3239,6 +4442,7 @@
    "name": "Regency Centers",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "regency centers"
    ]
@@ -3247,6 +4451,9 @@
    "name": "Regeneron Pharmaceuticals",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "regeneron pharmaceuticals",
     "regn"
@@ -3256,6 +4463,10 @@
    "name": "Regions Financial Corporation",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "regions financial"
    ]
@@ -3264,6 +4475,9 @@
    "name": "Republic Services",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "republic services"
    ]
@@ -3272,6 +4486,9 @@
    "name": "ResMed",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "resmed"
    ]
@@ -3280,6 +4497,9 @@
    "name": "Revvity",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "revvity",
     "rvty"
@@ -3289,6 +4509,10 @@
    "name": "Robinhood Markets",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "hood",
     "robinhood markets"
@@ -3298,6 +4522,9 @@
    "name": "Rockwell Automation",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "rockwell automation"
    ]
@@ -3306,6 +4533,9 @@
    "name": "Rollins, Inc.",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "rollins"
    ]
@@ -3314,6 +4544,9 @@
    "name": "Roper Technologies",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "roper technologies"
    ]
@@ -3322,6 +4555,9 @@
    "name": "Ross Stores",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "ross stores",
     "rost"
@@ -3331,6 +4567,9 @@
    "name": "Royal Caribbean Group",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "royal caribbean"
    ]
@@ -3339,6 +4578,10 @@
    "name": "S&P Global",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "s&p global",
     "spgi"
@@ -3348,6 +4591,9 @@
    "name": "Salesforce",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "salesforce"
    ]
@@ -3356,6 +4602,9 @@
    "name": "Sandisk",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "sandisk",
     "sndk"
@@ -3365,6 +4614,7 @@
    "name": "SBA Communications",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "sba communications",
     "sbac"
@@ -3374,6 +4624,10 @@
    "name": "Schlumberger",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "schlumberger"
    ]
@@ -3382,6 +4636,9 @@
    "name": "Seagate Technology",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "seagate technology"
    ]
@@ -3390,6 +4647,9 @@
    "name": "Sempra",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "sempra"
    ]
@@ -3398,6 +4658,9 @@
    "name": "ServiceNow",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "servicenow"
    ]
@@ -3406,6 +4669,9 @@
    "name": "Sherwin-Williams",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "sherwin-williams"
    ]
@@ -3414,6 +4680,7 @@
    "name": "Simon Property Group",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "simon property"
    ]
@@ -3422,6 +4689,9 @@
    "name": "Skyworks Solutions",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "skyworks solutions",
     "swks"
@@ -3431,6 +4701,9 @@
    "name": "J.M. Smucker Company (The)",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "j m smucker"
    ]
@@ -3439,6 +4712,9 @@
    "name": "Smurfit Westrock",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "smurfit westrock"
    ]
@@ -3447,6 +4723,9 @@
    "name": "Snap-on",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "snap-on"
    ]
@@ -3455,6 +4734,9 @@
    "name": "Solventum",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "solv",
     "solventum"
@@ -3464,6 +4746,9 @@
    "name": "Southern Company",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "southern company"
    ]
@@ -3472,6 +4757,9 @@
    "name": "Southwest Airlines",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "southwest airlines"
    ]
@@ -3480,6 +4768,9 @@
    "name": "Stanley Black & Decker",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "stanley black &"
    ]
@@ -3488,6 +4779,9 @@
    "name": "Starbucks",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "sbux",
     "starbucks"
@@ -3497,6 +4791,10 @@
    "name": "State Street Corporation",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "state street"
    ]
@@ -3505,6 +4803,9 @@
    "name": "Steel Dynamics",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "steel dynamics",
     "stld"
@@ -3514,6 +4815,9 @@
    "name": "Steris",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "steris"
    ]
@@ -3522,6 +4826,9 @@
    "name": "Stryker Corporation",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "stryker"
    ]
@@ -3530,6 +4837,9 @@
    "name": "Supermicro",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "smci",
     "supermicro"
@@ -3539,6 +4849,10 @@
    "name": "Synchrony Financial",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "synchrony financial"
    ]
@@ -3547,6 +4861,9 @@
    "name": "Synopsys",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "snps",
     "synopsys"
@@ -3556,6 +4873,9 @@
    "name": "Sysco",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "sysco"
    ]
@@ -3564,6 +4884,9 @@
    "name": "T-Mobile US",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "t-mobile us",
     "tmus"
@@ -3573,6 +4896,10 @@
    "name": "T. Rowe Price",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "t rowe price",
     "trow"
@@ -3582,6 +4909,9 @@
    "name": "Take-Two Interactive",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "take-two interactive",
     "ttwo"
@@ -3591,6 +4921,9 @@
    "name": "Tapestry, Inc.",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "tapestry, inc"
    ]
@@ -3599,6 +4932,10 @@
    "name": "Targa Resources",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "targa resources",
     "trgp"
@@ -3608,6 +4945,9 @@
    "name": "Target Corporation",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "target corporation"
    ]
@@ -3616,6 +4956,9 @@
    "name": "TE Connectivity",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "te connectivity"
    ]
@@ -3624,6 +4967,9 @@
    "name": "Teledyne Technologies",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "teledyne technologies"
    ]
@@ -3632,6 +4978,9 @@
    "name": "Teradyne",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "teradyne"
    ]
@@ -3640,6 +4989,9 @@
    "name": "Tesla, Inc.",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "tesla",
     "tsla"
@@ -3649,6 +5001,9 @@
    "name": "Texas Instruments",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "texas instruments"
    ]
@@ -3657,6 +5012,10 @@
    "name": "Texas Pacific Land Corporation",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "texas pacific land"
    ]
@@ -3665,6 +5024,9 @@
    "name": "Textron",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "textron"
    ]
@@ -3673,6 +5035,9 @@
    "name": "Thermo Fisher Scientific",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "thermo fisher scientific"
    ]
@@ -3681,6 +5046,9 @@
    "name": "TJX Companies",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "tjx companies"
    ]
@@ -3689,6 +5057,9 @@
    "name": "TKO Group Holdings",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "tko group holdings"
    ]
@@ -3697,6 +5068,9 @@
    "name": "Trade Desk (The)",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "trade desk"
    ]
@@ -3705,6 +5079,9 @@
    "name": "Tractor Supply",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "tractor supply",
     "tsco"
@@ -3714,6 +5091,9 @@
    "name": "Trane Technologies",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "trane technologies"
    ]
@@ -3722,6 +5102,9 @@
    "name": "TransDigm Group",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "transdigm"
    ]
@@ -3730,6 +5113,10 @@
    "name": "Travelers Companies (The)",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "travelers companies"
    ]
@@ -3738,6 +5125,9 @@
    "name": "Trimble Inc.",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "trimble",
     "trmb"
@@ -3747,6 +5137,10 @@
    "name": "Truist Financial",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "truist financial"
    ]
@@ -3755,6 +5149,9 @@
    "name": "Tyler Technologies",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "tyler technologies"
    ]
@@ -3763,6 +5160,9 @@
    "name": "Tyson Foods",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "tyson foods"
    ]
@@ -3771,6 +5171,10 @@
    "name": "U.S. Bancorp",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "u s bancorp"
    ]
@@ -3779,6 +5183,9 @@
    "name": "Uber",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "uber"
    ]
@@ -3787,6 +5194,7 @@
    "name": "UDR, Inc.",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "udr, inc"
    ]
@@ -3795,6 +5203,9 @@
    "name": "Ulta Beauty",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "ulta",
     "ulta beauty"
@@ -3804,6 +5215,9 @@
    "name": "Union Pacific Corporation",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "union pacific"
    ]
@@ -3812,6 +5226,9 @@
    "name": "United Airlines Holdings",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "united airlines"
    ]
@@ -3820,6 +5237,9 @@
    "name": "United Parcel Service",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "united parcel service"
    ]
@@ -3828,6 +5248,9 @@
    "name": "United Rentals",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "united rentals"
    ]
@@ -3836,6 +5259,9 @@
    "name": "UnitedHealth Group",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "unitedhealth"
    ]
@@ -3844,6 +5270,9 @@
    "name": "Universal Health Services",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "universal health services"
    ]
@@ -3852,6 +5281,10 @@
    "name": "Valero Energy",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "valero energy"
    ]
@@ -3860,6 +5293,9 @@
    "name": "Veeva Systems",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "veev",
     "veeva systems"
@@ -3869,6 +5305,7 @@
    "name": "Ventas",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "ventas"
    ]
@@ -3877,6 +5314,9 @@
    "name": "Veralto",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "veralto",
     "vlto"
@@ -3886,6 +5326,9 @@
    "name": "Verisign",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "verisign",
     "vrsn"
@@ -3895,6 +5338,9 @@
    "name": "Verisk Analytics",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "verisk analytics",
     "vrsk"
@@ -3904,6 +5350,9 @@
    "name": "Verizon",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "verizon"
    ]
@@ -3912,6 +5361,9 @@
    "name": "Vertex Pharmaceuticals",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "vertex pharmaceuticals",
     "vrtx"
@@ -3921,6 +5373,9 @@
    "name": "Vertiv",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "vertiv"
    ]
@@ -3929,6 +5384,9 @@
    "name": "Viatris",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "viatris",
     "vtrs"
@@ -3938,6 +5396,7 @@
    "name": "Vici Properties",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "vici",
     "vici properties"
@@ -3947,6 +5406,10 @@
    "name": "Visa Inc.",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "visa inc"
    ]
@@ -3955,6 +5418,9 @@
    "name": "Vistra Corp.",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "vistra"
    ]
@@ -3963,6 +5429,9 @@
    "name": "Vulcan Materials Company",
    "market": "US",
    "sector": "Materials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "vulcan materials"
    ]
@@ -3971,6 +5440,10 @@
    "name": "W. R. Berkley Corporation",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "w r berkley"
    ]
@@ -3979,6 +5452,9 @@
    "name": "W. W. Grainger",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "w w grainger"
    ]
@@ -3987,6 +5463,9 @@
    "name": "Wabtec",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "wabtec"
    ]
@@ -3995,6 +5474,9 @@
    "name": "Walmart",
    "market": "US",
    "sector": "Consumer Staples",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "walmart"
    ]
@@ -4003,6 +5485,9 @@
    "name": "Walt Disney Company (The)",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "walt disney"
    ]
@@ -4011,6 +5496,9 @@
    "name": "Warner Bros. Discovery",
    "market": "US",
    "sector": "Communication Services",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "warner bros discovery"
    ]
@@ -4019,6 +5507,9 @@
    "name": "Waste Management",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "waste management"
    ]
@@ -4027,6 +5518,9 @@
    "name": "Waters Corporation",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "waters corporation"
    ]
@@ -4035,6 +5529,9 @@
    "name": "WEC Energy Group",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "wec energy"
    ]
@@ -4043,6 +5540,10 @@
    "name": "Wells Fargo",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "wells fargo"
    ]
@@ -4051,6 +5552,7 @@
    "name": "Welltower",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "welltower"
    ]
@@ -4059,6 +5561,9 @@
    "name": "West Pharmaceutical Services",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "west pharmaceutical services"
    ]
@@ -4067,6 +5572,9 @@
    "name": "Western Digital",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "western digital"
    ]
@@ -4075,6 +5583,7 @@
    "name": "Weyerhaeuser",
    "market": "US",
    "sector": "Real Estate",
+   "themes": [],
    "variants": [
     "weyerhaeuser"
    ]
@@ -4083,6 +5592,9 @@
    "name": "Williams-Sonoma, Inc.",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "williams-sonoma"
    ]
@@ -4091,6 +5603,10 @@
    "name": "Williams Companies",
    "market": "US",
    "sector": "Energy",
+   "themes": [
+    "enerji",
+    "petrol"
+   ],
    "variants": [
     "williams companies"
    ]
@@ -4099,6 +5615,10 @@
    "name": "Willis Towers Watson",
    "market": "US",
    "sector": "Financials",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "willis towers watson"
    ]
@@ -4107,6 +5627,9 @@
    "name": "Workday, Inc.",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "wday",
     "workday"
@@ -4116,6 +5639,9 @@
    "name": "Wynn Resorts",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "wynn",
     "wynn resorts"
@@ -4125,6 +5651,9 @@
    "name": "Xcel Energy",
    "market": "US",
    "sector": "Utilities",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "xcel energy"
    ]
@@ -4133,6 +5662,9 @@
    "name": "Xylem Inc.",
    "market": "US",
    "sector": "Industrials",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "xylem"
    ]
@@ -4141,6 +5673,9 @@
    "name": "Yum! Brands",
    "market": "US",
    "sector": "Consumer Discretionary",
+   "themes": [
+    "perakende"
+   ],
    "variants": [
     "yum! brands"
    ]
@@ -4149,6 +5684,9 @@
    "name": "Zebra Technologies",
    "market": "US",
    "sector": "Information Technology",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "zbra",
     "zebra technologies"
@@ -4158,6 +5696,9 @@
    "name": "Zimmer Biomet",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "zimmer biomet"
    ]
@@ -4166,6 +5707,9 @@
    "name": "Zoetis",
    "market": "US",
    "sector": "Health Care",
+   "themes": [
+    "saglik"
+   ],
    "variants": [
     "zoetis"
    ]
@@ -4174,6 +5718,9 @@
    "name": "Anadolu Efes Biracılık Ve Malt Sanayii A.Ş.",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "aefes",
     "anadolu efes biracılık"
@@ -4183,6 +5730,10 @@
    "name": "AG Anadolu Grubu Holding",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "ag anadolu grubu",
     "aghol"
@@ -4192,6 +5743,10 @@
    "name": "Akbank",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "akbank",
     "akbnk"
@@ -4201,6 +5756,9 @@
    "name": "Akçansa Çimento",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "akcns",
     "akçansa çimento"
@@ -4210,6 +5768,10 @@
    "name": "Akfen Gayrimenkul Yatırım Ortaklığı",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "akfen gayrimenkul",
     "akfgy"
@@ -4219,6 +5781,9 @@
    "name": "Akfen Yenilenebilir Enerji",
    "market": "BIST",
    "sector": "Elektrik, Gaz ve Su",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "akfen yenilenebilir enerji",
     "akfye"
@@ -4228,6 +5793,9 @@
    "name": "AKSA Akrilik Kimya",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "aksa akrilik kimya"
    ]
@@ -4236,6 +5804,9 @@
    "name": "AKSA Enerji Üretim",
    "market": "BIST",
    "sector": "Elektrik, Gaz ve Su",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "aksa enerji üretim",
     "aksen"
@@ -4245,6 +5816,10 @@
    "name": "Alarko Holding",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "alark",
     "alarko"
@@ -4254,6 +5829,10 @@
    "name": "Albaraka Türk Katılım Bankası",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "albaraka türk katılım",
     "albrk"
@@ -4263,6 +5842,9 @@
    "name": "Alfa Solar Enerji",
    "market": "BIST",
    "sector": "Elektrik, Gaz ve Su",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "alfa solar enerji",
     "alfas"
@@ -4272,6 +5854,9 @@
    "name": "Arçelik",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "arclk",
     "arçelik"
@@ -4281,6 +5866,9 @@
    "name": "Aselsan",
    "market": "BIST",
    "sector": "Teknoloji",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "asels",
     "aselsan"
@@ -4290,6 +5878,9 @@
    "name": "Astor Enerji",
    "market": "BIST",
    "sector": "Elektrik, Gaz ve Su",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "astor",
     "astor enerji"
@@ -4299,6 +5890,10 @@
    "name": "Bera Holding",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "bera holding"
    ]
@@ -4307,6 +5902,9 @@
    "name": "Bien Yapı Ürünleri",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "bien yapı ürünleri",
     "bieny"
@@ -4316,6 +5914,10 @@
    "name": "BİM Birleşik Mağazalar",
    "market": "BIST",
    "sector": "Toptan ve Perakende Ticaret, Lokantalar ve Oteller",
+   "themes": [
+    "perakende",
+    "turizm"
+   ],
    "variants": [
     "bim birleşik mağazalar",
     "bimas"
@@ -4325,6 +5927,9 @@
    "name": "Borusan Mannesmann",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "borusan mannesmann",
     "brsan"
@@ -4334,6 +5939,10 @@
    "name": "Borusan Yatırım Pazarlama",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "borusan pazarlama",
     "bryat"
@@ -4343,6 +5952,9 @@
    "name": "Bursa Çimento",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "bucim",
     "bursa çimento"
@@ -4352,6 +5964,9 @@
    "name": "Çan2 Termik",
    "market": "BIST",
    "sector": "Elektrik, Gaz ve Su",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "cante",
     "çan2 termik"
@@ -4361,6 +5976,9 @@
    "name": "Coca-Cola İçecek",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "ccola",
     "coca-cola içecek"
@@ -4370,6 +5988,9 @@
    "name": "Çimsa Çimento",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "cimsa",
     "çimsa çimento"
@@ -4379,6 +6000,9 @@
    "name": "CW Enerji Mühendislik Ticaret ve Sanayi",
    "market": "BIST",
    "sector": "Elektrik, Gaz ve Su",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "cw enerji mühendislik",
     "cwene"
@@ -4388,6 +6012,10 @@
    "name": "Doğan Şirketler Grubu Holding",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "dohol",
     "doğan şirketler grubu"
@@ -4397,6 +6025,10 @@
    "name": "Doğuş Otomotiv",
    "market": "BIST",
    "sector": "Toptan ve Perakende Ticaret, Lokantalar ve Oteller",
+   "themes": [
+    "perakende",
+    "turizm"
+   ],
    "variants": [
     "doğuş otomotiv"
    ]
@@ -4405,6 +6037,10 @@
    "name": "EİS Eczacıbaşı İlaç",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "ecilc",
     "eis eczacıbaşı ilaç"
@@ -4414,6 +6050,10 @@
    "name": "Eczacıbaşı Yatırım Holding Ortaklığı",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "eczacıbaşı",
     "eczyt"
@@ -4423,6 +6063,9 @@
    "name": "Ege Endüstri",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "ege endüstri",
     "egeen"
@@ -4432,6 +6075,10 @@
    "name": "Emlak Konut Gayrimenkul Yatırım Ortaklığı",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "ekgyo",
     "emlak konut gayrimenkul"
@@ -4441,6 +6088,9 @@
    "name": "Enerjisa",
    "market": "BIST",
    "sector": "Elektrik, Gaz ve Su",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "enerjisa",
     "enjsa"
@@ -4450,6 +6100,9 @@
    "name": "Enka İnşaat",
    "market": "BIST",
    "sector": "İnşaat ve Bayındırlık",
+   "themes": [
+    "insaat"
+   ],
    "variants": [
     "enka inşaat",
     "enkai"
@@ -4459,6 +6112,9 @@
    "name": "Ereğli Demir ve Çelik Fabrikaları",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "eregl",
     "ereğli demir çelik"
@@ -4468,6 +6124,9 @@
    "name": "Europower Enerji ve Otomasyon Sanayileri Ticaret",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "eupwr",
     "europower enerji otomasyon"
@@ -4477,6 +6136,9 @@
    "name": "Europen Endüstri İnşaat Sanayi ve Ticaret",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "euren",
     "europen endüstri inşaat"
@@ -4486,6 +6148,9 @@
    "name": "Ford Otosan",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "ford otosan",
     "froto"
@@ -4495,6 +6160,10 @@
    "name": "Türkiye Garanti Bankası",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "garan",
     "türkiye garanti bankası"
@@ -4504,6 +6173,10 @@
    "name": "Gen İlaç ve Sağlık Ürünleri Sanayi ve Ticaret",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "gen ilaç sağlık",
     "genil"
@@ -4513,6 +6186,9 @@
    "name": "Girişim Elektrik Sanayi Taahhüt ve Ticaret",
    "market": "BIST",
    "sector": "İnşaat ve Bayındırlık",
+   "themes": [
+    "insaat"
+   ],
    "variants": [
     "gesan",
     "girişim elektrik taahhüt"
@@ -4522,6 +6198,10 @@
    "name": "Global Yatırım Holding",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "glyho"
    ]
@@ -4530,6 +6210,9 @@
    "name": "Gübre Fabrikaları",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "gubrf",
     "gübre fabrikaları"
@@ -4539,6 +6222,9 @@
    "name": "Galata Wind Enerji",
    "market": "BIST",
    "sector": "Elektrik, Gaz ve Su",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "galata wind enerji",
     "gwind"
@@ -4548,6 +6234,10 @@
    "name": "Türkiye Halk Bankası",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "halkb",
     "türkiye halk bankası"
@@ -4557,6 +6247,9 @@
    "name": "Hektaş Ticaret",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "hektaş",
     "hekts"
@@ -4566,6 +6259,9 @@
    "name": "İmaş Makina Sanayi",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "imasm",
     "imaş makina"
@@ -4575,6 +6271,9 @@
    "name": "İpek Doğal Enerji Kaynakları Araştırma ve Üretim",
    "market": "BIST",
    "sector": "Madencilik ve Taş Ocakçılığı",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "ipek doğal enerji",
     "ipeke"
@@ -4584,6 +6283,10 @@
    "name": "Türkiye İş Bankası",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "isctr",
     "türkiye iş bankası"
@@ -4593,6 +6296,9 @@
    "name": "İskenderun Demir ve Çelik",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "isdmr",
     "iskenderun demir çelik"
@@ -4602,6 +6308,10 @@
    "name": "İş Gayrimenkul Yatırım Ortaklığı",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "isgyo",
     "iş gayrimenkul"
@@ -4611,6 +6321,10 @@
    "name": "İş Yatırım Menkul Değerler",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "ismen",
     "iş menkul değerler"
@@ -4620,6 +6334,9 @@
    "name": "İzmir Demir Çelik Sanayi",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "izdmc",
     "izmir demir çelik"
@@ -4629,6 +6346,9 @@
    "name": "Karsan Otomotiv",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "karsan otomotiv",
     "karsn"
@@ -4638,6 +6358,9 @@
    "name": "Kayseri Şeker Fabrikası",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "kayse",
     "kayseri şeker fabrikası"
@@ -4647,6 +6370,9 @@
    "name": "Kocaer Çelik Sanayi ve Ticaret",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "kcaer",
     "kocaer çelik"
@@ -4656,6 +6382,10 @@
    "name": "Koç Holding",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "kchol"
    ]
@@ -4664,6 +6394,9 @@
    "name": "Kimteks Poliüretan Sanayi ve Ticaret",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "kimteks poliüretan",
     "kmpur"
@@ -4673,6 +6406,7 @@
    "name": "Kontrolmatik Teknoloji Enerji ve Mühendislik",
    "market": "BIST",
    "sector": "Mesleki, Bilimsel ve Teknik Faaliyetler",
+   "themes": [],
    "variants": [
     "kontr",
     "kontrolmatik teknoloji enerji"
@@ -4682,6 +6416,9 @@
    "name": "Konya Çimento",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "konya",
     "konya çimento"
@@ -4691,6 +6428,9 @@
    "name": "Kordsa Teknik Tekstil",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "kords",
     "kordsa teknik tekstil"
@@ -4700,6 +6440,9 @@
    "name": "Koza Anadolu Metal Madencilik İşletmeleri",
    "market": "BIST",
    "sector": "Madencilik ve Taş Ocakçılığı",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "koza anadolu metal",
     "kozaa"
@@ -4709,6 +6452,9 @@
    "name": "Koza Altın İşletmeleri",
    "market": "BIST",
    "sector": "Madencilik ve Taş Ocakçılığı",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "koza altın işletmeleri",
     "kozal"
@@ -4718,6 +6464,9 @@
    "name": "Kardemir Karabük Demir Çelik",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "kardemir karabük demir",
     "krdmd"
@@ -4727,6 +6476,10 @@
    "name": "Kızılbük Gayrimenkul Yatırım Ortaklığı",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "kzbgy",
     "kızılbük gayrimenkul"
@@ -4736,6 +6489,10 @@
    "name": "Mavi Giyim",
    "market": "BIST",
    "sector": "Toptan ve Perakende Ticaret, Lokantalar ve Oteller",
+   "themes": [
+    "perakende",
+    "turizm"
+   ],
    "variants": [
     "mavi giyim"
    ]
@@ -4744,6 +6501,10 @@
    "name": "Migros Ticaret",
    "market": "BIST",
    "sector": "Toptan ve Perakende Ticaret, Lokantalar ve Oteller",
+   "themes": [
+    "perakende",
+    "turizm"
+   ],
    "variants": [
     "mgros",
     "migros"
@@ -4753,6 +6514,9 @@
    "name": "Mia Teknoloji",
    "market": "BIST",
    "sector": "Teknoloji",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "mia teknoloji",
     "miatk"
@@ -4762,6 +6526,9 @@
    "name": "ODAŞ Elektrik Üretim",
    "market": "BIST",
    "sector": "Elektrik, Gaz ve Su",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "odaş elektrik üretim"
    ]
@@ -4770,6 +6537,9 @@
    "name": "Otokar Otomotiv ve Savunma",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "otkar",
     "otokar otomotiv savunma"
@@ -4779,6 +6549,9 @@
    "name": "OYAK Çimento Fabrikaları",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "oyak çimento fabrikaları",
     "oyakc"
@@ -4788,6 +6561,9 @@
    "name": "Penta Teknoloji Ürünleri Dağıtım Ticaret",
    "market": "BIST",
    "sector": "Teknoloji",
+   "themes": [
+    "teknoloji"
+   ],
    "variants": [
     "penta",
     "penta teknoloji ürünleri"
@@ -4797,6 +6573,9 @@
    "name": "Petkim Petrokimya Holding",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "petkim petrokimya",
     "petkm"
@@ -4806,6 +6585,9 @@
    "name": "Pegasus Hava Taşımacılığı",
    "market": "BIST",
    "sector": "Ulaştırma, Depolama ve Haberleşme",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "pegasus hava taşımacılığı",
     "pgsus"
@@ -4815,6 +6597,10 @@
    "name": "Pasifik Gayrimenkul Yatırım Ortaklığı",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "pasifik gayrimenkul",
     "psgyo"
@@ -4824,6 +6610,9 @@
    "name": "Qua Granite Hayal Yapı ve Ürünleri Sanayi Ticaret",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "qua granite hayal",
     "quagr"
@@ -4833,6 +6622,10 @@
    "name": "Hacı Ömer Sabancı Holding",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "hacı ömer sabancı",
     "sahol"
@@ -4842,6 +6635,9 @@
    "name": "SASA Polyester",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "sasa polyester"
    ]
@@ -4850,6 +6646,10 @@
    "name": "Türkiye Şişe ve Cam Fabrikaları",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "türkiye şişe cam"
    ]
@@ -4858,6 +6658,10 @@
    "name": "Şekerbank",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "skbnk",
     "şekerbank"
@@ -4867,6 +6671,9 @@
    "name": "Smart Güneş Enerjisi Teknolojileri Araştırma Geliştirme Üretim Sanayi ve Ticaret",
    "market": "BIST",
    "sector": "Elektrik, Gaz ve Su",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "smart güneş enerjisi",
     "smrtg"
@@ -4876,6 +6683,10 @@
    "name": "Şok Marketler",
    "market": "BIST",
    "sector": "Toptan ve Perakende Ticaret, Lokantalar ve Oteller",
+   "themes": [
+    "perakende",
+    "turizm"
+   ],
    "variants": [
     "şok marketler"
    ]
@@ -4884,6 +6695,10 @@
    "name": "TAV Havalimanları Holding",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "tav havalimanları",
     "tavhl"
@@ -4893,6 +6708,9 @@
    "name": "Turkcell İletişim Hizmetleri",
    "market": "BIST",
    "sector": "Ulaştırma, Depolama ve Haberleşme",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "tcell",
     "turkcell iletişim hizmetleri"
@@ -4902,6 +6720,9 @@
    "name": "Türk Hava Yolları",
    "market": "BIST",
    "sector": "Ulaştırma, Depolama ve Haberleşme",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "thyao",
     "türk hava yolları"
@@ -4911,6 +6732,10 @@
    "name": "Tekfen Holding",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "tekfen",
     "tkfen"
@@ -4920,6 +6745,9 @@
    "name": "Tofaş Türk Otomobil Fabrikası",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "toaso",
     "tofaş türk otomobil"
@@ -4929,6 +6757,10 @@
    "name": "Türkiye Sınai Kalkınma Bankası",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "türkiye sınai kalkınma"
    ]
@@ -4937,6 +6769,9 @@
    "name": "Türk Telekomünikasyon",
    "market": "BIST",
    "sector": "Ulaştırma, Depolama ve Haberleşme",
+   "themes": [
+    "telekom"
+   ],
    "variants": [
     "ttkom",
     "türk telekomünikasyon"
@@ -4946,6 +6781,9 @@
    "name": "Türk Traktör ve Ziraat Makineleri",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "ttrak",
     "türk traktör ziraat"
@@ -4955,6 +6793,9 @@
    "name": "TÜPRAŞ-Türkiye Petrol Rafinerileri",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "tuprs",
     "tüpraş-türkiye petrol rafinerileri"
@@ -4964,6 +6805,9 @@
    "name": "Ülker Bisküvi",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "ulker",
     "ülker bisküvi"
@@ -4973,6 +6817,10 @@
    "name": "Türkiye Vakıflar Bankası",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "türkiye vakıflar bankası",
     "vakbn"
@@ -4982,6 +6830,9 @@
    "name": "Vestel Beyaz Eşya",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "vesbe",
     "vestel beyaz eşya"
@@ -4991,6 +6842,9 @@
    "name": "Vestel Elektronik",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "vestel elektronik",
     "vestl"
@@ -5000,6 +6854,10 @@
    "name": "Yapı ve Kredi Bankası",
    "market": "BIST",
    "sector": "Mali Kuruluş",
+   "themes": [
+    "banka",
+    "faiz"
+   ],
    "variants": [
     "yapı kredi bankası",
     "ykbnk"
@@ -5009,6 +6867,9 @@
    "name": "Yayla Agro Gıda Sanayi ve Ticaret",
    "market": "BIST",
    "sector": "İmalat",
+   "themes": [
+    "sanayi"
+   ],
    "variants": [
     "yayla agro gıda",
     "yylgd"
@@ -5018,6 +6879,9 @@
    "name": "Zorlu Enerji Elektrik Üretim",
    "market": "BIST",
    "sector": "Elektrik, Gaz ve Su",
+   "themes": [
+    "enerji"
+   ],
    "variants": [
     "zoren",
     "zorlu enerji elektrik"

@@ -4,9 +4,10 @@ Sembol evreni iki katmanlı (plan bölüm 3-4, ~600 sembol geniş tarama):
 - CORE_SYMBOLS: el yapımı 30 sembol — zengin varyantlar + TEMA etiketleri
   (tema yolu sadece bu katmanda çalışır; USO+XOM+TUPRS aynı anda yakalanır)
 - data/universe.json: BIST100 + S&P500 otomatik evreni (tools/build_universe.py,
-  aylık elle güncellenir) — sadece DOĞRUDAN ad/ticker eşleşmesi, tema yok
-  (bilinçli kısıt: tek Fed haberinin 70 sembollü temayı aday yapıp Gemini
-  kotasını yemesini önler). El yapımı tanımlar evrendekini ezer.
+  aylık elle güncellenir) — ad/ticker eşleşmesi + sektörden türetilmiş tema
+  etiketleri (kullanıcı kararı: tüm evren iki yola da tabi). Tema günlerinde
+  kota koruması mevcut frenlerde: MAX_THESES_PER_RUN, 48s sembol tekrarı yok,
+  günlük Gemini tavanı, red-team. El yapımı tanımlar evrendekini ezer.
 """
 import json as _json
 from pathlib import Path as _Path
@@ -61,7 +62,8 @@ def _load_universe():
         return {}
     return {
         sym: {"name": info["name"], "market": info["market"],
-              "sector": info.get("sector", ""), "themes": [],
+              "sector": info.get("sector", ""),
+              "themes": info.get("themes", []),
               "variants": info.get("variants", [])}
         for sym, info in raw.items()
     }

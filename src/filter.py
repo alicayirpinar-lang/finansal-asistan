@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 from rapidfuzz import fuzz
 
 from config import (
-    SYMBOLS, THEME_KEYWORDS, CRITICAL_KEYWORDS,
+    SYMBOLS, CORE_SYMBOLS, THEME_KEYWORDS, CRITICAL_KEYWORDS,
     DEDUP_TITLE_THRESHOLD, RELEVANCE_MIN_SCORE,
     FRESHNESS_HALFLIFE_H, KATEGORI_AGIRLIK,
 )
@@ -69,13 +69,15 @@ def _match_symbols(text):
     for symbol, pattern in _patterns().items():
         if pattern.search(text):
             matches[symbol] = 1.0
-    # Tema yolu: sadece tema etiketi olan (çekirdek) semboller; anahtar
-    # kelimeler kasıtlı substring ("faiz karar" -> "faiz kararı" da yakalasın)
+    # Tema yolu: tüm evren (sektörden türetilmiş temalar dahil); anahtar
+    # kelimeler kasıtlı substring ("faiz karar" -> "faiz kararı" da yakalasın).
+    # Çekirdek semboller temada hafif önde (0.4 > 0.35): tema günü kota, sektörün
+    # rastgele bir üyesi yerine likit temsilcilere (JPM, TUPRS...) harcansın.
     for theme, keywords in THEME_KEYWORDS.items():
         if any(k in text for k in keywords):
             for symbol, info in SYMBOLS.items():
                 if theme in info["themes"]:
-                    matches.setdefault(symbol, 0.4)
+                    matches.setdefault(symbol, 0.4 if symbol in CORE_SYMBOLS else 0.35)
     return matches
 
 
