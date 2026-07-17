@@ -51,7 +51,8 @@ def recent_thesis_exists(symbol, hours=48):
     return len(rows) > 0
 
 
-def insert_thesis(event, draft, redteam, final_confidence, tier, status):
+def insert_thesis(event, draft, redteam, final_confidence, tier, status,
+                  entry_price_ref=None):
     low, high = draft["buyukluk_araligi_pct"]
     row = {
         "symbol": event["symbol"],
@@ -65,9 +66,56 @@ def insert_thesis(event, draft, redteam, final_confidence, tier, status):
         "target_range_pct": f"[{low},{high}]",
         "horizon": f'{draft.get("ufuk_deger", "")} {draft["ufuk"]}'.strip(),
         "invalidation_condition": redteam.get("gecersiz_kilma_kosulu"),
+        "entry_price_ref": entry_price_ref,
         "status": status,
     }
     return get_client().table("theses").insert(row).execute().data[0]
+
+
+# --- tez takibi yardımcıları (plan bölüm 7) --------------------------------
+
+def open_theses():
+    return get_client().table("theses").select("*").eq("status", "acik").execute().data
+
+
+def update_thesis(thesis_id, **fields):
+    get_client().table("theses").update(fields).eq("id", thesis_id).execute()
+
+
+def insert_thesis_check(thesis_id, price, snapshot, result):
+    get_client().table("thesis_checks").insert({
+        "thesis_id": thesis_id, "price_at_check": price,
+        "signal_snapshot": snapshot, "result": result,
+    }).execute()
+
+
+def alert_exists(alert_type, thesis_id):
+    """Aynı tez için aynı tip bildirim daha önce gitti mi? (tekrar önleme)"""
+    rows = (get_client().table("alerts").select("id")
+            .eq("type", alert_type).eq("thesis_id", thesis_id).execute().data)
+    return len(rows) > 0
+
+
+def log_alert(alert_type, thesis_id, message_id, summary):
+    get_client().table("alerts").insert({
+        "type": alert_type, "thesis_id": thesis_id,
+        "telegram_message_id": str(message_id), "content_summary": summary[:300],
+    }).execute()
+
+
+def insert_kurtarma(thesis_id, signals, verdict, oran):
+    get_client().table("kurtarma_degerlendirmeleri").insert({
+        "thesis_id": thesis_id, "triggered_signals": signals,
+        "ai_verdict": verdict, "cikis_orani": oran,
+    }).execute()
+
+
+def kurtarma_exists_recent(thesis_id, days=7):
+    from datetime import datetime, timedelta, timezone
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
+    rows = (get_client().table("kurtarma_degerlendirmeleri").select("id")
+            .eq("thesis_id", thesis_id).gte("created_at", cutoff).execute().data)
+    return len(rows) > 0
 
 
 def open_portfolio_symbols():

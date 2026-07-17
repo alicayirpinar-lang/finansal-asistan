@@ -114,6 +114,37 @@ JSON ŞEMASI:
 }}"""
 
 
+KURTARMA_PROMPT = """Sen temkinli bir risk yöneticisisin. Açık bir yatırım tezi zayıflama şüphesine düştü.
+Görevin üç sonuçtan birine karar vermek — tezi tamamen terk etmek ile hiçbir şey yapmamak arasında
+orta yol (kısmi çıkış) da bir seçenek.
+
+TEZ: {symbol} ({market}), yön: {direction}
+ZİNCİR: {chain}
+GİRİŞ REFERANS FİYATI: {entry} | GÜNCEL FİYAT: {price} | STOP SEVİYESİ: {stop}
+HEDEF: %{low}-{high} | GEÇEN SÜRE: {elapsed} gün / ufuk {horizon_days} gün
+TETİKLENEN SİNYALLER: {signals}
+
+KURALLAR:
+- "yanlis_alarm": tez hâlâ sağlam, sinyaller gürültü (özellikle sadece zaman sinyali varsa mekanizma
+  yavaş işliyor olabilir)
+- "kismi_cikis": tez zayıfladı ama ölmedi — riski azalt, cikis_orani belirle (0.3 hafif / 0.5 orta / 0.7 ciddi)
+- "tam_cikis": tezin ana mekanizması bozuldu
+SADECE geçerli JSON döndür:
+{{"karar": "yanlis_alarm|kismi_cikis|tam_cikis", "gerekce": "1-2 cümle", "cikis_orani": 0.3|0.5|0.7|null}}"""
+
+
+def kurtarma_degerlendir(thesis, price, entry, stop, low, high, elapsed, horizon_days, signals):
+    draft = thesis["draft_chain"]
+    prompt = KURTARMA_PROMPT.format(
+        symbol=thesis["symbol"], market=thesis["market"], direction=thesis["direction"],
+        chain=json.dumps(draft.get("zincir", []), ensure_ascii=False),
+        entry=entry, price=price, stop=stop, low=low, high=high,
+        elapsed=elapsed, horizon_days=horizon_days,
+        signals=", ".join(signals),
+    )
+    return _parse_json(_call(prompt))
+
+
 def draft_chain(event):
     from config import SYMBOLS
     prompt = DRAFT_PROMPT.format(

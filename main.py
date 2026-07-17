@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from config import SYMBOLS, MAX_THESES_PER_RUN
-from src import collector, filter as f1, brain, storage, notifier
+from src import collector, filter as f1, brain, prices, storage, notifier
 
 
 def run():
@@ -53,7 +53,16 @@ def run():
             redteam = brain.red_team(event, draft)
             storage.log_gemini_call("redteam")
             final, tier, status = brain.merge(event, draft, redteam)
-            thesis = storage.insert_thesis(event, draft, redteam, final, tier, status)
+            # Referans fiyat + stop (2×ATR) — tez takibi bunlarla çalışır (plan bölüm 7)
+            entry_ref = prices.current_price(event["symbol"], event["market"])
+            if entry_ref:
+                atr = prices.atr14(event["symbol"], event["market"])
+                if atr:
+                    sign = 1 if draft["yon"] == "yukselis" else -1
+                    inv = redteam.setdefault("gecersiz_kilma_kosulu", {})
+                    inv["stop_fiyat"] = round(entry_ref - sign * 2 * atr, 2)
+            thesis = storage.insert_thesis(event, draft, redteam, final, tier, status,
+                                           entry_price_ref=entry_ref)
             produced += 1
             print(f"  -> güven={final}, katman={tier}, durum={status}")
             if status == "acik" and tier in ("kritik", "orta"):
