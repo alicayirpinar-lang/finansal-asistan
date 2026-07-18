@@ -1,0 +1,123 @@
+{
+ "split": "2023-01-01",
+ "fwd_gun": 20,
+ "hizli": false,
+ "sonuc": {
+  "BIST": {
+   "sikisma_kirilim_adayi": {
+    "in": {
+     "n": 558,
+     "medyan_pct": 2.78,
+     "pozitif_oran": 0.608,
+     "taban_medyan_pct": 2.32
+    },
+    "out": {
+     "n": 434,
+     "medyan_pct": 1.59,
+     "pozitif_oran": 0.548,
+     "taban_medyan_pct": 0.81
+    }
+   },
+   "taban_kirilimi": {
+    "in": {
+     "n": 1215,
+     "medyan_pct": 4.9,
+     "pozitif_oran": 0.64,
+     "taban_medyan_pct": 2.32
+    },
+    "out": {
+     "n": 639,
+     "medyan_pct": 1.75,
+     "pozitif_oran": 0.552,
+     "taban_medyan_pct": 0.81
+    }
+   },
+   "momentum_devam": {
+    "in": {
+     "n": 2245,
+     "medyan_pct": 2.67,
+     "pozitif_oran": 0.601,
+     "taban_medyan_pct": 2.32
+    },
+    "out": {
+     "n": 1339,
+     "medyan_pct": -0.39,
+     "pozitif_oran": 0.483,
+     "taban_medyan_pct": 0.81
+    }
+   },
+   "asiri_gerilme": {
+    "in": {
+     "n": 2906,
+     "medyan_pct": 4.44,
+     "pozitif_oran": 0.64,
+     "taban_medyan_pct": 2.32
+    },
+    "out": {
+     "n": 1699,
+     "medyan_pct": 2.27,
+     "pozitif_oran": 0.575,
+     "taban_medyan_pct": 0.81
+    }
+   }
+  },
+  "US": {
+   "sikisma_kirilim_adayi": {
+    "in": {
+     "n": 7254,
+     "medyan_pct": 1.03,
+     "pozitif_oran": 0.562,
+     "taban_medyan_pct": 1.38
+    },
+    "out": {
+     "n": 4562,
+     "medyan_pct": 0.68,
+     "pozitif_oran": 0.543,
+     "taban_medyan_pct": 1.09
+    }
+   },
+   "taban_kirilimi": {
+    "in": {
+     "n": 7457,
+     "medyan_pct": 0.87,
+     "pozitif_oran": 0.56,
+     "taban_medyan_pct": 1.38
+    },
+    "out": {
+     "n": 4379,
+     "medyan_pct": 1.13,
+     "pozitif_oran": 0.572,
+     "taban_medyan_pct": 1.09
+    }
+   },
+   "momentum_devam": {
+    "in": {
+     "n": 12313,
+     "medyan_pct": 1.22,
+     "pozitif_oran": 0.569,
+     "taban_medyan_pct": 1.38
+    },
+    "out": {
+     "n": 7476,
+     "medyan_pct": 1.0,
+     "pozitif_oran": 0.555,
+     "taban_medyan_pct": 1.09
+    }
+   },
+   "asiri_gerilme": {
+    "in": {
+     "n": 15654,
+     "medyan_pct": 1.12,
+     "pozitif_oran": 0.567,
+     "taban_medyan_pct": 1.38
+    },
+    "out": {
+     "n": 8948,
+     "medyan_pct": 1.48,
+     "pozitif_oran": 0.586,
+     "taban_medyan_pct": 1.09
+    }
+   }
+  }
+ }
+}

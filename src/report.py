@@ -41,7 +41,14 @@ def build_and_send(market):
     if signal_rows:
         db_rows = [{k: v for k, v in r.items() if not k.startswith("_")} for r in signal_rows]
         for start in range(0, len(db_rows), 200):  # 600 sembol tek insert'e sığmasın
-            storage.get_client().table("technical_signals").insert(db_rows[start:start + 200]).execute()
+            chunk = db_rows[start:start + 200]
+            try:
+                storage.get_client().table("technical_signals").insert(chunk).execute()
+            except Exception:
+                # 'analiz' kolonu henüz yoksa (migration 004 bekliyor) kolonsuz yaz
+                for r in chunk:
+                    r.pop("analiz", None)
+                storage.get_client().table("technical_signals").insert(chunk).execute()
     gozlem = sorted([r for r in signal_rows if r["gozlem_skoru"]],
                     key=lambda r: -r["gozlem_skoru"])[:10]
 
@@ -65,6 +72,22 @@ def build_and_send(market):
                          f'hedef {t["target_range_pct"]}, ufuk {t["horizon"]}')
         notifier.send("\n".join(lines))
         sections_sent.append("orta_tezler")
+
+    # 2.5) Büyük hareket kurulumları (analitik motor, faz 11) — haber beklemeden
+    # "yay gerilmiş" hisseleri gösterir; nötr dil, tez değildir.
+    kurulumlu = [r for r in signal_rows
+                 if any(s.get("kanitli") and s["skor"] >= 70
+                        for s in r.get("_setups", []))][:8]
+    if kurulumlu:
+        lines = ["🎯 Büyük hareket kurulumları (backtest kanıtlı — haber katalizörü henüz yok):"]
+        for r in kurulumlu:
+            for s in r["_setups"]:
+                if s.get("kanitli") and s["skor"] >= 70:
+                    lines.append(f'• {r["symbol"]}: {s["ad"]} (skor {s["skor"]}) — '
+                                 + "; ".join(s["kosullar"][:3]))
+        lines.append("Bunlar tez değildir; katalizör çıkarsa sistem önceliklendirir.")
+        notifier.send("\n".join(lines))
+        sections_sent.append("kurulumlar")
 
     # 3) Gözlem — nötr çerçeveleme şart (plan: sebep içermez, tezlerle aynı dilde sunulmaz)
     if gozlem:

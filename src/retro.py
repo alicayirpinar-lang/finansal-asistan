@@ -14,7 +14,7 @@ kullanıcı talebi öncelikli) işlenir:
 from datetime import datetime, timedelta, timezone
 
 from config import SYMBOLS
-from src import brain, filter as f1, notifier, prices, storage
+from src import analytics, brain, filter as f1, notifier, prices, storage
 
 RETRY_DAYS = 3
 
@@ -111,8 +111,9 @@ def process_queue(clusters, cap):
         event = _event_from_cluster(symbol, market, cluster)
         try:
             print(f'  [{symbol}] geriye dönük tez: {event["title"][:70]}...')
-            snapshot = prices.market_snapshot(symbol, market)
-            draft = brain.draft_chain(event, snapshot)
+            analiz = analytics.sembol_analiz(symbol, market)
+            teknik = analytics.prompt_blok(analiz, analytics.rejim(market))
+            draft = brain.draft_chain(event, teknik)
             storage.log_gemini_call("taslak")
             if draft.get("tez_yok"):
                 storage.update_retro(req["id"], "tez_bulunamadi",
@@ -121,7 +122,7 @@ def process_queue(clusters, cap):
                               f"gerçek bir katalizör değil ({draft.get('neden', '')[:100]}). "
                               f"Pozisyon 'tez yok' olarak izlenir.")
                 continue
-            redteam = brain.red_team(event, draft, snapshot)
+            redteam = brain.red_team(event, draft, teknik)
             storage.log_gemini_call("redteam")
             final, tier, status, neden = brain.merge(event, draft, redteam)
             # Referans = kullanıcının gerçek alış fiyatı; stop = 2×ATR (plan bölüm 7)

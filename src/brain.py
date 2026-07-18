@@ -209,6 +209,8 @@ def triage(events):
 
 
 def _snapshot_text(snapshot):
+    if isinstance(snapshot, str):  # analytics.prompt_blok hazır metni (faz 11)
+        return snapshot
     if not snapshot:
         return "veri alınamadı"
     parts = []

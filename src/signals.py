@@ -12,6 +12,7 @@ import pandas as pd
 import yfinance as yf
 
 from config import SYMBOLS
+from src import analytics
 from src.prices import yf_ticker
 
 
@@ -110,6 +111,14 @@ def compute_signals(market):
                 df = data[ticker] if len(tickers) > 1 else data
                 result = _analyze_one(df)
                 if result:
+                    # Analitik motor vektörü aynı veriden hesaplanır (ek indirme yok)
+                    try:
+                        vec = analytics.vektor(df, market)
+                        setups = analytics.kurulumlar(vec, market) if vec else []
+                        result["analiz"] = {"vektor": vec, "kurulumlar": setups} if vec else None
+                        result["_setups"] = setups
+                    except Exception:
+                        result["analiz"], result["_setups"] = None, []
                     rows.append({"symbol": symbol, "market": market, **result})
             except Exception:
                 continue

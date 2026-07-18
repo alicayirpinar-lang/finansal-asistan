@@ -127,6 +127,15 @@ def kurtarma_exists_recent(thesis_id, days=7):
     return len(rows) > 0
 
 
+def get_settings():
+    """user_settings satırı (engel oranı vb.). Kolon henüz yoksa boş döner."""
+    try:
+        rows = get_client().table("user_settings").select("*").eq("id", 1).execute().data
+        return rows[0] if rows else {}
+    except Exception:
+        return {}
+
+
 # --- geriye dönük tez kuyruğu (plan bölüm 8, dashboard köprüsü) -------------
 
 def pending_retro_requests():
