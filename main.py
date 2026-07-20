@@ -158,13 +158,20 @@ def run():
                 sonuclar.append(f'{event["symbol"]}: {status}'
                                 + (f' — {neden[:90]}' if neden else ""))
             if status == "acik" and tier in ("kritik", "orta"):
-                msg = notifier.format_thesis(event, draft, redteam, final, tier)
-                if buyuk:
-                    msg = "🚀 BÜYÜK FIRSAT ADAYI — güçlü katalizör + teknik kurulum + rejim uyumu\n" + msg
-                if engel.get("metin"):
-                    msg += f'\n{engel["metin"]}'
-                notifier.send(msg)
-                print("  -> Telegram bildirimi gönderildi")
+                # Düşüş tezi eyleme dönüşmez (açığa satış yok): sembol portföyde
+                # değilse bildirim gitmez — tez sitede ve karnede kalır.
+                if draft.get("yon") == "dusus" and event["symbol"] not in portfolio_syms:
+                    print("  -> düşüş tezi, sembol portföyde değil: bildirim yok (sitede görünür)")
+                else:
+                    msg = notifier.format_thesis(event, draft, redteam, final, tier)
+                    if draft.get("yon") == "dusus":
+                        msg = "🛡️ PORTFÖY KORUMA — elindeki hisse için düşüş tezi\n" + msg
+                    if buyuk:
+                        msg = "🚀 BÜYÜK FIRSAT ADAYI — güçlü katalizör + teknik kurulum + rejim uyumu\n" + msg
+                    if engel.get("metin"):
+                        msg += f'\n{engel["metin"]}'
+                    notifier.send(msg)
+                    print("  -> Telegram bildirimi gönderildi")
         except Exception:
             print(f'  ! {event["symbol"]} işlenirken hata (pipeline devam ediyor):')
             traceback.print_exc(limit=2)
