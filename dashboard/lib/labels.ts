@@ -18,6 +18,30 @@ export const YON: Record<string, string> = {
   yukselis: "↑ yükseliş", dusus: "↓ düşüş",
 };
 
+// Analitik motor (faz 11) etiketleri — src/analytics.py ile senkron
+export const KURULUM: Record<string, string> = {
+  sikisma_kirilim_adayi: "sıkışma kırılım adayı",
+  taban_kirilimi: "taban kırılımı (52h zirve)",
+  momentum_devam: "momentum devamı",
+  asiri_gerilme: "aşırı gerilme",
+};
+
+export const KATALIZOR: Record<string, string> = {
+  birlesme_satinalma: "birleşme / satın alma",
+  ihale_sozlesme: "ihale / sözleşme",
+  regulasyon_onay: "regülasyon / onay",
+  bilanco_surprizi: "bilanço sürprizi",
+  arz_soku: "arz şoku",
+  faiz_makro: "faiz / makro",
+  genel: "genel",
+};
+
+export const REJIM: Record<string, { label: string; cls: string }> = {
+  risk_on: { label: "risk iştahı açık", cls: "text-emerald-400" },
+  notr: { label: "nötr", cls: "text-zinc-300" },
+  risk_off: { label: "riskten kaçış", cls: "text-red-400" },
+};
+
 export function tarih(iso: string | null): string {
   if (!iso) return "-";
   return new Date(iso).toLocaleString("tr-TR", {

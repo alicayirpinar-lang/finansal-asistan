@@ -103,7 +103,7 @@ Deno.serve(async (req) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         chat_id: tgChat,
-        text: `🚨 KRİTİK HABER YAKALANDI (7/24 radar)\n${fresh.map((t) => "• " + t).join("\n")}\n\nTam analiz başlatıldı — tez bildirimi birkaç dakika içinde gelebilir.`,
+        text: `🚨 KRİTİK HABER YAKALANDI (7/24 radar)\n${fresh.map((t) => "• " + t).join("\n")}\n\nTam analiz başlatıldı. Haber takipteki sembollere bağlanabilirse tez bildirimi gelecek; bağlanamazsa "tez çıkmadı" özeti göndereceğim (her kritik haber yatırılabilir tez üretmez).`,
         disable_web_page_preview: true,
       }),
     });
@@ -122,7 +122,7 @@ Deno.serve(async (req) => {
           Accept: "application/vnd.github+json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ref: "main" }),
+        body: JSON.stringify({ ref: "main", inputs: { kaynak: "kritik" } }),
       },
     );
     triggered = res.status === 204;

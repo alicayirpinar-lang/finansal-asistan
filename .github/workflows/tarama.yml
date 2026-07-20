@@ -6,7 +6,12 @@ name: tarama
 on:
   schedule:
     - cron: "*/30 6-21 * * 1-5"
-  workflow_dispatch: {}   # elle tetikleme (test için)
+  workflow_dispatch:      # elle tetikleme (test) + kritik hızlı yol (edge function)
+    inputs:
+      kaynak:
+        description: "Tetik kaynağı (kritik = 7/24 nöbetçi)"
+        required: false
+        default: "elle"
 
 jobs:
   tarama:
@@ -28,3 +33,4 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
           DAILY_GEMINI_CAP: "60"
+          TETIK_KAYNAK: ${{ inputs.kaynak || 'zamanlayici' }}

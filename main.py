@@ -14,8 +14,26 @@ from config import SYMBOLS, MAX_THESES_PER_RUN
 from src import analytics, collector, filter as f1, brain, prices, retro, storage, notifier
 
 
+def _kritik_ozet(aday_sayisi, triage_elenen, sonuclar):
+    """Kritik hızlı yol tetiklediyse ve tez çıkmadıysa kullanıcıya nedenini söyle.
+    ('tez gelebilir' bildirimi askıda kalmasın — dürüst kapanış, plan bölüm 11)."""
+    if aday_sayisi == 0:
+        sebep = ("Kritik başlık takip listesindeki hiçbir sembole/temaya "
+                 "bağlanamadı (genel veya jeopolitik haber).")
+    else:
+        satirlar = [f"{aday_sayisi} olay adayı incelendi."]
+        if triage_elenen:
+            satirlar.append(f"Ön eleme {triage_elenen} adayı eledi (rutin / yeni bilgi yok).")
+        satirlar += sonuclar[:5]
+        sebep = "\n".join(satirlar)
+    notifier.send("ℹ️ Kritik haber analizi tamamlandı — tez çıkmadı.\n"
+                  + sebep +
+                  "\nBu normaldir: her kritik haber yatırılabilir bir tez üretmez.")
+
+
 def run():
     cap = int(os.environ.get("DAILY_GEMINI_CAP", "40"))
+    kritik_tetik = os.environ.get("TETIK_KAYNAK", "") == "kritik"
 
     print("Semboller senkronlanıyor...")
     storage.ensure_symbols(SYMBOLS)
@@ -27,6 +45,8 @@ def run():
         print(f"  ! {name}: {err[:100]}")
     if not items:
         print("Hiç haber yok, çıkılıyor.")
+        if kritik_tetik:
+            _kritik_ozet(0, 0, [])
         return
 
     clusters = f1.dedup(items)
@@ -46,13 +66,15 @@ def run():
 
     # Triage: normal kuyruk toplu ön elemeden geçer (1 Gemini çağrısı, tez
     # kalitesi fazı); kritik hızlı yol elemesiz geçer.
+    aday_sayisi = len(events)
+    triage_elenen = 0
     kritik = [e for e in events if e["priority_lane"] == "kritik"]
     normal = [e for e in events if e["priority_lane"] != "kritik"][:12]
     if normal and storage.gemini_calls_today() + 1 <= cap:
-        normal, elenen = brain.triage(normal)
+        normal, triage_elenen = brain.triage(normal)
         storage.log_gemini_call("triage")
-        if elenen:
-            print(f"  triage: {elenen} olay elendi, {len(normal)} kaldı")
+        if triage_elenen:
+            print(f"  triage: {triage_elenen} olay elendi, {len(normal)} kaldı")
     events = kritik + normal
 
     settings = storage.get_settings()
@@ -65,6 +87,7 @@ def run():
         return rejimler[market]
 
     produced = 0
+    sonuclar = []     # kritik kapanış özeti için kısa sonuç satırları
     per_cluster = {}  # aynı haber kümesinden en fazla 2 tez (kopya tez freni)
     for event in events:
         if produced >= MAX_THESES_PER_RUN:
@@ -90,6 +113,8 @@ def run():
             storage.log_gemini_call("taslak")
             if draft.get("tez_yok"):
                 print(f'  -> taslak beyni reddetti: {draft.get("neden", "?")[:100]}')
+                sonuclar.append(f'{event["symbol"]}: tez kurulamadı — '
+                                f'{draft.get("neden", "?")[:90]}')
                 continue
             redteam = brain.red_team(event, draft, teknik)
             storage.log_gemini_call("redteam")
@@ -129,6 +154,9 @@ def run():
                 per_cluster[event["cluster_id"]] = per_cluster.get(event["cluster_id"], 0) + 1
             print(f"  -> güven={final}, katman={tier}, durum={status}"
                   + (f" ({neden})" if neden else "") + (" 🚀 BÜYÜK FIRSAT" if buyuk else ""))
+            if status != "acik":
+                sonuclar.append(f'{event["symbol"]}: {status}'
+                                + (f' — {neden[:90]}' if neden else ""))
             if status == "acik" and tier in ("kritik", "orta"):
                 msg = notifier.format_thesis(event, draft, redteam, final, tier)
                 if buyuk:
@@ -142,6 +170,8 @@ def run():
             traceback.print_exc(limit=2)
 
     print(f"\nBitti: {produced} açık tez. Bugünkü Gemini kullanımı: {storage.gemini_calls_today()}")
+    if kritik_tetik and produced == 0:
+        _kritik_ozet(aday_sayisi, triage_elenen, sonuclar)
 
 
 if __name__ == "__main__":

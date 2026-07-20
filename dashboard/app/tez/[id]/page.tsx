@@ -1,5 +1,6 @@
 import { db } from "@/lib/supabase";
-import { DURUM, GUVEN, YON, tarih } from "@/lib/labels";
+import { guncelFiyat } from "@/lib/fiyat";
+import { DURUM, GUVEN, KATALIZOR, KURULUM, REJIM, YON, tarih } from "@/lib/labels";
 
 export const dynamic = "force-dynamic";
 
@@ -35,10 +36,17 @@ export default async function TezDetayPage({
   const draft: any = t.draft_chain ?? {};
   const rt: any = t.redteam_output ?? {};
   const inv: any = t.invalidation_condition ?? {};
+  const tg: any = draft.teknik_gorunum ?? null; // faz 11 öncesi tezlerde yok
 
-  const { data: checks } = await db().from("thesis_checks")
-    .select("checked_at,price_at_check,result")
-    .eq("thesis_id", id).order("checked_at", { ascending: false }).limit(10);
+  const [{ data: checks }, canli] = await Promise.all([
+    db().from("thesis_checks")
+      .select("checked_at,price_at_check,result")
+      .eq("thesis_id", id).order("checked_at", { ascending: false }).limit(10),
+    guncelFiyat(t.symbol, t.market),
+  ]);
+
+  const ref = t.entry_price_ref ? Number(t.entry_price_ref) : null;
+  const refFark = canli && ref ? ((canli.fiyat - ref) / ref) * 100 : null;
 
   return (
     <div className="space-y-5">
@@ -49,10 +57,15 @@ export default async function TezDetayPage({
         <span className={`text-xs rounded px-2 py-0.5 ${DURUM[t.status]?.cls ?? ""}`}>
           {DURUM[t.status]?.label ?? t.status}
         </span>
+        {tg?.buyuk_firsat ? (
+          <span className="text-xs rounded px-2 py-0.5 bg-amber-900 text-amber-200">
+            🚀 büyük fırsat adayı
+          </span>
+        ) : null}
         <span className="ml-auto text-xs text-zinc-500">{tarih(t.created_at)}</span>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 text-sm">
         {[
           ["Güven", GUVEN[t.final_confidence] ?? "-"],
           ["Hedef", String(t.target_range_pct ?? "-") + " %"],
@@ -64,7 +77,86 @@ export default async function TezDetayPage({
             <div className="mt-0.5">{v as string}</div>
           </div>
         ))}
+        <div className="rounded-lg border border-zinc-800 bg-zinc-900 p-3">
+          <div className="text-xs text-zinc-500">Güncel fiyat</div>
+          {canli ? (
+            <>
+              <div className="mt-0.5">
+                {canli.fiyat}
+                {refFark !== null && (
+                  <span className={`ml-2 text-xs ${refFark >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+                    referanstan %{refFark >= 0 ? "+" : ""}{refFark.toFixed(1)}
+                  </span>
+                )}
+              </div>
+              <div className="text-[10px] text-zinc-600 mt-0.5">
+                {canli.zaman ? `son işlem ${tarih(canli.zaman.toISOString())} · ` : ""}~5 dk önbellek
+              </div>
+            </>
+          ) : (
+            <div className="mt-0.5 text-zinc-500 text-xs">şu an alınamadı</div>
+          )}
+        </div>
       </div>
+
+      {tg ? (
+        <Kutu baslik="Teknik görünüm (matematiksel analiz)">
+          <div className="space-y-3">
+            <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm">
+              <span>
+                <span className="text-xs text-zinc-500">piyasa rejimi: </span>
+                <span className={REJIM[tg.rejim]?.cls ?? "text-zinc-300"}>
+                  {REJIM[tg.rejim]?.label ?? tg.rejim ?? "-"}
+                </span>
+              </span>
+              <span>
+                <span className="text-xs text-zinc-500">katalizör türü: </span>
+                {KATALIZOR[tg.katalizor] ?? tg.katalizor ?? "-"}
+              </span>
+              {tg.tepki?.gun_getiri_pct != null && (
+                <span>
+                  <span className="text-xs text-zinc-500">olay günü tepkisi: </span>
+                  fiyat %{tg.tepki.gun_getiri_pct >= 0 ? "+" : ""}{tg.tepki.gun_getiri_pct}
+                  {tg.tepki.hacim_kati != null ? `, hacim normalin ${tg.tepki.hacim_kati} katı` : ""}
+                </span>
+              )}
+            </div>
+
+            {tg.kurulumlar?.length ? (
+              <ul className="space-y-2">
+                {tg.kurulumlar.map((k: any) => (
+                  <li key={k.ad} className="border-l-2 border-zinc-700 pl-3">
+                    <div className="flex items-center gap-2 flex-wrap text-sm">
+                      <span className="font-medium">{KURULUM[k.ad] ?? k.ad}</span>
+                      <span className="text-xs text-zinc-500">
+                        {YON[k.yon] ?? k.yon} · skor {k.skor}
+                      </span>
+                      <span className={`text-[10px] rounded px-1.5 py-0.5 ${
+                        k.kanitli
+                          ? "bg-emerald-900 text-emerald-200"
+                          : "bg-zinc-800 text-zinc-400"
+                      }`}>
+                        {k.kanitli ? "backtest kanıtlı" : "kanıt yok — bağlamsal bilgi"}
+                      </span>
+                    </div>
+                    {k.kosullar?.length ? (
+                      <div className="text-xs text-zinc-500 mt-0.5">{k.kosullar.join(" · ")}</div>
+                    ) : null}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-sm text-zinc-500">Kurulum yok (nötr grafik).</p>
+            )}
+
+            {tg.engel ? <p className="text-xs text-amber-300">{tg.engel}</p> : null}
+            <p className="text-[10px] text-zinc-600">
+              Bu bölüm tamamen kod ile hesaplanır (AI üretmez, yorumlar) — göstergeler, kurulum
+              tespiti ve rejim tez anındaki verilerden çıkarılmıştır.
+            </p>
+          </div>
+        </Kutu>
+      ) : null}
 
       <Kutu baslik="Sebep-sonuç zinciri">
         <ol className="space-y-2">
@@ -84,6 +176,11 @@ export default async function TezDetayPage({
 
       <Kutu baslik="Kendini eleştiri (red-team)">
         <div className="space-y-3">
+          {rt.onemlilik && (
+            <Soru q="Olay gerçekten önemli mi?">
+              {rt.onemlilik.onemli_mi ? "evet" : "hayır"} — {rt.onemlilik.aciklama ?? ""}
+            </Soru>
+          )}
           <Soru q="En zayıf halka">{rt.en_zayif_halka?.aciklama ?? "-"}</Soru>
           <Soru q="Zaten fiyatlanmış mı?">
             {rt.zaten_fiyatlanmis_mi?.cevap ?? "-"} — {rt.zaten_fiyatlanmis_mi?.kanit ?? ""}

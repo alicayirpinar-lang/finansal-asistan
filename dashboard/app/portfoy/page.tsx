@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { db } from "@/lib/supabase";
+import { guncelFiyatlar } from "@/lib/fiyat";
 import KapatButton from "./KapatButton";
 
 export const dynamic = "force-dynamic";
@@ -25,7 +26,7 @@ const MESAJ: Record<string, { text: string; ok: boolean }> = {
 };
 
 async function sonFiyatlar(symbols: string[]): Promise<Record<string, number>> {
-  // Panelde canlı fiyat çekmiyoruz; takip turlarının kaydettiği son fiyatı kullanıyoruz.
+  // Yedek kaynak: takip turlarının kaydettiği son fiyat (canlı fiyat alınamazsa).
   if (!symbols.length) return {};
   const { data } = await db().from("thesis_checks")
     .select("price_at_check,checked_at,theses!inner(symbol)")
@@ -179,7 +180,13 @@ export default async function PortfoyPage({
       .eq("status", "acik").order("created_at", { ascending: false }).limit(50),
   ]);
   const positions = rows ?? [];
-  const fiyatlar = await sonFiyatlar([...new Set(positions.map((p) => p.symbol))]);
+  // Önce canlı fiyat (~5 dk önbellek); alınamayan semboller takip turu fiyatına düşer.
+  const canli = await guncelFiyatlar(
+    positions.map((p) => ({ symbol: p.symbol, market: p.market })));
+  const fiyatlar: Record<string, number> = Object.fromEntries(
+    Object.entries(canli).map(([s, f]) => [s, f.fiyat]));
+  const eksik = [...new Set(positions.map((p) => p.symbol))].filter((s) => !(s in fiyatlar));
+  Object.assign(fiyatlar, await sonFiyatlar(eksik));
 
   return (
     <div className="space-y-5">
@@ -199,8 +206,8 @@ export default async function PortfoyPage({
         uyari="Sanal — gerçek para değildir, gerçek toplamlara asla dahil edilmez." />
       <EkleFormu acikTezler={tezRows ?? []} />
       <p className="text-xs text-zinc-500">
-        Fiyatlar son takip turundan alınır (canlı değildir). Kısmi kapama için
-        bilgisayardaki manage.py kullanılır.
+        Fiyatlar ~5 dk önbellekli güncel piyasa fiyatıdır; alınamazsa son takip
+        turu fiyatına düşülür. Kısmi kapama için bilgisayardaki manage.py kullanılır.
       </p>
     </div>
   );
