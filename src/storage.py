@@ -50,23 +50,27 @@ def ensure_symbols(symbols_config):
         print(f"  symbols tablosuna {len(rows)} yeni sembol eklendi")
 
 
-def recent_thesis_exists(symbol, hours=48):
-    """Aynı sembol için son N saatte tez var mı? (mükerrer tez önleme, v1 basit hali)"""
+def recent_thesis_exists(symbol, hours=48, kaynak=None):
+    """Aynı sembol için son N saatte tez var mı? (mükerrer tez önleme, v1 basit hali)
+    kaynak verilirse sadece o kaynaktan (örn. 'teknik') gelen tezlere bakar —
+    faz 12: teknik radar kendi soğuma penceresini haber tezlerinden ayrı tutar."""
     from datetime import timedelta, timezone
     cutoff = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat()
-    rows = (get_client().table("theses").select("id")
-            .eq("symbol", symbol).gte("created_at", cutoff).execute().data)
-    return len(rows) > 0
+    q = get_client().table("theses").select("id").eq("symbol", symbol).gte("created_at", cutoff)
+    if kaynak:
+        q = q.eq("kaynak", kaynak)
+    return len(q.execute().data) > 0
 
 
 def insert_thesis(event, draft, redteam, final_confidence, tier, status,
-                  entry_price_ref=None, note=None):
+                  entry_price_ref=None, note=None, kaynak="haber"):
     low, high = draft["buyukluk_araligi_pct"]
     row = {
         "resolution_note": note,
         "symbol": event["symbol"],
         "market": event["market"],
         "category": event["category"],
+        "kaynak": kaynak,
         "draft_chain": draft,
         "redteam_output": redteam,
         "final_confidence": final_confidence,
@@ -125,6 +129,24 @@ def kurtarma_exists_recent(thesis_id, days=7):
     rows = (get_client().table("kurtarma_degerlendirmeleri").select("id")
             .eq("thesis_id", thesis_id).gte("created_at", cutoff).execute().data)
     return len(rows) > 0
+
+
+def insert_izleme(symbol, market, yon, mekanizma, guven, kaynak_baslik, kaynak_url):
+    return get_client().table("ikinci_derece_izleme").insert({
+        "symbol": symbol, "market": market, "yon": yon, "mekanizma": mekanizma,
+        "guven": guven, "kaynak_baslik": kaynak_baslik, "kaynak_url": kaynak_url,
+    }).execute().data[0]
+
+
+def pending_izleme():
+    return (get_client().table("ikinci_derece_izleme").select("*")
+            .eq("status", "bekliyor").execute().data)
+
+
+def close_izleme(izleme_id, status):
+    get_client().table("ikinci_derece_izleme").update({
+        "status": status, "resolved_at": "now()",
+    }).eq("id", izleme_id).execute()
 
 
 def get_settings():

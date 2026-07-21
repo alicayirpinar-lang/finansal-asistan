@@ -5,13 +5,89 @@
 import os
 import sys
 import traceback
+from datetime import datetime, timezone
 
 from dotenv import load_dotenv
 
 load_dotenv()
 
-from config import SYMBOLS, MAX_THESES_PER_RUN
-from src import analytics, collector, filter as f1, brain, prices, retro, storage, notifier
+from config import (
+    SYMBOLS, CORE_SYMBOLS, MAX_THESES_PER_RUN, TRIAGE_BATCH_SIZE, TRIAGE_KUME_BASI_MAKS,
+    IKINCI_DERECE_MIN_KAYNAK, IZLEME_TTL_GUN,
+)
+from src import analytics, collector, filter as f1, brain, kap, prices, retro, storage, notifier
+
+
+def _teknik_teyit(symbol, market, yon):
+    """Faz 12 B füzyon şartı: sembolde `yon` ile aynı yönde herhangi bir
+    teknik kurulum var mı (kanıtlı şartı yok — A'dan daha hafif bar, sadece
+    grafik desteği arıyoruz)."""
+    analiz = analytics.sembol_analiz(symbol, market)
+    if not analiz:
+        return False
+    return any(s["yon"] == yon for s in analiz.get("kurulumlar", []))
+
+
+def _ikinci_derece_isle(clusters, cap):
+    """Faz 12 B: eşleşmeyen+çok-kaynaklı kümelerden ikinci derece (dolaylı)
+    bağ arar (TEK toplu Gemini çağrısı). Füzyon şartını geçenleri teze
+    (kaynak=ikinci_derece) yollar, geçemeyenleri izleme listesine ekler
+    (tez değil, bildirim yok — teknik kurulunca terfi eder). Döner: teze
+    hazır event listesi (triage atlar, zaten iki kapıdan geçti)."""
+    promoted = []
+    adaylar = f1.unmatched_clusters(clusters, IKINCI_DERECE_MIN_KAYNAK)
+    if not (adaylar and storage.gemini_calls_today() + 1 <= cap):
+        return promoted
+    for b in brain.ikinci_derece(adaylar):
+        no = b.get("haber_no")
+        sembol = (b.get("sembol") or "").upper()
+        yon = b.get("yon")
+        if not (isinstance(no, int) and 1 <= no <= len(adaylar)
+                and sembol in CORE_SYMBOLS and yon in ("yukselis", "dusus")):
+            continue  # AI kapalı listeye uymadı / eksik alan: halüsinasyon savunması
+        cluster = adaylar[no - 1]
+        rep = cluster["rep"]
+        market = CORE_SYMBOLS[sembol]["market"]
+        print(f'  ikinci derece bağ: [{sembol}] {rep["title"][:70]} — {b.get("mekanizma", "")[:80]}')
+        if _teknik_teyit(sembol, market, yon):
+            promoted.append({
+                "cluster_id": f"ikinci-{no}", "symbol": sembol, "market": market,
+                "category": "ikinci_derece", "relevance_score": 0.5,
+                "priority_lane": "normal_kuyruk", "title": rep["title"],
+                "summary": b.get("mekanizma", ""), "url": rep.get("url"),
+                "source": "ikinci_derece", "source_count": len(cluster["members"]),
+                "published_at": rep["published_at"], "kaynak": "ikinci_derece",
+            })
+            print("    -> teknik teyit VAR, teze gidiyor")
+        else:
+            storage.insert_izleme(sembol, market, yon, b.get("mekanizma", ""),
+                                  b.get("guven", "orta"), rep["title"], rep.get("url"))
+            print("    -> teknik teyit yok, izleme listesine eklendi")
+    return promoted
+
+
+def _izleme_kontrol():
+    """Bekleyen ikinci derece bağları kontrol eder: teknik teyit geldiyse
+    teze terfi ettirir (kaynak=ikinci_derece), süresi dolduysa düşürür.
+    Döner: teze hazır event listesi (triage atlar)."""
+    promoted = []
+    for row in storage.pending_izleme():
+        created = datetime.fromisoformat(row["created_at"].replace("Z", "+00:00"))
+        yas_gun = (datetime.now(timezone.utc) - created).days
+        if _teknik_teyit(row["symbol"], row["market"], row["yon"]):
+            promoted.append({
+                "cluster_id": f'izleme-{row["id"]}', "symbol": row["symbol"],
+                "market": row["market"], "category": "ikinci_derece",
+                "relevance_score": 0.5, "priority_lane": "normal_kuyruk",
+                "title": row["kaynak_baslik"] or row["symbol"], "summary": row["mekanizma"],
+                "url": row.get("kaynak_url"), "source": "ikinci_derece", "source_count": 1,
+                "published_at": datetime.now(timezone.utc), "kaynak": "ikinci_derece",
+            })
+            storage.close_izleme(row["id"], "teyit_edildi")
+            print(f'  izleme teyit: [{row["symbol"]}] gecikmeli teknik teyit geldi, teze gidiyor')
+        elif yas_gun >= IZLEME_TTL_GUN:
+            storage.close_izleme(row["id"], "suresi_doldu")
+    return promoted
 
 
 def _kritik_ozet(aday_sayisi, triage_elenen, sonuclar):
@@ -32,7 +108,7 @@ def _kritik_ozet(aday_sayisi, triage_elenen, sonuclar):
 
 
 def run():
-    cap = int(os.environ.get("DAILY_GEMINI_CAP", "40"))
+    cap = int(os.environ.get("DAILY_GEMINI_CAP", "200"))
     kritik_tetik = os.environ.get("TETIK_KAYNAK", "") == "kritik"
 
     print("Semboller senkronlanıyor...")
@@ -43,13 +119,21 @@ def run():
     print(f"  {len(items)} haber, {len(errors)} kaynak hatası")
     for name, err in errors:
         print(f"  ! {name}: {err[:100]}")
-    if not items:
-        print("Hiç haber yok, çıkılıyor.")
+
+    print("KAP bildirimleri çekiliyor...")
+    kap_disclosures, kap_error = kap.collect_kap()
+    if kap_error:
+        print(f"  ! KAP: {kap_error[:100]}")
+    else:
+        print(f"  {len(kap_disclosures)} KAP bildirimi (ODA)")
+
+    if not items and not kap_disclosures:
+        print("Hiç haber/bildirim yok, çıkılıyor.")
         if kritik_tetik:
             _kritik_ozet(0, 0, [])
         return
 
-    clusters = f1.dedup(items)
+    clusters = f1.dedup(items) if items else []
     print(f"  dedup: {len(items)} haber -> {len(clusters)} küme")
 
     # Geriye dönük tez talepleri (dashboard köprüsü) — kullanıcı talebi
@@ -62,20 +146,36 @@ def run():
 
     portfolio_syms = storage.open_portfolio_symbols()
     events = f1.build_events(clusters, portfolio_syms)
+    kap_events = f1.build_kap_events(kap_disclosures, portfolio_syms) if kap_disclosures else []
+    if kap_events:
+        print(f"  {len(kap_events)} KAP olayı (rutin bildirimler elendi)")
+        events = sorted(events + kap_events,
+                        key=lambda e: (e["priority_lane"] != "kritik", -e["relevance_score"]))
     print(f"  {len(events)} skorlu olay adayı")
+
+    # Faz 12 B — ikinci derece akıl yürütme: eşleşmeyen+çok-kaynaklı kümeler
+    # + bekleyen izleme listesi. Füzyon şartını geçenler doğrudan teze gider
+    # (triage atlar, zaten iki kapıdan geçti); geçemeyenler izlemede kalır.
+    promoted_b = []
+    try:
+        promoted_b += _ikinci_derece_isle(clusters, cap)
+        promoted_b += _izleme_kontrol()
+    except Exception:
+        print("İkinci derece akıl yürütme hatası (pipeline devam ediyor, migration 006 bekliyor olabilir):")
+        traceback.print_exc(limit=2)
 
     # Triage: normal kuyruk toplu ön elemeden geçer (1 Gemini çağrısı, tez
     # kalitesi fazı); kritik hızlı yol elemesiz geçer.
-    aday_sayisi = len(events)
+    aday_sayisi = len(events) + len(promoted_b)
     triage_elenen = 0
     kritik = [e for e in events if e["priority_lane"] == "kritik"]
-    normal = [e for e in events if e["priority_lane"] != "kritik"][:12]
+    normal_havuzu = [e for e in events if e["priority_lane"] != "kritik"]
+    normal = f1.select_diverse(normal_havuzu, TRIAGE_BATCH_SIZE, TRIAGE_KUME_BASI_MAKS)
     if normal and storage.gemini_calls_today() + 1 <= cap:
         normal, triage_elenen = brain.triage(normal)
-        storage.log_gemini_call("triage")
         if triage_elenen:
             print(f"  triage: {triage_elenen} olay elendi, {len(normal)} kaldı")
-    events = kritik + normal
+    events = kritik + normal + promoted_b
 
     settings = storage.get_settings()
     rejimler = {}  # pazar başına bir kez hesapla
@@ -110,14 +210,12 @@ def run():
                 event["title"] + " " + event.get("summary", ""))
 
             draft = brain.draft_chain(event, teknik)
-            storage.log_gemini_call("taslak")
             if draft.get("tez_yok"):
                 print(f'  -> taslak beyni reddetti: {draft.get("neden", "?")[:100]}')
                 sonuclar.append(f'{event["symbol"]}: tez kurulamadı — '
                                 f'{draft.get("neden", "?")[:90]}')
                 continue
             redteam = brain.red_team(event, draft, teknik)
-            storage.log_gemini_call("redteam")
             final, tier, status, neden = brain.merge(event, draft, redteam)
 
             # Engel oranı: yıllık eşdeğer risksiz alternatifi yenmiyorsa tez açılmaz
@@ -148,7 +246,8 @@ def run():
                     inv = redteam.setdefault("gecersiz_kilma_kosulu", {})
                     inv["stop_fiyat"] = round(entry_ref - sign * 2 * atr, 2)
             thesis = storage.insert_thesis(event, draft, redteam, final, tier, status,
-                                           entry_price_ref=entry_ref, note=neden)
+                                           entry_price_ref=entry_ref, note=neden,
+                                           kaynak=event.get("kaynak", "haber"))
             if status == "acik":
                 produced += 1
                 per_cluster[event["cluster_id"]] = per_cluster.get(event["cluster_id"], 0) + 1

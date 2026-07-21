@@ -11,7 +11,7 @@ import math
 import pandas as pd
 import yfinance as yf
 
-from config import SYMBOLS
+from config import SYMBOLS, TEKNIK_RADAR_MIN_SKOR
 from src import analytics
 from src.prices import yf_ticker
 
@@ -123,3 +123,47 @@ def compute_signals(market):
             except Exception:
                 continue
     return rows
+
+
+def teknik_pozisyon_adaylari(signal_rows, market, rejim_bilgi):
+    """Faz 12 A — teknik radar: Gemini kullanmadan, compute_signals()'ın zaten
+    hesapladığı `_setups`/`analiz` üzerinden takip edilen pozisyon adayı üretir.
+    Giriş/stop/hedef tamamen kod (AI hikayesi yok): stop=2×ATR, hedef=backtest
+    örneklem-dışı medyan getiri (analytics.KANITLI_HEDEF_PCT, donmuş kural).
+
+    Kapılar: kanıtlı kurulum (hem örneklem içi hem dışı taban çizgisini yenmiş)
+    + skor eşiği + rejim karşı rüzgarı yok + likidite. Risk/ödül oranı GATE
+    değil — 20 günlük medyan backtest edge'i (~%1.6-1.75) zaten küçük; sabit
+    2×ATR stopla 1.5 R:Ö şartı koşulsa motor pratikte hiç ateşlemez (bu eşik
+    haber tezleri için tasarlanmış, buraya uygun değil). RR bilgi amaçlı
+    hesaplanıp bildirime eklenir, kullanıcı görür. Sembol başına en fazla 1 aday.
+    """
+    if rejim_bilgi.get("rejim") not in ("risk_on", "notr"):
+        return []  # risk_off ya da rejim hesaplanamadı: teknik radar susar
+    adaylar = []
+    for row in signal_rows:
+        vec = (row.get("analiz") or {}).get("vektor")
+        if not vec or not vec.get("fiyat") or not vec.get("atr_pct"):
+            continue
+        if not analytics.likidite_ok(vec, market)[0]:
+            continue
+        for s in row.get("_setups", []):
+            hedef_pct = analytics.KANITLI_HEDEF_PCT.get((market, s["ad"]))
+            if not (hedef_pct and s.get("kanitli") and s["skor"] >= TEKNIK_RADAR_MIN_SKOR
+                    and s["yon"] == "yukselis"):
+                continue
+            risk_pct = 2 * vec["atr_pct"]
+            if risk_pct <= 0:
+                continue
+            entry = vec["fiyat"]
+            adaylar.append({
+                "symbol": row["symbol"], "kurulum": s, "entry": entry,
+                "stop": round(entry - entry * risk_pct / 100, 2),
+                "hedef_dusuk": round(hedef_pct * 0.6, 2),
+                "hedef_yuksek": round(hedef_pct * 1.4, 2),
+                "rr": round(hedef_pct / risk_pct, 2),
+                "skor": s["skor"],
+            })
+            break  # sembol başına tek pozisyon
+    adaylar.sort(key=lambda a: -a["skor"])
+    return adaylar

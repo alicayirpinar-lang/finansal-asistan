@@ -108,6 +108,19 @@ CRITICAL_KEYWORDS = [
     "temerrüt", "default on debt",
 ]
 
+# --- Faz 12 KAP entegrasyonu: rutin/idari bildirim süzgeci ------------------
+# KAP'ın ODA (Özel Durum Açıklaması) sınıfı çok geniş — bu standart konu
+# başlıkları piyasayı hareket ettirme ihtimali düşük idari işlemler (canlı
+# örneklemle görüldü: pay geri alım, kredi notu, komite/ünvan değişikliği vb.)
+# Elenenler dışındakiler mevcut alaka skoru + Gemini triyajdan geçer — RSS
+# haberlerinden farklı bir "otomatik güven" iddiası yok, sadece gürültü azaltma.
+RUTIN_KAP_KONU = [
+    "payların geri alınmasına ilişkin bildirim", "kredi derecelendirmesi",
+    "yönetim kurulu komiteleri", "bağımsız denetim kuruluşunun belirlenmesi",
+    "ilişkili taraf işlemleri", "ünvan değişikliği",
+    "genel kurul işlemlerine ilişkin bildirim", "esas sözleşme tadili",
+]
+
 # --- RSS kaynakları (tema bazlı, plan bölüm 4) ----------------------------
 GOOGLE_NEWS_TR = "https://news.google.com/rss/search?q={q}&hl=tr&gl=TR&ceid=TR:tr"
 GOOGLE_NEWS_EN = "https://news.google.com/rss/search?q={q}&hl=en-US&gl=US&ceid=US:en"
@@ -129,9 +142,24 @@ RSS_SOURCES = [
 # --- Filtre parametreleri --------------------------------------------------
 DEDUP_TITLE_THRESHOLD = 85      # rapidfuzz benzerlik eşiği (0-100)
 RELEVANCE_MIN_SCORE   = 0.25    # bunun altındaki olaylar Aşama 2'ye gitmez
-MAX_THESES_PER_RUN    = 5       # tek çalıştırmada üretilecek max yeni tez
+MAX_THESES_PER_RUN    = 8       # tek çalıştırmada üretilecek max yeni tez (faz 12: 5->8, günlük kota sayacı zaten üst sınırı korur)
 FRESHNESS_HALFLIFE_H  = 12      # tazelik yarı ömrü (saat)
+
+# Faz 12 D — çeşitlilik onarımı: triyaj tavanı tek toplu çağrı olduğu için
+# yükseltmenin kota maliyeti yok; küme başı sınır tek haberin (örn. tek ECB
+# haberinin 10+ bankaya yayılması) tüm tavanı yemesini önler.
+TRIAGE_BATCH_SIZE     = 25      # tek triyaj çağrısına giden max olay
+TRIAGE_KUME_BASI_MAKS = 2       # aynı haber kümesinden (cluster_id) triyaja en fazla kaç olay girer
 
 KATEGORI_AGIRLIK = {"jeopolitik": 1.0, "makro": 0.9, "sirket": 0.8, "sektor": 0.7, "takvimli": 0.6}
 
 GEMINI_THROTTLE_SECONDS = 6     # RPM limiti için çağrılar arası bekleme (plan bölüm 11)
+
+# --- Faz 12 A: Teknik radar (Gemini'siz takip edilen pozisyon) -------------
+TEKNIK_RADAR_MIN_SKOR   = 70    # rapordaki "büyük hareket" bildirimiyle aynı kalite bandı
+TEKNIK_RADAR_SOGUMA_GUN = 10    # aynı sembolde yeni pozisyon açmadan önce bekleme (backtest DEDUP_GUN uyumlu)
+TEKNIK_RADAR_GUNLUK_CAP = 5     # pazar başına (rapor koşusu) en fazla yeni pozisyon
+
+# --- Faz 12 B: İkinci derece akıl yürütme (füzyon şartlı) -------------------
+IKINCI_DERECE_MIN_KAYNAK = 3    # eşleşmeyen kümenin adaya girmesi için min. kaynak sayısı (yaygınlık = önem sinyali)
+IZLEME_TTL_GUN            = 15  # füzyon geçemeyen bağ, teknik teyit gelmezse bu kadar gün sonra düşer

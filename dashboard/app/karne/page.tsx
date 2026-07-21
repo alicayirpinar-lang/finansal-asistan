@@ -17,7 +17,7 @@ export default async function KarnePage() {
           <table className="w-full text-sm">
             <thead className="bg-zinc-900 text-zinc-400 text-xs uppercase">
               <tr>
-                {["Kategori", "Pazar", "Güven", "Başarılı", "Başarısız", "Sonuçsuz", "İsabet"].map((h) => (
+                {["Kaynak", "Kategori", "Pazar", "Güven", "Başarılı", "Başarısız", "Sonuçsuz", "İsabet"].map((h) => (
                   <th key={h} className="px-3 py-2 text-left font-medium">{h}</th>
                 ))}
               </tr>
@@ -25,6 +25,7 @@ export default async function KarnePage() {
             <tbody>
               {rows.map((r, i) => (
                 <tr key={i} className="border-t border-zinc-800">
+                  <td className="px-3 py-2 text-zinc-400">{r.kaynak ?? "-"}</td>
                   <td className="px-3 py-2">{r.category}</td>
                   <td className="px-3 py-2 text-zinc-400">{r.market}</td>
                   <td className="px-3 py-2">{GUVEN[r.final_confidence] ?? r.final_confidence}</td>

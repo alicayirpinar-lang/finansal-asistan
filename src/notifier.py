@@ -8,6 +8,7 @@ import requests
 TIMEOUT = 30
 _EMOJI = {"kritik": "🚨", "orta": "ℹ️"}
 _GUVEN = {"dusuk": "düşük", "orta": "orta", "yuksek": "yüksek"}
+_KURULUM_ADI = {"taban_kirilimi": "taban kırılımı", "sikisma_kirilim_adayi": "sıkışma kırılım adayı"}
 
 
 def send(text):
@@ -40,4 +41,22 @@ def format_thesis(event, draft, redteam, final_confidence, tier):
         f'Tezi bozan koşul: {inv.get("kosul", "-")}\n'
         f'En zayıf halka: {weak.get("aciklama", "-")}\n\n'
         f'⚠️ Bu bir analiz, yatırım tavsiyesi değil. Karar senin.'
+    )
+
+
+def format_teknik_firsat(aday, market, rejim_bilgi):
+    """Faz 12 A — teknik radar bildirimi. AI hikayesi YOK, kasıtlı olarak
+    format_thesis'ten farklı: istatistiksel kurulum, yatırım hikayesi değil."""
+    s = aday["kurulum"]
+    return (
+        f'📈 TEKNİK FIRSAT\n'
+        f'{aday["symbol"]} ({market}) — {_KURULUM_ADI.get(s["ad"], s["ad"])} (skor {s["skor"]})\n\n'
+        f'Koşullar: {"; ".join(s["kosullar"])}\n'
+        f'Backtest kanıtı: örneklem-dışı medyan getiri taban çizgisini geçiyor '
+        f'(bkz. tools/backtest_kurulum.py)\n\n'
+        f'Giriş: {aday["entry"]} · Stop: {aday["stop"]} (2×ATR) · '
+        f'Hedef: %{aday["hedef_dusuk"]}-{aday["hedef_yuksek"]} (~1 ay ufuk) · R/Ö ~{aday["rr"]}x\n'
+        f'Piyasa rejimi: {rejim_bilgi.get("rejim")}\n\n'
+        f'⚠️ Bu bir AI hikayesi değil, istatistiksel bir kurulumdur — geçmişte '
+        f'~%55-60 kazanma oranı, her sinyal kazanmaz. Yatırım tavsiyesi değildir.'
     )

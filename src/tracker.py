@@ -128,7 +128,6 @@ def check_thesis(thesis, gemini_cap):
             try:
                 verdict = brain.kurtarma_degerlendir(
                     thesis, price, entry, stop, low, high, elapsed, horizon_days, signals)
-                storage.log_gemini_call("kurtarma")
                 karar = verdict.get("karar", "yanlis_alarm")
                 oran = verdict.get("cikis_orani")
                 storage.insert_kurtarma(tid, {"signals": signals, **snapshot}, karar, oran)

@@ -10,10 +10,16 @@ import time
 from google import genai
 
 from config import GEMINI_THROTTLE_SECONDS
+from src import storage
 
 _ORDER = {"dusuk": 0, "orta": 1, "yuksek": 2}
 _client = None
 _last_call = 0.0
+
+# gemini-flash-latest alias sessizce en yeni/en cimri modele kayabiliyor
+# (gemini-3.5-flash = 20 istek/gün) — sabit sürüme pinlendi (gemini-2.5-flash
+# = 250/gün). Asla -latest kullanma (faz 12 kota kök nedeni).
+DEFAULT_MODEL = "gemini-2.5-flash"
 
 
 def _get_client():
@@ -23,8 +29,20 @@ def _get_client():
     return _client
 
 
-def _call(prompt):
-    """Throttle'lı Gemini çağrısı; geçici hatalarda (429/503) 2 kez yeniden dener."""
+def _log_attempt(call_type):
+    """Her gerçek Gemini HTTP denemesini (başarılı/başarısız) kaydeder — eski
+    tasarımda sadece başarılı çağrılar sayılıyordu, retry'lar ve exception'a
+    düşen denemeler sayaçta görünmüyordu (faz 12 kota körlüğü kök nedeni)."""
+    try:
+        storage.log_gemini_call(call_type)
+    except Exception:
+        pass  # kota kaydı başarısız oldu diye ana akış durmasın
+
+
+def _call(prompt, call_type="genel"):
+    """Throttle'lı Gemini çağrısı. Günlük kota (PerDay) hatasında tekrar
+    denemez (kesin başarısız olur, denemek sadece kotayı fazladan yakar);
+    geçici (RPM/503) hatalarda 2 kez yeniden dener."""
     global _last_call
     last_err = None
     for attempt in range(3):
@@ -33,15 +51,18 @@ def _call(prompt):
             time.sleep(wait)
         try:
             resp = _get_client().models.generate_content(
-                model=os.environ.get("GEMINI_MODEL", "gemini-flash-latest"),
+                model=os.environ.get("GEMINI_MODEL", DEFAULT_MODEL),
                 contents=prompt,
             )
             _last_call = time.time()
+            _log_attempt(call_type)
             return resp.text
         except Exception as e:
             _last_call = time.time()
+            _log_attempt(call_type)
             last_err = e
-            if any(code in str(e) for code in ("429", "503")) and attempt < 2:
+            gunluk_kota_bitti = "PerDay" in str(e)
+            if not gunluk_kota_bitti and any(code in str(e) for code in ("429", "503")) and attempt < 2:
                 time.sleep(15 * (attempt + 1))  # geçici yoğunluk: bekle ve tekrar dene
                 continue
             raise
@@ -174,6 +195,51 @@ SADECE geçerli JSON döndür:
 {{"karar": "yanlis_alarm|kismi_cikis|tam_cikis", "gerekce": "1-2 cümle", "cikis_orani": 0.3|0.5|0.7|null}}"""
 
 
+IKINCI_DERECE_PROMPT = """Sen kıdemli bir makro/sektör analistisin. Aşağıdaki haberler
+bizim doğrudan anahtar kelime eşleştirmemizle (ticker adı geçmiyor, tema kelimesi yok)
+izlediğimiz hiçbir sembole bağlanamadı — ama birden fazla bağımsız kaynakta çıktı,
+yani muhtemelen önemli bir haber.
+
+Görevin: bu haberlerin, aşağıdaki DAR evrenimizi DOLAYLI (ikinci derece) bir
+mekanizmayla etkileyip etkilemediğini değerlendirmek — tedarik zinciri, girdi
+maliyeti, rakip/ikame etkisi, düzenleyici emsal, sektörel yayılma gibi somut
+zincirler. Sadece GERÇEKÇİ ve SOMUT bir mekanizma kurabildiğin haber-sembol
+çiftini listele; "muhtemelen ilgilidir" gibi belirsiz bağ YETERSİZ, halüsinasyon
+yapma. Emin değilsen o haberi atla.
+
+İZLENEN EVREN (SADECE bu listeden sembol seç, başka ticker UYDURMA):
+{evren}
+
+HABERLER:
+{haberler}
+
+SADECE geçerli JSON döndür:
+{{"baglar": [{{"haber_no": 1, "sembol": "XOM", "yon": "yukselis|dusus",
+"mekanizma": "1-2 cümle somut zincir", "guven": "dusuk|orta|yuksek"}}]}}
+Hiçbir somut bağ yoksa: {{"baglar": []}}"""
+
+
+def ikinci_derece(clusters):
+    """Faz 12 B: eşleşmeyen+çok-kaynaklı kümelerden ikinci derece (dolaylı)
+    bağ arar. TEK toplu çağrı (kota-cimri, D'deki triage ile aynı desen).
+    Evren KAPALI liste olarak verilir (halüsinasyon savunması — plan bölüm B).
+    Hata/boş sonuçta sessizce [] döner (fail-safe, ana akış durmaz)."""
+    if not clusters:
+        return []
+    from config import CORE_SYMBOLS
+    evren = ", ".join(f'{s} ({i["name"]}, {"/".join(i["themes"])})' for s, i in CORE_SYMBOLS.items())
+    haberler = "\n".join(
+        f'{i + 1}. {c["rep"]["title"][:160]}' for i, c in enumerate(clusters))
+    try:
+        data = _parse_json(_call(
+            IKINCI_DERECE_PROMPT.format(evren=evren, haberler=haberler),
+            call_type="ikinci_derece"))
+        return data.get("baglar", [])
+    except Exception as e:
+        print(f"  ikinci derece hatası (atlanıyor): {str(e)[:80]}")
+        return []
+
+
 def kurtarma_degerlendir(thesis, price, entry, stop, low, high, elapsed, horizon_days, signals):
     draft = thesis["draft_chain"]
     prompt = KURTARMA_PROMPT.format(
@@ -183,7 +249,7 @@ def kurtarma_degerlendir(thesis, price, entry, stop, low, high, elapsed, horizon
         elapsed=elapsed, horizon_days=horizon_days,
         signals=", ".join(signals),
     )
-    return _parse_json(_call(prompt))
+    return _parse_json(_call(prompt, call_type="kurtarma"))
 
 
 def triage(events):
@@ -196,7 +262,7 @@ def triage(events):
         f'{i + 1}. [{e["symbol"]} / {e["category"]}] {e["title"][:140]}'
         for i, e in enumerate(events))
     try:
-        verdicts = _parse_json(_call(TRIAGE_PROMPT.format(events=listing)))
+        verdicts = _parse_json(_call(TRIAGE_PROMPT.format(events=listing), call_type="triage"))
         rejected = {v["no"] for v in verdicts if not v.get("gecer", True)}
         for v in verdicts:
             if not v.get("gecer", True) and 1 <= v["no"] <= len(events):
@@ -233,7 +299,7 @@ def draft_chain(event, snapshot=None):
         market=event["market"], category=event["category"],
         source_count=event["source_count"], snapshot=_snapshot_text(snapshot),
     )
-    return _parse_json(_call(prompt))
+    return _parse_json(_call(prompt, call_type="taslak"))
 
 
 def red_team(event, draft, snapshot=None):
@@ -245,7 +311,7 @@ def red_team(event, draft, snapshot=None):
         horizon=f'{draft.get("ufuk_deger", "?")} {draft["ufuk"]}',
         snapshot=_snapshot_text(snapshot),
     )
-    return _parse_json(_call(prompt))
+    return _parse_json(_call(prompt, call_type="redteam"))
 
 
 def merge(event, draft, redteam):

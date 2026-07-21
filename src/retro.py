@@ -114,7 +114,6 @@ def process_queue(clusters, cap):
             analiz = analytics.sembol_analiz(symbol, market)
             teknik = analytics.prompt_blok(analiz, analytics.rejim(market))
             draft = brain.draft_chain(event, teknik)
-            storage.log_gemini_call("taslak")
             if draft.get("tez_yok"):
                 storage.update_retro(req["id"], "tez_bulunamadi",
                                      f'beyin reddetti: {draft.get("neden", "")[:150]}')
@@ -123,7 +122,6 @@ def process_queue(clusters, cap):
                               f"Pozisyon 'tez yok' olarak izlenir.")
                 continue
             redteam = brain.red_team(event, draft, teknik)
-            storage.log_gemini_call("redteam")
             final, tier, status, neden = brain.merge(event, draft, redteam)
             # Referans = kullanıcının gerçek alış fiyatı; stop = 2×ATR (plan bölüm 7)
             entry_ref = float(pos["entry_price"]) if pos else \
@@ -135,7 +133,8 @@ def process_queue(clusters, cap):
                     inv = redteam.setdefault("gecersiz_kilma_kosulu", {})
                     inv["stop_fiyat"] = round(entry_ref - sign * 2 * atr, 2)
             thesis = storage.insert_thesis(event, draft, redteam, final, tier, status,
-                                           entry_price_ref=entry_ref, note=neden)
+                                           entry_price_ref=entry_ref, note=neden,
+                                           kaynak="geriye_donuk")
             if pos:
                 storage.link_thesis_to_position(pos["id"], thesis["id"])
             storage.update_retro(req["id"], "islendi", f"tez üretildi ({status})")

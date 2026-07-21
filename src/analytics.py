@@ -43,6 +43,11 @@ LIKIDITE_MIN = {"US": 2_000_000, "BIST": 50_000_000}   # 20g ort. işlem tutarı
 # (aksine devam ediyor) -> risk iddiası kaldırıldı, bilgi notuna düşürüldü.
 KANITLI_KURULUMLAR = {("BIST", "taban_kirilimi"), ("BIST", "sikisma_kirilim_adayi")}
 
+# Faz 12 A — teknik radar hedefi: backtest örneklem-dışı medyan ileri getiri
+# (20 işlem günü ≈ 1 ay), tools/backtest_kurulum.py çıktısı (data/backtest_sonuclari.json).
+# Donmuş eşikler gibi: AI üretmez, sadece yeni backtest kanıtıyla güncellenir.
+KANITLI_HEDEF_PCT = {("BIST", "taban_kirilimi"): 1.75, ("BIST", "sikisma_kirilim_adayi"): 1.59}
+
 ENDEKS = {"BIST": "XU100.IS", "US": "^GSPC"}
 
 # Katalizör sınıflandırması (kural tabanlı, AI yok). "guclu" olanlar büyük

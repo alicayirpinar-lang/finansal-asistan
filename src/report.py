@@ -6,7 +6,8 @@ technical_signals'a yazılır (tüm semboller; gözlem filtresi sadece görünü
 """
 from datetime import datetime, timedelta, timezone
 
-from src import metrics, notifier, prices, signals, storage
+from config import TEKNIK_RADAR_GUNLUK_CAP, TEKNIK_RADAR_SOGUMA_GUN
+from src import analytics, metrics, notifier, prices, signals, storage
 
 _GUVEN = {"dusuk": "düşük", "orta": "orta", "yuksek": "yüksek"}
 _TRIGGER_TXT = {
@@ -19,7 +20,7 @@ _TRIGGER_TXT = {
 def _recent_theses(market, hours=24):
     cutoff = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat()
     return (storage.get_client().table("theses")
-            .select("symbol,direction,final_confidence,notification_tier,horizon,target_range_pct,status")
+            .select("symbol,direction,final_confidence,notification_tier,horizon,target_range_pct,status,kaynak")
             .eq("market", market).gte("created_at", cutoff)
             .neq("status", "iptal_edildi").execute().data)
 
@@ -49,11 +50,56 @@ def build_and_send(market):
                 for r in chunk:
                     r.pop("analiz", None)
                 storage.get_client().table("technical_signals").insert(chunk).execute()
+    # Faz 12 A — teknik radar: kanıtlı kurulumlardan Gemini'siz takip edilen
+    # pozisyon üretir (Gemini kotası çökse bile çalışan tek fırsat kaynağı).
+    # Giriş/stop/hedef kod ile (AI hikayesi yok); ayrı "📈 TEKNİK FIRSAT" mesajı gider.
+    rejim_bilgi = analytics.rejim(market)
+    acilan_semboller = set()
+    try:
+        for aday in signals.teknik_pozisyon_adaylari(signal_rows, market, rejim_bilgi)[:TEKNIK_RADAR_GUNLUK_CAP]:
+            if storage.recent_thesis_exists(aday["symbol"], hours=24 * TEKNIK_RADAR_SOGUMA_GUN, kaynak="teknik"):
+                continue  # soğuma penceresi (~10 gün): aynı sembolde tekrar açma
+            s = aday["kurulum"]
+            draft = {
+                "yon": "yukselis",
+                "buyukluk_araligi_pct": [aday["hedef_dusuk"], aday["hedef_yuksek"]],
+                "ufuk": "ay", "ufuk_deger": 1,
+                "zincir": [{
+                    "adim_no": 1,
+                    "mekanizma": f'Teknik kurulum: {s["ad"]} (backtest kanıtlı, AI yorumu yok) — '
+                                 + "; ".join(s["kosullar"]),
+                    "guven": "orta", "dayanak": f'skor {s["skor"]}, örneklem-dışı backtest (bkz. tools/backtest_kurulum.py)',
+                }],
+                "teknik_gorunum": {
+                    "katalizor": "teknik", "buyuk_firsat": False,
+                    "rejim": rejim_bilgi.get("rejim"), "kurulumlar": [s], "tepki": None, "engel": "",
+                },
+            }
+            redteam = {"gecersiz_kilma_kosulu": {
+                "kosul": f'kapanış fiyatı {aday["stop"]} altına düşerse (2×ATR stop)',
+                "izleme_yontemi": "fiyat_seviyesi", "stop_fiyat": aday["stop"],
+            }}
+            event = {"symbol": aday["symbol"], "market": market, "category": "teknik"}
+            storage.insert_thesis(event, draft, redteam, "orta", "orta", "acik",
+                                  entry_price_ref=aday["entry"],
+                                  note="teknik radar (faz 12, Gemini kullanılmadı)",
+                                  kaynak="teknik")
+            acilan_semboller.add(aday["symbol"])
+            notifier.send(notifier.format_teknik_firsat(aday, market, rejim_bilgi))
+        if acilan_semboller:
+            sections_sent.append("teknik_pozisyon")
+    except Exception:
+        # 'kaynak' kolonu henüz yoksa (migration 005 bekliyor) ya da başka bir
+        # hata olursa rapor devam etsin (metrikler bölümüyle aynı dayanıklılık ilkesi).
+        import traceback
+        print("Teknik radar hatası (rapor devam ediyor):")
+        traceback.print_exc(limit=2)
+
     gozlem = sorted([r for r in signal_rows if r["gozlem_skoru"]],
                     key=lambda r: -r["gozlem_skoru"])[:10]
 
     theses = _recent_theses(market)
-    orta = [t for t in theses if t["notification_tier"] == "orta"]
+    orta = [t for t in theses if t["notification_tier"] == "orta" and t.get("kaynak") != "teknik"]
 
     positions = [p for p in storage.list_positions() if p["market"] == market]
 
@@ -76,7 +122,8 @@ def build_and_send(market):
     # 2.5) Büyük hareket kurulumları (analitik motor, faz 11) — haber beklemeden
     # "yay gerilmiş" hisseleri gösterir; nötr dil, tez değildir.
     kurulumlu = [r for r in signal_rows
-                 if any(s.get("kanitli") and s["skor"] >= 70
+                 if r["symbol"] not in acilan_semboller
+                 and any(s.get("kanitli") and s["skor"] >= 70
                         for s in r.get("_setups", []))][:8]
     if kurulumlu:
         lines = ["🎯 Büyük hareket kurulumları (backtest kanıtlı — haber katalizörü henüz yok):"]

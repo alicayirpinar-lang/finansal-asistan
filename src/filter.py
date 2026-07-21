@@ -10,10 +10,11 @@ from datetime import datetime, timezone
 from rapidfuzz import fuzz
 
 from config import (
-    SYMBOLS, CORE_SYMBOLS, THEME_KEYWORDS, CRITICAL_KEYWORDS,
+    SYMBOLS, CORE_SYMBOLS, THEME_KEYWORDS, CRITICAL_KEYWORDS, RUTIN_KAP_KONU,
     DEDUP_TITLE_THRESHOLD, RELEVANCE_MIN_SCORE,
     FRESHNESS_HALFLIFE_H, KATEGORI_AGIRLIK,
 )
+from src.kap import publish_datetime_utc
 
 
 def dedup(items):
@@ -140,3 +141,92 @@ def build_events(clusters, portfolio_symbols=frozenset()):
     # kritikler öne, sonra skora göre
     events.sort(key=lambda e: (e["priority_lane"] != "kritik", -e["relevance_score"]))
     return events
+
+
+def unmatched_clusters(clusters, min_source_count=3):
+    """Faz 12 B ön-filtresi: hiçbir sembole/temaya bağlanamamış ama çok
+    kaynaklı (muhtemelen önemli) kümeleri döner — ikinci derece akıl
+    yürütmeye (brain.ikinci_derece) aday ham havuz."""
+    out = []
+    for cluster in clusters:
+        rep = cluster["rep"]
+        text = rep["title"] + " " + rep.get("summary", "")
+        if _match_symbols(text):
+            continue  # zaten doğrudan/tema yoluyla eşleşti, B'ye gerek yok
+        if len(cluster["members"]) < min_source_count:
+            continue
+        out.append(cluster)
+    return out
+
+
+def _kap_rutin_mi(subject):
+    s = _norm_text(subject)
+    return any(k in s for k in RUTIN_KAP_KONU)
+
+
+def build_kap_events(disclosures, portfolio_symbols=frozenset()):
+    """Faz 12 KAP entegrasyonu: KAP bildirimlerinden olay listesi üretir.
+
+    Sembol eşleşmesi metin taramasına (THEME_KEYWORDS/variants) DEĞİL, KAP'ın
+    kendi `stock_codes` alanına dayanır — kesin, tema yolu/yanlış pozitif
+    riski yok. Rutin/idari konular (RUTIN_KAP_KONU) elenir, kalanlar
+    build_events() ile aynı alaka skoru formülüyle ölçülüp aynı huniye girer.
+    """
+    events = []
+    for d in disclosures:
+        if _kap_rutin_mi(d.subject):
+            continue
+        codes = [c.strip().upper() for c in d.stock_codes.split(",") if c.strip()]
+        if not codes:
+            continue
+        critical = is_critical(d.subject + " " + d.summary)
+        published = publish_datetime_utc(d)
+        for symbol in codes:
+            if symbol not in SYMBOLS:
+                continue  # takip etmediğimiz/tanımadığımız ticker
+            # proximity=1.0 (KAP'ın kendi eşlemesi, tahmin değil), reliability=1.0 (resmi kaynak)
+            score = KATEGORI_AGIRLIK["sirket"] * 1.0 * 1.0 * _freshness(published)
+            if symbol in portfolio_symbols:
+                score *= 1.2
+            if score < RELEVANCE_MIN_SCORE and not critical:
+                continue
+            events.append({
+                "cluster_id": f"kap-{d.index}",  # bildirim başına tek küme (int cluster_id'lerle çakışmaz)
+                "symbol": symbol,
+                "market": SYMBOLS[symbol]["market"],
+                "category": "sirket",
+                "relevance_score": round(score, 3),
+                "priority_lane": "kritik" if critical else "normal_kuyruk",
+                "title": f"{d.company_name}: {d.subject}",
+                "summary": d.summary or d.subject,
+                "url": d.url,
+                "source": "KAP",
+                "source_count": 1,
+                "published_at": published,
+            })
+    events.sort(key=lambda e: (e["priority_lane"] != "kritik", -e["relevance_score"]))
+    return events
+
+
+def select_diverse(events, tavan, kume_basi_maks=2):
+    """Skora göre sıralı olay listesinden triyaja gidecekleri seçer, küme
+    (cluster_id) başına en fazla `kume_basi_maks` olayla sınırlar.
+
+    Neden: tek bir haberin (aynı cluster_id) 10+ sembole tema yoluyla yayılması,
+    naif bir events[:tavan] kesmesinde tüm tavanı tek hikayeye harcatıyor ve
+    triyaj hepsini aynı gerekçeyle eliyordu (faz 12 D — çeşitlilik onarımı,
+    gerçek hafta içi veriyle doğrulanan kök neden). Sıra korunur — en yüksek
+    skorlu olaylar öncelikli, sadece kümesi zaten kotasını doldurmuş olaylar
+    atlanıp yerine bir sonraki farklı kümeden olay alınır.
+    """
+    kume_sayaci = {}
+    secilen = []
+    for e in events:
+        cid = e["cluster_id"]
+        if kume_sayaci.get(cid, 0) >= kume_basi_maks:
+            continue
+        secilen.append(e)
+        kume_sayaci[cid] = kume_sayaci.get(cid, 0) + 1
+        if len(secilen) >= tavan:
+            break
+    return secilen
