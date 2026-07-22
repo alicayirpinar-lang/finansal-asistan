@@ -36,7 +36,7 @@ def _ikinci_derece_isle(clusters, cap):
     hazır event listesi (triage atlar, zaten iki kapıdan geçti)."""
     promoted = []
     adaylar = f1.unmatched_clusters(clusters, IKINCI_DERECE_MIN_KAYNAK)
-    if not (adaylar and storage.gemini_calls_today() + 1 <= cap):
+    if not (adaylar and storage.gemini_basarili_calls_today() + 1 <= cap):
         return promoted
     for b in brain.ikinci_derece(adaylar):
         no = b.get("haber_no")
@@ -176,7 +176,7 @@ def run():
     kritik = [e for e in events if e["priority_lane"] == "kritik"]
     normal_havuzu = [e for e in events if e["priority_lane"] != "kritik"]
     normal = f1.select_diverse(normal_havuzu, TRIAGE_BATCH_SIZE, TRIAGE_KUME_BASI_MAKS)
-    if normal and storage.gemini_calls_today() + 1 <= cap:
+    if normal and storage.gemini_basarili_calls_today() + 1 <= cap:
         normal, triage_elenen = brain.triage(normal)
         if triage_elenen:
             print(f"  triage: {triage_elenen} olay elendi, {len(normal)} kaldı")
@@ -199,9 +199,15 @@ def run():
             break
         if per_cluster.get(event["cluster_id"], 0) >= 2:
             continue
-        used = storage.gemini_calls_today()
+        # Devre kesici: bu çalıştırmada Gemini tamamen ölüyse (22 Temmuz 2026
+        # ikinci kesinti) kalan olaylarda dakikalarca ölü servise vurmak yerine
+        # dur — 30 dk sonraki koşu (fresh process) sıfırdan dener.
+        if brain.circuit_acik_mi():
+            print("Gemini bu çalıştırmada tamamen başarısız — kalan olaylar 30 dk sonraki koşuya bırakılıyor.")
+            break
+        used = storage.gemini_basarili_calls_today()
         if used + 2 > cap:
-            print(f"Günlük Gemini tavanı doldu ({used}/{cap}) — kalan olaylar arşivleniyor (kuyruklanmaz).")
+            print(f"Günlük Gemini tavanı doldu ({used}/{cap} başarılı) — kalan olaylar arşivleniyor (kuyruklanmaz).")
             break
         if storage.recent_thesis_exists(event["symbol"]):
             continue  # aynı sembolde 48 saat içinde tez var: mükerrer önleme
@@ -281,7 +287,9 @@ def run():
             traceback.print_exc(limit=2)
             storage.log_error("main.py:event", f'{event["symbol"]} işlenirken hata', traceback.format_exc())
 
-    print(f"\nBitti: {produced} açık tez. Bugünkü Gemini kullanımı: {storage.gemini_calls_today()}")
+    print(f"\nBitti: {produced} açık tez. Bugünkü Gemini kullanımı: "
+          f"{storage.gemini_basarili_calls_today()}/{cap} başarılı "
+          f"({storage.gemini_calls_today()} toplam deneme)")
     if kritik_tetik and produced == 0:
         _kritik_ozet(aday_sayisi, triage_elenen, sonuclar)
     brain.sistemik_hata_kontrolu("main.py (tarama.yml)")

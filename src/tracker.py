@@ -138,7 +138,7 @@ def check_thesis(thesis, gemini_cap, sessiz=False):
         signals.append("ufkun yarısı geçti, beklenen yönde anlamlı hareket yok")
 
     if len(signals) >= 2 and not storage.kurtarma_exists_recent(tid):
-        if storage.gemini_calls_today() + 1 > gemini_cap:
+        if storage.gemini_basarili_calls_today() + 1 > gemini_cap:
             result = "kurtarma gerekli ama Gemini tavanı dolu"
         else:
             try:

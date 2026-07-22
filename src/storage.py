@@ -24,14 +24,35 @@ def quota_date_pt():
 
 
 def gemini_calls_today():
+    """Toplam deneme (başarılı+başarısız) — telemetri/gösterim için, tavan
+    kontrolü için DEĞİL (bkz. gemini_basarili_calls_today)."""
     rows = (get_client().table("gemini_usage_log")
             .select("call_count").eq("date", quota_date_pt()).execute().data)
     return sum(r["call_count"] for r in rows)
 
 
-def log_gemini_call(call_type, count=1):
+def gemini_basarili_calls_today():
+    """Kota tavanı kontrolü BUNU kullanır. 22 Temmuz 2026 ikinci kesintisi:
+    eski tasarımda tavan başarısız denemeleri de sayıyordu — Google gerçek
+    bir hata (prepay/kota) verince sayaç dakikalar içinde tavana vurdu ve
+    main.py o günün geri kalanında (7+ saat) sessizce hiçbir şey denemedi.
+    Tavan artık sadece GERÇEKTEN başarılı çağrıları sayıyor — başarısız
+    denemeler devam yönünü etkilemez, sadece devre kesici (brain.circuit_acik_mi)
+    tetikler."""
+    try:
+        rows = (get_client().table("gemini_usage_log")
+                .select("call_count").eq("date", quota_date_pt())
+                .eq("basarili", True).execute().data)
+        return sum(r["call_count"] for r in rows)
+    except Exception:
+        # 'basarili' kolonu henüz yoksa (migration 009 bekliyor) eski
+        # (daha muhafazakar ama çökmeyen) davranışa düş: toplam deneme.
+        return gemini_calls_today()
+
+
+def log_gemini_call(call_type, basarili=True, count=1):
     get_client().table("gemini_usage_log").insert(
-        {"date": quota_date_pt(), "call_type": call_type, "call_count": count}
+        {"date": quota_date_pt(), "call_type": call_type, "call_count": count, "basarili": basarili}
     ).execute()
 
 

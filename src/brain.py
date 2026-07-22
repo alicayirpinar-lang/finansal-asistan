@@ -47,14 +47,24 @@ def _get_client():
     return _client
 
 
-def _log_attempt(call_type):
+def _log_attempt(call_type, basarili):
     """Her gerçek Gemini HTTP denemesini (başarılı/başarısız) kaydeder — eski
     tasarımda sadece başarılı çağrılar sayılıyordu, retry'lar ve exception'a
-    düşen denemeler sayaçta görünmüyordu (faz 12 kota körlüğü kök nedeni)."""
+    düşen denemeler sayaçta görünmüyordu (faz 12 kota körlüğü kök nedeni).
+    basarili bilgisi ayrıca tutulur — kota tavanı SADECE başarılıları sayar
+    (bkz. storage.gemini_basarili_calls_today, 22 Temmuz ikinci kesinti dersi)."""
     try:
-        storage.log_gemini_call(call_type)
+        storage.log_gemini_call(call_type, basarili=basarili)
     except Exception:
         pass  # kota kaydı başarısız oldu diye ana akış durmasın
+
+
+def circuit_acik_mi():
+    """Bu çalıştırmada Gemini tamamen ölü mü (≥GEMINI_HATA_ESIGI deneme, hiçbiri
+    başarılı değil)? Açıksa main.py kalan olayları denemeden arşivler —
+    dakikalarca ölü bir servise vurmak yerine 30 dk sonraki koşuya bırakılır
+    (o koşu, bu sayaçlar fresh process'te sıfırlandığı için baştan dener)."""
+    return _basarisiz_sayisi >= GEMINI_HATA_ESIGI and _basarili_sayisi == 0
 
 
 def _adaylar():
@@ -81,13 +91,13 @@ def _call(prompt, call_type="genel"):
             try:
                 resp = _get_client().models.generate_content(model=model, contents=prompt)
                 _last_call = time.time()
-                _log_attempt(call_type)
+                _log_attempt(call_type, basarili=True)
                 _resolved_model = model
                 _basarili_sayisi += 1
                 return resp.text
             except Exception as e:
                 _last_call = time.time()
-                _log_attempt(call_type)
+                _log_attempt(call_type, basarili=False)
                 _basarisiz_sayisi += 1
                 last_err = e
                 kalici_hata = any(k in str(e) for k in ("NOT_FOUND", "404", "PerDay"))

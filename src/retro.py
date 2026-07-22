@@ -105,10 +105,13 @@ def process_queue(clusters, cap):
                 print(f"  [{symbol}] uygun olay yok, sonraki turda tekrar denenecek")
             continue
 
-        # 4) Normal Aşama 2 akışı (kota kontrolü ile)
-        used = storage.gemini_calls_today()
+        # 4) Normal Aşama 2 akışı (kota kontrolü ile — sadece başarılı çağrılar sayılır)
+        if brain.circuit_acik_mi():
+            print("  Gemini bu çalıştırmada tamamen başarısız — kuyruk bekliyor kalıyor")
+            break
+        used = storage.gemini_basarili_calls_today()
         if used + 2 > cap:
-            print(f"  Gemini tavanı doldu ({used}/{cap}) — kuyruk bekliyor kalıyor")
+            print(f"  Gemini tavanı doldu ({used}/{cap} başarılı) — kuyruk bekliyor kalıyor")
             break
         market = SYMBOLS[symbol]["market"]
         event = _event_from_cluster(symbol, market, cluster)
