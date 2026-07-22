@@ -91,6 +91,15 @@ def open_theses():
     return get_client().table("theses").select("*").eq("status", "acik").execute().data
 
 
+def taslak_gozlem_theses():
+    """Düşük güven ya da engel oranı yüzünden hiç açılmamış (status='taslak',
+    tier='gozlem') tezler — önceden asla kontrol edilmiyor, sonsuza kadar
+    donuk kalıyordu (karneye giremiyor, gerçekte doğru çıksa bile görünmüyordu).
+    Artık sessizce (bildirimsiz) kontrol edilip bir sonuca bağlanıyorlar."""
+    return (get_client().table("theses").select("*")
+            .eq("status", "taslak").eq("notification_tier", "gozlem").execute().data)
+
+
 def update_thesis(thesis_id, **fields):
     get_client().table("theses").update(fields).eq("id", thesis_id).execute()
 

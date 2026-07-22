@@ -33,7 +33,15 @@ def _send_once(alert_type, thesis, text):
     return True
 
 
-def check_thesis(thesis, gemini_cap):
+def _bildir(sessiz, alert_type, thesis, text):
+    """Sessiz modda (taslak/gözlem tezler — hiç önerilmedi) Telegram'a
+    gitmez, sadece DB'ye yazılır (karne/takip geçmişi için)."""
+    if sessiz:
+        return False
+    return _send_once(alert_type, thesis, text)
+
+
+def check_thesis(thesis, gemini_cap, sessiz=False):
     tid, sym, market = thesis["id"], thesis["symbol"], thesis["market"]
     direction = thesis["direction"]
     sign = 1 if direction == "yukselis" else -1
@@ -73,7 +81,7 @@ def check_thesis(thesis, gemini_cap):
         storage.update_thesis(tid, status="tez_bozuldu", resolved_at="now()",
                               resolution_note=f"stop ihlali: fiyat {price}, stop {stop}",
                               expected_horizon_days=horizon_days)
-        _send_once("tez_bozuldu", thesis,
+        _bildir(sessiz, "tez_bozuldu", thesis,
                    f"🔴 TEZ BOZULDU: {sym} ({market})\n"
                    f"Fiyat {price} — stop seviyesi ({stop}) aşıldı.\n"
                    f"{yon_txt} tezi geçersiz. Pozisyonun varsa tam çıkışı değerlendir.\n"
@@ -86,7 +94,7 @@ def check_thesis(thesis, gemini_cap):
         storage.update_thesis(tid, status="hedefe_ulasti", resolved_at="now()",
                               resolution_note=f"hedef aşıldı: %{gain_pct:.1f}",
                               expected_horizon_days=horizon_days)
-        _send_once("hedef_asildi", thesis,
+        _bildir(sessiz, "hedef_asildi", thesis,
                    f"🎯 HEDEF AŞILDI: {sym} ({market})\n"
                    f"Kazanç %{gain_pct:.1f} — hedef bandın (%{low:.0f}-{high:.0f}) üstü.\n"
                    f"Kâr realizasyonu güçlü öneri. Karar senin.")
@@ -95,7 +103,7 @@ def check_thesis(thesis, gemini_cap):
 
     # 3) Hedef alt sınırına yaklaşıldı (tez açık kalır, bir kez bildirilir)
     if gain_pct >= low:
-        _send_once("hedef_yaklasti", thesis,
+        _bildir(sessiz, "hedef_yaklasti", thesis,
                    f"🟢 Hedefe yaklaşıldı: {sym} ({market})\n"
                    f"Kazanç %{gain_pct:.1f}, hedef bandı %{low:.0f}-{high:.0f}.\n"
                    f"Gözden geçir — kısmi kâr alımı değerlendirilebilir.")
@@ -107,14 +115,19 @@ def check_thesis(thesis, gemini_cap):
         storage.update_thesis(tid, status="suresi_doldu", resolved_at="now()",
                               resolution_note=f"{horizon_days} günlük ufuk doldu, sonuç: %{gain_pct:.1f}",
                               expected_horizon_days=horizon_days)
-        _send_once("suresi_doldu", thesis,
+        _bildir(sessiz, "suresi_doldu", thesis,
                    f"⏳ Süresi doldu: {sym} ({market})\n"
                    f"{horizon_days} günlük ufuk geçti, ne hedef ne stop tetiklendi (%{gain_pct:.1f}).\n"
                    f"Tez sonuçsuz kapatıldı — karneye girmez.")
         storage.insert_thesis_check(tid, price, snapshot, "suresi_doldu")
         return f"{sym}: süresi doldu"
 
-    # 5) Zayıflama şüphesi — ≥2 bağımsız sinyal gerekli (plan 7.2, v1'de 2 kod sinyali)
+    # 5) Zayıflama şüphesi — sadece gerçek açık tezlerde (Gemini çağrısı içeriyor,
+    # hiç önerilmemiş taslak/gözlem tezlere kota harcamaya değmez)
+    if sessiz:
+        storage.insert_thesis_check(tid, price, snapshot, "normal")
+        return f"{sym}: normal (%{gain_pct:.1f}, gün {elapsed}/{horizon_days})"
+
     signals = []
     if stop:
         stop_dist = abs(entry - float(stop))
@@ -166,4 +179,18 @@ def run():
             print("  " + check_thesis(t, cap))
         except Exception as e:
             print(f'  ! {t["symbol"]}: hata — {str(e)[:120]} (devam ediliyor)')
+
+    # Düşük güven/engel oranı yüzünden hiç açılmamış taslaklar — önceden
+    # sonsuza kadar donuk kalıyor, karneye giremiyordu (21 Temmuz bulgusu:
+    # TUPRS taslağı %10 kazandırmış ama sistem hiç bakmamıştı). Artık
+    # sessizce (bildirimsiz) kontrol edilip bir sonuca bağlanıyorlar.
+    taslaklar = storage.taslak_gozlem_theses()
+    if taslaklar:
+        print(f"{len(taslaklar)} taslak/gözlem tez sessizce kontrol ediliyor (karne için)...")
+        for t in taslaklar:
+            try:
+                print("  " + check_thesis(t, cap, sessiz=True))
+            except Exception as e:
+                print(f'  ! {t["symbol"]}: hata — {str(e)[:120]} (devam ediliyor)')
+
     print("Takip turu bitti.")
