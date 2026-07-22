@@ -60,9 +60,10 @@ def _ikinci_derece_isle(clusters):
             })
             print("    -> teknik teyit VAR, teze gidiyor")
         else:
-            storage.insert_izleme(sembol, market, yon, b.get("mekanizma", ""),
-                                  b.get("guven", "orta"), rep["title"], rep.get("url"))
-            print("    -> teknik teyit yok, izleme listesine eklendi")
+            eklendi = storage.insert_izleme(sembol, market, yon, b.get("mekanizma", ""),
+                                            b.get("guven", "orta"), rep["title"], rep.get("url"))
+            print("    -> teknik teyit yok, izleme listesine eklendi" if eklendi
+                  else "    -> teknik teyit yok, zaten bekleyen izleme kaydı var (tekrar eklenmedi)")
     return promoted
 
 

@@ -188,7 +188,19 @@ def kurtarma_exists_recent(thesis_id, days=7):
     return len(rows) > 0
 
 
+def izleme_bekliyor_var_mi(symbol, yon):
+    """Aynı sembol+yön için zaten bekleyen bir izleme kaydı var mı? (22 Temmuz
+    2026 bulgusu: aynı makro haber [örn. petrol fiyatı] her koşuda yeniden
+    eşleşmeyen küme olarak görülüp tekrar tekrar eklendi — hem veri kirliliği
+    hem gereksiz Gemini harcaması. insert_izleme artık bunu önce kontrol eder.)"""
+    r = (get_client().table("ikinci_derece_izleme").select("id")
+         .eq("symbol", symbol).eq("yon", yon).eq("status", "bekliyor").limit(1).execute())
+    return bool(r.data)
+
+
 def insert_izleme(symbol, market, yon, mekanizma, guven, kaynak_baslik, kaynak_url):
+    if izleme_bekliyor_var_mi(symbol, yon):
+        return None
     return get_client().table("ikinci_derece_izleme").insert({
         "symbol": symbol, "market": market, "yon": yon, "mekanizma": mekanizma,
         "guven": guven, "kaynak_baslik": kaynak_baslik, "kaynak_url": kaynak_url,

@@ -168,6 +168,7 @@ def vektor(df, market=None):
 
     adx = _adx(df)
     hi52 = float(c.tail(252).max())
+    lo52 = float(c.tail(252).min())
 
     return {
         "fiyat": _clean(price, 2),
@@ -182,7 +183,9 @@ def vektor(df, market=None):
         "sikisma_pctl": _clean(sikisma_pctl, 0),
         "direnc": _clean(direnc, 2), "destek": _clean(destek, 2),
         "dirence_pct": _clean((direnc - price) / price * 100, 1),
+        "destege_pct": _clean((price - destek) / price * 100, 1),
         "hi52_pct": _clean((hi52 - price) / hi52 * 100, 1),
+        "lo52_pct": _clean((price - lo52) / price * 100, 1),
         "chg_1ay_pct": _clean((price / float(c.iloc[-22]) - 1) * 100, 1) if len(c) > 22 else None,
         "hacim_z": _clean((v.iloc[-1] - vol_mean) / vol_std, 1) if vol_std else None,
         "up_down_hacim": _clean(up_vol / dn_vol, 2) if dn_vol else None,
@@ -239,6 +242,46 @@ def kurulumlar(vec, market):
         if vec.get("haftalik_trend") == "yukari":
             k.append("haftalık trend uyumlu")
         _ekle("momentum_devam", "yukselis", k, 40)
+
+    # 1b-3b) Aşağı yönlü aynalar (22 Temmuz 2026 bulgusu): yukarıdaki 3 kurulum
+    # SADECE yukselis tanımlıydı, bu yüzden hiçbir ikinci-derece "dusus" bağı
+    # asla teknik teyit alamıyordu (main.py:_teknik_teyit) — 15 gün sonra
+    # sessizce düşüyordu, TUPRS örneğinde görüldüğü gibi. Eşikler AYNI (donmuş,
+    # sadece yön çevrildi) ama bu üçü KANITLI_KURULUMLAR'a EKLENMEDİ — o liste
+    # backtest'le kanıtlanmış (bkz. dosya başı not), aşağı yön hiç test
+    # edilmedi. Yani "büyük fırsat" şeridini (buyuk_firsat_mu, sadece yukselis+
+    # kanitli arıyor) ve teknik radarı (signals.teknik_pozisyon_adaylari, aynı
+    # şekilde kanitli+yukselis şartı) TETİKLEMEZLER — sadece _teknik_teyit'in
+    # (füzyon onayı) ve prompt_blok'un (AI bağlamı) görebileceği hafif sinyaller.
+    des = vec.get("destege_pct")
+    lo52 = vec.get("lo52_pct")
+
+    if sik is not None and sik <= SIKISMA_PCTL and (des or 99) <= KIRILIM_YAKIN_PCT:
+        k = [f"oynaklık sıkışması (pctl {sik:g})", f'destege %{des:g}']
+        if vec.get("obv_egim") == "asagi":
+            k.append("OBV aşağı (çıkış izi)")
+        if vec.get("haftalik_trend") == "asagi":
+            k.append("haftalık trend uyumlu")
+        if hz >= HACIM_ONAY_Z:
+            k.append(f"hacim onayı (z={hz:g})")
+        _ekle("sikisma_kirilim_adayi_asagi", "dusus", k, 40)
+
+    if (lo52 or 99) <= 2.0 and hz >= HACIM_ONAY_Z:
+        k = [f'52h dibe %{lo52:g}', f"hacim onayı (z={hz:g})"]
+        if vec.get("trend_dizilim") == "asagi":
+            k.append("MA dizilimi aşağı")
+        if (vec.get("rs_3ay_pct") if vec.get("rs_3ay_pct") is not None else 99) < 0:
+            k.append(f'endeksten zayıf (%{vec["rs_3ay_pct"]:g})')
+        _ekle("tepe_kirilimi", "dusus", k, 45)
+
+    if vec.get("trend_dizilim") == "asagi" \
+            and (vec.get("rs_3ay_pct") if vec.get("rs_3ay_pct") is not None else 99) < 0 \
+            and (vec.get("gerilme_atr") or 9) <= 1.0 and (vec.get("adx") or 0) >= ADX_TREND_ESIK:
+        k = ["MA dizilimi aşağı", f'endeksten zayıf (%{vec["rs_3ay_pct"]:g})',
+             "MA20'ye sağlıklı geri çekilme", f'trend gücü ADX {vec["adx"]:g}']
+        if vec.get("haftalik_trend") == "asagi":
+            k.append("haftalık trend uyumlu")
+        _ekle("momentum_devam_asagi", "dusus", k, 40)
 
     # 4) Aşırı gerilme — BİLGİ notu. Backtest bulgusu: gerilen hisse tarihsel
     # olarak tersine DÖNMÜYOR (devam eğilimi baskın) — bu yüzden risk/yön
