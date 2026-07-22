@@ -14,6 +14,7 @@ const MESAJ: Record<string, { text: string; ok: boolean }> = {
     ok: true,
   },
   kapatildi: { text: "Pozisyon kapatıldı. Bağlı tez varsa 'kullanıcı sattı' olarak işaretlendi.", ok: true },
+  kismikapatildi: { text: "Kısmi kapama yapıldı — pozisyon kalan adetle açık kalıyor.", ok: true },
   sembol: { text: "Sembol geçersiz (örn. THYAO, NVDA — en fazla 10 karakter).", ok: false },
   pazar: { text: "Pazar seçilmedi.", ok: false },
   adet: { text: "Adet 0'dan büyük bir sayı olmalı.", ok: false },
@@ -23,6 +24,7 @@ const MESAJ: Record<string, { text: string; ok: boolean }> = {
   kayit: { text: "Kayıt sırasında hata oluştu, tekrar dene.", ok: false },
   kapat: { text: "Pozisyon kapatılamadı (bulunamadı veya zaten kapalı).", ok: false },
   kapatfiyat: { text: "Satış fiyatı geçersiz — sayı gir veya boş bırak.", ok: false },
+  kapatadet: { text: "Satılan adet geçersiz — pozitif bir sayı gir veya boş bırak.", ok: false },
 };
 
 async function sonFiyatlar(symbols: string[]): Promise<Record<string, number>> {
@@ -73,7 +75,7 @@ function Grup({ baslik, rows, fiyatlar, uyari }: {
                 ) : (
                   <span className="text-xs text-zinc-600">tez yok</span>
                 )}
-                <KapatButton id={p.id} symbol={p.symbol} />
+                <KapatButton id={p.id} symbol={p.symbol} adet={Number(p.quantity)} />
               </li>
             );
           })}
@@ -81,6 +83,55 @@ function Grup({ baslik, rows, fiyatlar, uyari }: {
       ) : (
         <p className="text-sm text-zinc-500">Pozisyon yok.</p>
       )}
+    </section>
+  );
+}
+
+function TemaMaruziyeti({ positions, fiyatlar, temaMap, maxTemaPct }: {
+  positions: any[]; fiyatlar: Record<string, number>;
+  temaMap: Record<string, string[]>; maxTemaPct: number | null;
+}) {
+  let toplamDeger = 0;
+  const temaDeger: Record<string, number> = {};
+  for (const p of positions) {
+    const fiyat = fiyatlar[p.symbol];
+    if (!fiyat) continue;
+    const deger = Number(p.quantity) * fiyat;
+    toplamDeger += deger;
+    for (const tema of temaMap[p.symbol] ?? []) {
+      temaDeger[tema] = (temaDeger[tema] ?? 0) + deger;
+    }
+  }
+  const satirlar = Object.entries(temaDeger)
+    .map(([tema, deger]) => ({ tema, yuzde: toplamDeger ? (deger / toplamDeger) * 100 : 0 }))
+    .sort((a, b) => b.yuzde - a.yuzde);
+
+  if (!satirlar.length) return null;
+  return (
+    <section className="rounded-lg border border-zinc-800 bg-zinc-900 p-4">
+      <h2 className="text-sm font-semibold text-zinc-400 uppercase mb-1">Tema maruziyeti</h2>
+      <p className="text-xs text-zinc-500 mb-3">
+        Aynı sektör/temada birden fazla pozisyon riski büyütür (biri düşerse hepsi birden düşebilir).
+        Sadece gerçek portföy + fiyatı bilinen pozisyonlar sayılır.
+      </p>
+      <ul className="space-y-1 text-sm">
+        {satirlar.map((s) => {
+          const asildi = maxTemaPct !== null && s.yuzde > maxTemaPct;
+          return (
+            <li key={s.tema} className="flex items-center gap-2">
+              <span className="w-32 shrink-0 text-zinc-300">{s.tema}</span>
+              <span className={asildi ? "text-red-400 font-medium" : "text-zinc-400"}>
+                %{s.yuzde.toFixed(1)}
+              </span>
+              {maxTemaPct !== null && (
+                <span className="text-xs text-zinc-600">
+                  (tavan %{maxTemaPct}{asildi ? " — AŞILDI ⚠️" : ""})
+                </span>
+              )}
+            </li>
+          );
+        })}
+      </ul>
     </section>
   );
 }
@@ -173,11 +224,12 @@ export default async function PortfoyPage({
   const { ok, hata } = await searchParams;
   const mesaj = MESAJ[ok ?? hata ?? ""];
 
-  const [{ data: rows }, { data: tezRows }] = await Promise.all([
+  const [{ data: rows }, { data: tezRows }, { data: settings }] = await Promise.all([
     db().from("portfolio").select("*")
       .eq("status", "acik").order("entry_date", { ascending: false }),
     db().from("theses").select("id,symbol,direction,final_confidence")
       .eq("status", "acik").order("created_at", { ascending: false }).limit(50),
+    db().from("user_settings").select("max_tema_pct").eq("id", 1).single(),
   ]);
   const positions = rows ?? [];
   // Önce canlı fiyat (~5 dk önbellek); alınamayan semboller takip turu fiyatına düşer.
@@ -187,6 +239,14 @@ export default async function PortfoyPage({
     Object.entries(canli).map(([s, f]) => [s, f.fiyat]));
   const eksik = [...new Set(positions.map((p) => p.symbol))].filter((s) => !(s in fiyatlar));
   Object.assign(fiyatlar, await sonFiyatlar(eksik));
+
+  const gercekPozisyonlar = positions.filter((p) => p.portfolio_type === "gercek");
+  const gercekSemboller = [...new Set(gercekPozisyonlar.map((p) => p.symbol))];
+  const { data: symbolRows } = gercekSemboller.length
+    ? await db().from("symbols").select("symbol,theme_tags").in("symbol", gercekSemboller)
+    : { data: [] as any[] };
+  const temaMap: Record<string, string[]> = Object.fromEntries(
+    (symbolRows ?? []).map((r: any) => [r.symbol, r.theme_tags ?? []]));
 
   return (
     <div className="space-y-5">
@@ -199,15 +259,16 @@ export default async function PortfoyPage({
           {mesaj.text}
         </p>
       )}
-      <Grup baslik="Gerçek portföy" fiyatlar={fiyatlar}
-        rows={positions.filter((p) => p.portfolio_type === "gercek")} />
+      <Grup baslik="Gerçek portföy" fiyatlar={fiyatlar} rows={gercekPozisyonlar} />
+      <TemaMaruziyeti positions={gercekPozisyonlar} fiyatlar={fiyatlar} temaMap={temaMap}
+        maxTemaPct={settings?.max_tema_pct ?? null} />
       <Grup baslik="Deneme portföyü" fiyatlar={fiyatlar}
         rows={positions.filter((p) => p.portfolio_type === "deneme")}
         uyari="Sanal — gerçek para değildir, gerçek toplamlara asla dahil edilmez." />
       <EkleFormu acikTezler={tezRows ?? []} />
       <p className="text-xs text-zinc-500">
         Fiyatlar ~5 dk önbellekli güncel piyasa fiyatıdır; alınamazsa son takip
-        turu fiyatına düşülür. Kısmi kapama için bilgisayardaki manage.py kullanılır.
+        turu fiyatına düşülür. &quot;Kapat&quot; butonu tam veya kısmi satışı destekler.
       </p>
     </div>
   );

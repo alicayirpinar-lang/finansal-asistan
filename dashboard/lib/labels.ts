@@ -42,10 +42,25 @@ export const REJIM: Record<string, { label: string; cls: string }> = {
   risk_off: { label: "riskten kaçış", cls: "text-red-400" },
 };
 
+// Faz 12 kaynak çeşitlendirmesi — src/storage.py insert_thesis(kaynak=...) ile senkron
+export const KAYNAK: Record<string, { label: string; cls: string }> = {
+  haber: { label: "haber", cls: "bg-zinc-700 text-zinc-200" },
+  teknik: { label: "📈 teknik", cls: "bg-sky-900 text-sky-200" },
+  ikinci_derece: { label: "🔗 ikinci derece", cls: "bg-violet-900 text-violet-200" },
+  geriye_donuk: { label: "geriye dönük", cls: "bg-zinc-700 text-zinc-300" },
+};
+
 export function tarih(iso: string | null): string {
   if (!iso) return "-";
   return new Date(iso).toLocaleString("tr-TR", {
     day: "2-digit", month: "2-digit", year: "numeric",
     hour: "2-digit", minute: "2-digit", timeZone: "Europe/Istanbul",
   });
+}
+
+// İki ISO zaman damgası arasındaki tam gün farkı (karne: beklenen vs gerçekleşen ufuk)
+export function gunSayisi(baslangicIso: string | null, bitisIso: string | null): number | null {
+  if (!baslangicIso || !bitisIso) return null;
+  const fark = new Date(bitisIso).getTime() - new Date(baslangicIso).getTime();
+  return Math.round(fark / (1000 * 60 * 60 * 24));
 }

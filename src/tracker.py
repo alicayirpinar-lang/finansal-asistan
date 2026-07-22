@@ -71,7 +71,8 @@ def check_thesis(thesis, gemini_cap):
     # 1) Stop ihlali → tez bozuldu (7/24 anlık — plan bölüm 9)
     if stop and sign * (price - float(stop)) < 0:
         storage.update_thesis(tid, status="tez_bozuldu", resolved_at="now()",
-                              resolution_note=f"stop ihlali: fiyat {price}, stop {stop}")
+                              resolution_note=f"stop ihlali: fiyat {price}, stop {stop}",
+                              expected_horizon_days=horizon_days)
         _send_once("tez_bozuldu", thesis,
                    f"🔴 TEZ BOZULDU: {sym} ({market})\n"
                    f"Fiyat {price} — stop seviyesi ({stop}) aşıldı.\n"
@@ -83,7 +84,8 @@ def check_thesis(thesis, gemini_cap):
     # 2) Hedef üst sınırı aşıldı → hedefe ulaştı
     if gain_pct >= high:
         storage.update_thesis(tid, status="hedefe_ulasti", resolved_at="now()",
-                              resolution_note=f"hedef aşıldı: %{gain_pct:.1f}")
+                              resolution_note=f"hedef aşıldı: %{gain_pct:.1f}",
+                              expected_horizon_days=horizon_days)
         _send_once("hedef_asildi", thesis,
                    f"🎯 HEDEF AŞILDI: {sym} ({market})\n"
                    f"Kazanç %{gain_pct:.1f} — hedef bandın (%{low:.0f}-{high:.0f}) üstü.\n"
@@ -103,7 +105,8 @@ def check_thesis(thesis, gemini_cap):
     # 4) Süre doldu (nötr — isabet karnesine girmez)
     if elapsed > horizon_days:
         storage.update_thesis(tid, status="suresi_doldu", resolved_at="now()",
-                              resolution_note=f"{horizon_days} günlük ufuk doldu, sonuç: %{gain_pct:.1f}")
+                              resolution_note=f"{horizon_days} günlük ufuk doldu, sonuç: %{gain_pct:.1f}",
+                              expected_horizon_days=horizon_days)
         _send_once("suresi_doldu", thesis,
                    f"⏳ Süresi doldu: {sym} ({market})\n"
                    f"{horizon_days} günlük ufuk geçti, ne hedef ne stop tetiklendi (%{gain_pct:.1f}).\n"

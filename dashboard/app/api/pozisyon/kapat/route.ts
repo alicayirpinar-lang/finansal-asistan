@@ -1,6 +1,7 @@
-// Pozisyon kapatma (tam kapama). Bağlı açık tez otomatik kullanici_satti olur
-// (storage.close_position ile aynı davranış; karneyi etkilemez).
-// Kısmi kapama şimdilik bilgisayardaki manage.py'de.
+// Pozisyon kapatma — tam veya kısmi. Adet boş/pozisyonun tamamıysa tam kapama:
+// bağlı açık tez otomatik kullanici_satti olur (karneyi etkilemez). Adet
+// pozisyondan azsa kısmi kapama: sadece miktar düşer, tez/durum değişmez
+// (storage.close_position'daki Python mantığıyla aynı — plan bölüm 8).
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/supabase";
 
@@ -16,9 +17,14 @@ export async function POST(request: NextRequest) {
   // boş bırakılırsa hesapta %0 varsayılır (metrics.py notlar'a yazar).
   const fiyatHam = String(form.get("fiyat") ?? "").trim().replace(",", ".");
   const fiyat = fiyatHam ? Number(fiyatHam) : null;
+  const adetHam = String(form.get("adet") ?? "").trim().replace(",", ".");
+  const adet = adetHam ? Number(adetHam) : null;
   if (!id) return geri(request, "hata=kapat");
   if (fiyat !== null && (!Number.isFinite(fiyat) || fiyat <= 0)) {
     return geri(request, "hata=kapatfiyat");
+  }
+  if (adet !== null && (!Number.isFinite(adet) || adet <= 0)) {
+    return geri(request, "hata=kapatadet");
   }
 
   const client = db();
@@ -26,21 +32,34 @@ export async function POST(request: NextRequest) {
     .eq("id", id).eq("status", "acik").single();
   if (!pos) return geri(request, "hata=kapat");
 
+  const tamKapama = adet === null || adet >= Number(pos.quantity);
+
+  if (tamKapama) {
+    const { error } = await client.from("portfolio").update({
+      status: "kapali",
+      closed_at: new Date().toISOString(),
+      closed_quantity: pos.quantity,
+      close_reason: neden || null,
+      close_price: fiyat,
+    }).eq("id", id);
+    if (error) return geri(request, "hata=kapat");
+
+    if (pos.thesis_id) {
+      await client.from("theses").update({
+        status: "kullanici_satti",
+        resolved_at: new Date().toISOString(),
+        resolution_note: neden || "kullanıcı dashboard'dan kapattı",
+      }).eq("id", pos.thesis_id).eq("status", "acik");
+    }
+    return geri(request, "ok=kapatildi");
+  }
+
+  // Kısmi kapama: pozisyon açık kalır, sadece adet düşer.
   const { error } = await client.from("portfolio").update({
-    status: "kapali",
-    closed_at: new Date().toISOString(),
-    closed_quantity: pos.quantity,
-    close_reason: neden || null,
+    quantity: Number(pos.quantity) - adet,
+    closed_quantity: Number(pos.closed_quantity ?? 0) + adet,
     close_price: fiyat,
   }).eq("id", id);
   if (error) return geri(request, "hata=kapat");
-
-  if (pos.thesis_id) {
-    await client.from("theses").update({
-      status: "kullanici_satti",
-      resolved_at: new Date().toISOString(),
-      resolution_note: neden || "kullanıcı dashboard'dan kapattı",
-    }).eq("id", pos.thesis_id).eq("status", "acik");
-  }
-  return geri(request, "ok=kapatildi");
+  return geri(request, "ok=kismikapatildi");
 }

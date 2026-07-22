@@ -1,6 +1,6 @@
 import { db } from "@/lib/supabase";
 import { guncelFiyat } from "@/lib/fiyat";
-import { DURUM, GUVEN, KATALIZOR, KURULUM, REJIM, YON, tarih } from "@/lib/labels";
+import { DURUM, GUVEN, KATALIZOR, KAYNAK, KURULUM, REJIM, YON, gunSayisi, tarih } from "@/lib/labels";
 
 export const dynamic = "force-dynamic";
 
@@ -56,6 +56,9 @@ export default async function TezDetayPage({
         <span className="text-sm text-zinc-300">{YON[t.direction] ?? t.direction}</span>
         <span className={`text-xs rounded px-2 py-0.5 ${DURUM[t.status]?.cls ?? ""}`}>
           {DURUM[t.status]?.label ?? t.status}
+        </span>
+        <span className={`text-xs rounded px-2 py-0.5 ${KAYNAK[t.kaynak]?.cls ?? "bg-zinc-700 text-zinc-200"}`}>
+          {KAYNAK[t.kaynak]?.label ?? t.kaynak ?? "haber"}
         </span>
         {tg?.buyuk_firsat ? (
           <span className="text-xs rounded px-2 py-0.5 bg-amber-900 text-amber-200">
@@ -232,6 +235,24 @@ export default async function TezDetayPage({
           </ul>
         </Kutu>
       ) : null}
+
+      {t.resolved_at && (
+        <Kutu baslik="Zamanlama">
+          <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm">
+            <span>
+              <span className="text-xs text-zinc-500">beklenen: </span>
+              {t.expected_horizon_days ? `${t.expected_horizon_days} gün` : "-"}
+            </span>
+            <span>
+              <span className="text-xs text-zinc-500">gerçekleşen: </span>
+              {(() => {
+                const gercek = gunSayisi(t.created_at, t.resolved_at);
+                return gercek !== null ? `${gercek} gün` : "-";
+              })()}
+            </span>
+          </div>
+        </Kutu>
+      )}
 
       {t.resolution_note && (
         <p className="text-sm text-zinc-400">Sonuç notu: {t.resolution_note}</p>

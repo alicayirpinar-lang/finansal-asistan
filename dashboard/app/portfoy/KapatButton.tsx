@@ -1,14 +1,25 @@
 "use client";
-// Yanlışlıkla tek tıkla kapamayı önlemek için tarayıcı onayı ister;
-// satış fiyatı (getiri hesabı için) ve opsiyonel "neden" notu da burada alınır.
+// Adet sorusu boş bırakılırsa (ya da elindeki adetten büyükse) TAMAMI satılır;
+// sayı girilirse kısmi kapama yapılır, pozisyon açık kalır (kurtarma planının
+// "kısmi çıkış öner" önerisini artık sitede uygulayabilirsin — plan bölüm 8).
 
-export default function KapatButton({ id, symbol }: { id: string; symbol: string }) {
+export default function KapatButton({ id, symbol, adet }: { id: string; symbol: string; adet: number }) {
   return (
     <form
       method="post"
       action="/api/pozisyon/kapat"
       onSubmit={(e) => {
-        if (!window.confirm(`${symbol} pozisyonunun TAMAMI kapatılacak. Emin misin?`)) {
+        const adetGiris = window.prompt(
+          `${symbol}: kaç adet satıldı? (elinde ${adet} adet var — boş bırakırsan TAMAMI satılır)`,
+        );
+        if (adetGiris === null) {
+          e.preventDefault();
+          return;
+        }
+        const onayMetin = adetGiris.trim()
+          ? `${symbol}: ${adetGiris} adet satılacak. Emin misin?`
+          : `${symbol} pozisyonunun TAMAMI kapatılacak. Emin misin?`;
+        if (!window.confirm(onayMetin)) {
           e.preventDefault();
           return;
         }
@@ -17,11 +28,13 @@ export default function KapatButton({ id, symbol }: { id: string; symbol: string
         ) ?? "";
         const neden = window.prompt("Neden sattın? (boş bırakılabilir)") ?? "";
         const el = e.currentTarget.elements;
+        (el.namedItem("adet") as HTMLInputElement).value = adetGiris.trim();
         (el.namedItem("fiyat") as HTMLInputElement).value = fiyat;
         (el.namedItem("neden") as HTMLInputElement).value = neden;
       }}
     >
       <input type="hidden" name="id" value={id} />
+      <input type="hidden" name="adet" value="" />
       <input type="hidden" name="fiyat" value="" />
       <input type="hidden" name="neden" value="" />
       <button
