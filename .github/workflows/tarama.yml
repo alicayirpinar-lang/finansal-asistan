@@ -1,17 +1,24 @@
 # Genel tarama + tez üretimi — plan bölüm 11, workflow #1
-# Hafta içi 06:00-21:00 UTC arası 30 dakikada bir (BIST + ABD seans saatlerini kapsar).
+# Hafta içi 06:00-21:00 UTC arası 15 dakikada bir (BIST + ABD seans saatlerini kapsar).
 # Not: GitHub Actions cron gecikmeli çalışabilir; kritik hızlı yol ayrı sistemde (sonraki faz).
 name: tarama
 
 on:
   schedule:
-    - cron: "*/30 6-21 * * 1-5"
+    - cron: "*/15 6-21 * * 1-5"
   workflow_dispatch:      # elle tetikleme (test) + kritik hızlı yol (edge function)
     inputs:
       kaynak:
         description: "Tetik kaynağı (kritik = 7/24 nöbetçi)"
         required: false
         default: "elle"
+
+# Bir koşu 15 dk'lık zaman aşımına yakın uzarsa bir sonraki tetiklemeyle üst üste
+# binmesin (aksi halde iki koşu aynı anda Gemini'yi çağırıp dakika limitini
+# ikiye katlayabilir) — yeni tetikleme öncekinin bitmesini bekler, iptal etmez.
+concurrency:
+  group: tarama
+  cancel-in-progress: false
 
 jobs:
   tarama:
