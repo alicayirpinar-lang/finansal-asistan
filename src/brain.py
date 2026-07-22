@@ -17,9 +17,19 @@ _client = None
 _last_call = 0.0
 
 # gemini-flash-latest alias sessizce en yeni/en cimri modele kayabiliyor
-# (gemini-3.5-flash = 20 istek/gün) — sabit sürüme pinlendi (gemini-2.5-flash
-# = 250/gün). Asla -latest kullanma (faz 12 kota kök nedeni).
-DEFAULT_MODEL = "gemini-2.5-flash"
+# (gemini-3.5-flash = 20 istek/gün) — sabit sürüme pinlendi. Asla -latest
+# kullanma (faz 12 kota kök nedeni).
+DEFAULT_MODEL = "gemini-3.5-flash-lite"
+
+# 22 Temmuz 2026 dersi: sabit pin de tek başına yeterli değil — gemini-2.5-flash
+# Google tarafından "yeni kullanıcılara kapatıldı" (404 NOT_FOUND), sistem 12+
+# saat boyunca sessizce sıfır tez üretti (canlı doğrulanan olay). Artık kısa bir
+# düşüş sırası var: model kalıcı olarak kullanılamıyorsa (404/NOT_FOUND) ya da
+# günlük kotası bittiyse (PerDay), OTOMATİK sıradaki adaya geçilir. Bir kez
+# başarılı olan model o çalıştırma boyunca sabitlenir (tez içi tutarlılık için —
+# aynı tezin taslağı ve red-team'i farklı modellerden çıkmasın).
+FALLBACK_MODELS = ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemini-flash-lite-latest"]
+_resolved_model = None
 
 
 def _get_client():
@@ -39,33 +49,42 @@ def _log_attempt(call_type):
         pass  # kota kaydı başarısız oldu diye ana akış durmasın
 
 
+def _adaylar():
+    """Denenecek modeller, öncelik sırasıyla: bu çalıştırmada zaten başarılı
+    olan (varsa) ya da env/varsayılan → sonra düşüş sırası. Kalıcı olarak
+    çözülmüş model bile listede kalır — koşu ortasında o modelin kotası
+    biterse (PerDay) sıradaki adaya düşülebilsin."""
+    ilk = _resolved_model or os.environ.get("GEMINI_MODEL", DEFAULT_MODEL)
+    return [ilk] + [m for m in FALLBACK_MODELS if m != ilk]
+
+
 def _call(prompt, call_type="genel"):
-    """Throttle'lı Gemini çağrısı. Günlük kota (PerDay) hatasında tekrar
-    denemez (kesin başarısız olur, denemek sadece kotayı fazladan yakar);
-    geçici (RPM/503) hatalarda 2 kez yeniden dener."""
-    global _last_call
+    """Throttle'lı Gemini çağrısı. Model kalıcı olarak kullanılamıyorsa
+    (404/NOT_FOUND) ya da günlük kotası bittiyse (PerDay) hemen sıradaki
+    adaya geçer (tekrar denemek sadece zaman/kota kaybettirir); geçici
+    (RPM/503) hatalarda aynı modelde 2 kez yeniden dener."""
+    global _last_call, _resolved_model
     last_err = None
-    for attempt in range(3):
-        wait = GEMINI_THROTTLE_SECONDS - (time.time() - _last_call)
-        if wait > 0:
-            time.sleep(wait)
-        try:
-            resp = _get_client().models.generate_content(
-                model=os.environ.get("GEMINI_MODEL", DEFAULT_MODEL),
-                contents=prompt,
-            )
-            _last_call = time.time()
-            _log_attempt(call_type)
-            return resp.text
-        except Exception as e:
-            _last_call = time.time()
-            _log_attempt(call_type)
-            last_err = e
-            gunluk_kota_bitti = "PerDay" in str(e)
-            if not gunluk_kota_bitti and any(code in str(e) for code in ("429", "503")) and attempt < 2:
-                time.sleep(15 * (attempt + 1))  # geçici yoğunluk: bekle ve tekrar dene
-                continue
-            raise
+    for model in _adaylar():
+        for attempt in range(3):
+            wait = GEMINI_THROTTLE_SECONDS - (time.time() - _last_call)
+            if wait > 0:
+                time.sleep(wait)
+            try:
+                resp = _get_client().models.generate_content(model=model, contents=prompt)
+                _last_call = time.time()
+                _log_attempt(call_type)
+                _resolved_model = model
+                return resp.text
+            except Exception as e:
+                _last_call = time.time()
+                _log_attempt(call_type)
+                last_err = e
+                kalici_hata = any(k in str(e) for k in ("NOT_FOUND", "404", "PerDay"))
+                if not kalici_hata and any(code in str(e) for code in ("429", "503")) and attempt < 2:
+                    time.sleep(15 * (attempt + 1))  # geçici yoğunluk: bekle ve aynı modeli tekrar dene
+                    continue
+                break  # bu modelde kalıcı hata: sıradaki adaya geç
     raise last_err
 
 
