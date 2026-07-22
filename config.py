@@ -162,4 +162,10 @@ TEKNIK_RADAR_GUNLUK_CAP = 5     # pazar başına (rapor koşusu) en fazla yeni p
 
 # --- Faz 12 B: İkinci derece akıl yürütme (füzyon şartlı) -------------------
 IKINCI_DERECE_MIN_KAYNAK = 3    # eşleşmeyen kümenin adaya girmesi için min. kaynak sayısı (yaygınlık = önem sinyali)
+# 22 Temmuz 2026 bulgusu: build_events() tazelik çürümesi uyguluyor ama
+# unmatched_clusters() uygulamıyordu — aylık bir "güncel petrol fiyatı"
+# makalesi (Google News'in her aramada tekrar sunduğu evergreen sayfa) her
+# koşuda "önemli" sayılıp Gemini'ye gönderiliyor, hep aynı sembollere
+# bağlanıyordu. Bu yaş sınırının üstündeki kümeler B'ye hiç girmez.
+IKINCI_DERECE_MAKS_YAS_SAAT = 48
 IZLEME_TTL_GUN            = 15  # füzyon geçemeyen bağ, teknik teyit gelmezse bu kadar gün sonra düşer

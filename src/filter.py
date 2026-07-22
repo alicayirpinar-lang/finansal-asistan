@@ -143,10 +143,12 @@ def build_events(clusters, portfolio_symbols=frozenset()):
     return events
 
 
-def unmatched_clusters(clusters, min_source_count=3):
+def unmatched_clusters(clusters, min_source_count=3, maks_yas_saat=None):
     """Faz 12 B ön-filtresi: hiçbir sembole/temaya bağlanamamış ama çok
     kaynaklı (muhtemelen önemli) kümeleri döner — ikinci derece akıl
     yürütmeye (brain.ikinci_derece) aday ham havuz."""
+    from config import IKINCI_DERECE_MAKS_YAS_SAAT
+    maks_yas_saat = IKINCI_DERECE_MAKS_YAS_SAAT if maks_yas_saat is None else maks_yas_saat
     out = []
     for cluster in clusters:
         rep = cluster["rep"]
@@ -155,6 +157,9 @@ def unmatched_clusters(clusters, min_source_count=3):
             continue  # zaten doğrudan/tema yoluyla eşleşti, B'ye gerek yok
         if len(cluster["members"]) < min_source_count:
             continue
+        published = rep.get("published_at")
+        if published and (datetime.now(timezone.utc) - published).total_seconds() / 3600 > maks_yas_saat:
+            continue  # bayat/evergreen makale (22 Temmuz 2026 bulgusu) — B'ye aday değil
         out.append(cluster)
     return out
 
