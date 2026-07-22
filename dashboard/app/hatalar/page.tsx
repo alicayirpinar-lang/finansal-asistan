@@ -4,10 +4,23 @@
 // aynı zamanda Telegram'a da gider (bkz. brain.sistemik_hata_kontrolu).
 import { db } from "@/lib/supabase";
 import { tarih } from "@/lib/labels";
+import TemizleButton from "./TemizleButton";
 
 export const dynamic = "force-dynamic";
 
-export default async function HatalarPage() {
+const MESAJ: Record<string, { text: string; ok: boolean }> = {
+  temizlendi: { text: "Tüm hata kayıtları temizlendi.", ok: true },
+  temizle: { text: "Temizlerken hata oluştu, tekrar dene.", ok: false },
+};
+
+export default async function HatalarPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ ok?: string; hata?: string }>;
+}) {
+  const { ok, hata } = await searchParams;
+  const mesaj = MESAJ[ok ?? hata ?? ""];
+
   const { data: hatalar } = await db().from("sistem_hatalari").select("*")
     .order("created_at", { ascending: false }).limit(100);
 
@@ -15,11 +28,24 @@ export default async function HatalarPage() {
 
   return (
     <div className="space-y-4">
-      <p className="text-xs text-zinc-500">
-        Sistemdeki hataların kaydı — çoğu izole/beklenen (tek sembol/kaynak hatası,
-        pipeline devam eder), &quot;kritik&quot; etiketli olanlar sistemik bir sorunu
-        işaret eder ve Telegram&apos;a da gitmiştir.
-      </p>
+      {mesaj && (
+        <p className={`rounded border px-3 py-2 text-sm ${
+          mesaj.ok
+            ? "border-emerald-800 bg-emerald-950 text-emerald-200"
+            : "border-red-800 bg-red-950 text-red-200"
+        }`}>
+          {mesaj.text}
+        </p>
+      )}
+
+      <div className="flex items-center justify-between gap-3">
+        <p className="text-xs text-zinc-500">
+          Sistemdeki hataların kaydı — çoğu izole/beklenen (tek sembol/kaynak hatası,
+          pipeline devam eder), &quot;kritik&quot; etiketli olanlar sistemik bir sorunu
+          işaret eder ve Telegram&apos;a da gitmiştir.
+        </p>
+        {!!hatalar?.length && <TemizleButton />}
+      </div>
 
       {kritikSonuncu && (
         <div className="rounded-lg border border-red-800 bg-red-950 px-4 py-3">
