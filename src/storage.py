@@ -111,6 +111,33 @@ def insert_thesis_check(thesis_id, price, snapshot, result):
     }).execute()
 
 
+def log_mesaj(tur, icerik, basarili, telegram_message_id=None, hata_metni=None):
+    """Faz 12 sonrası: notifier.send() üzerinden giden HER mesaj (başarılı ya
+    da başarısız) buraya yazılır — dashboard'daki mesajlaşma merkezinin
+    (/bildirimler) veri kaynağı. Eskiden sadece tez yaşam-döngüsü bildirimleri
+    (alerts tablosu) loglanıyordu, yeni tez/rapor/teknik fırsat mesajları hiç
+    kayıtlı değildi."""
+    get_client().table("mesaj_log").insert({
+        "tur": tur, "icerik": icerik, "basarili": basarili,
+        "telegram_message_id": str(telegram_message_id) if telegram_message_id else None,
+        "hata_metni": hata_metni,
+    }).execute()
+
+
+def log_error(kaynak, mesaj, detay=None, seviye="normal"):
+    """Merkezi hata kaydı — dashboard'daki /hatalar sayfasının veri kaynağı.
+    Faz 12 sonrası Gemini kesintisi 12+ saat fark edilmeden sürdüğü için
+    eklendi (mevcut try/except'ler hatayı yutup pipeline'ı sürdürüyordu ama
+    hiçbir yerde görünmüyordu)."""
+    try:
+        get_client().table("sistem_hatalari").insert({
+            "kaynak": kaynak, "mesaj": mesaj[:500] if mesaj else mesaj,
+            "detay": detay[:2000] if detay else None, "seviye": seviye,
+        }).execute()
+    except Exception:
+        pass  # hata kaydı başarısız oldu diye ana akış durmasın
+
+
 def alert_exists(alert_type, thesis_id):
     """Aynı tez için aynı tip bildirim daha önce gitti mi? (tekrar önleme)"""
     rows = (get_client().table("alerts").select("id")

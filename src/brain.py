@@ -31,6 +31,14 @@ DEFAULT_MODEL = "gemini-3.5-flash-lite"
 FALLBACK_MODELS = ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemini-flash-lite-latest"]
 _resolved_model = None
 
+# Bu çalıştırmada (fresh process) kaç Gemini denemesi başarılı/başarısız oldu
+# — sistemik hata tespiti için (bkz. sistemik_hata_kontrolu). 22 Temmuz 2026
+# olayının imzası tam olarak buydu: onlarca deneme, hepsi başarısız, hiç kimse
+# fark etmedi çünkü hiçbir yerde toplanmıyordu.
+_basarili_sayisi = 0
+_basarisiz_sayisi = 0
+GEMINI_HATA_ESIGI = 5  # bu kadar denemeden sonra başarı hâlâ sıfırsa sistemik say
+
 
 def _get_client():
     global _client
@@ -63,7 +71,7 @@ def _call(prompt, call_type="genel"):
     (404/NOT_FOUND) ya da günlük kotası bittiyse (PerDay) hemen sıradaki
     adaya geçer (tekrar denemek sadece zaman/kota kaybettirir); geçici
     (RPM/503) hatalarda aynı modelde 2 kez yeniden dener."""
-    global _last_call, _resolved_model
+    global _last_call, _resolved_model, _basarili_sayisi, _basarisiz_sayisi
     last_err = None
     for model in _adaylar():
         for attempt in range(3):
@@ -75,10 +83,12 @@ def _call(prompt, call_type="genel"):
                 _last_call = time.time()
                 _log_attempt(call_type)
                 _resolved_model = model
+                _basarili_sayisi += 1
                 return resp.text
             except Exception as e:
                 _last_call = time.time()
                 _log_attempt(call_type)
+                _basarisiz_sayisi += 1
                 last_err = e
                 kalici_hata = any(k in str(e) for k in ("NOT_FOUND", "404", "PerDay"))
                 if not kalici_hata and any(code in str(e) for code in ("429", "503")) and attempt < 2:
@@ -86,6 +96,30 @@ def _call(prompt, call_type="genel"):
                     continue
                 break  # bu modelde kalıcı hata: sıradaki adaya geç
     raise last_err
+
+
+def sistemik_hata_kontrolu(kaynak):
+    """Bu çalıştırmada yeterli sayıda Gemini denemesi olup HİÇBİRİ başarılı
+    olmadıysa (GEMINI_HATA_ESIGI), bu izole bir hata değil sistemik bir
+    sorundur (model kaldırılmış, API anahtarı geçersiz, proje silinmiş vb.)
+    — 22 Temmuz 2026'da tam olarak bu oldu ve 12+ saat fark edilmedi. Kritik
+    hata kaydı + Telegram uyarısı gönderir. main.py/tracker.py/report.py'nin
+    run() sonunda çağrılması için tasarlandı, kendi hatalarını yutar."""
+    if not (_basarisiz_sayisi >= GEMINI_HATA_ESIGI and _basarili_sayisi == 0):
+        return
+    mesaj = (f"bu çalıştırmada {_basarisiz_sayisi} Gemini denemesinin TAMAMI "
+             f"başarısız oldu (0 başarılı) — model kaldırılmış, kota bitmiş "
+             f"ya da API anahtarı geçersiz olabilir.")
+    try:
+        storage.log_error(kaynak, mesaj, seviye="kritik")
+    except Exception:
+        pass
+    try:
+        from src import notifier
+        notifier.send(f"⚠️ SİSTEM HATASI ({kaynak})\n{mesaj}\nSitedeki /hatalar sayfasına bak.",
+                      tur="sistem_hatasi")
+    except Exception:
+        pass  # bildirim de gidemiyorsa en azından hata kaydı DB'de kaldı
 
 
 def _parse_json(text):

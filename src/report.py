@@ -85,7 +85,7 @@ def build_and_send(market):
                                   note="teknik radar (faz 12, Gemini kullanılmadı)",
                                   kaynak="teknik")
             acilan_semboller.add(aday["symbol"])
-            notifier.send(notifier.format_teknik_firsat(aday, market, rejim_bilgi))
+            notifier.send(notifier.format_teknik_firsat(aday, market, rejim_bilgi), tur="teknik_firsat")
         if acilan_semboller:
             sections_sent.append("teknik_pozisyon")
     except Exception:
@@ -94,6 +94,7 @@ def build_and_send(market):
         import traceback
         print("Teknik radar hatası (rapor devam ediyor):")
         traceback.print_exc(limit=2)
+        storage.log_error("report.py:teknik_radar", "Teknik radar hatası", traceback.format_exc())
 
     gozlem = sorted([r for r in signal_rows if r["gozlem_skoru"]],
                     key=lambda r: -r["gozlem_skoru"])[:10]
@@ -106,7 +107,8 @@ def build_and_send(market):
     # 1) Özet
     notifier.send(f"📋 Günlük rapor — {market} · {now_str}\n"
                   f"Son 24 saat: {len(theses)} yeni tez ({len(orta)} orta öncelikli)\n"
-                  f"Gözlem sinyali: {len(gozlem)} sembol · Açık pozisyon: {len(positions)}")
+                  f"Gözlem sinyali: {len(gozlem)} sembol · Açık pozisyon: {len(positions)}",
+                  tur="rapor_ozet")
     sections_sent.append("ozet")
 
     # 2) Orta öncelikli tezler (kritikler zaten anlık gitti)
@@ -116,7 +118,7 @@ def build_and_send(market):
             yon = "yükseliş" if t["direction"] == "yukselis" else "düşüş"
             lines.append(f'• {t["symbol"]} — {yon}, güven: {_GUVEN[t["final_confidence"]]}, '
                          f'hedef {t["target_range_pct"]}, ufuk {t["horizon"]}')
-        notifier.send("\n".join(lines))
+        notifier.send("\n".join(lines), tur="rapor_orta_tezler")
         sections_sent.append("orta_tezler")
 
     # 2.5) Büyük hareket kurulumları (analitik motor, faz 11) — haber beklemeden
@@ -133,7 +135,7 @@ def build_and_send(market):
                     lines.append(f'• {r["symbol"]}: {s["ad"]} (skor {s["skor"]}) — '
                                  + "; ".join(s["kosullar"][:3]))
         lines.append("Bunlar tez değildir; katalizör çıkarsa sistem önceliklendirir.")
-        notifier.send("\n".join(lines))
+        notifier.send("\n".join(lines), tur="rapor_kurulumlar")
         sections_sent.append("kurulumlar")
 
     # 3) Gözlem — nötr çerçeveleme şart (plan: sebep içermez, tezlerle aynı dilde sunulmaz)
@@ -144,7 +146,7 @@ def build_and_send(market):
             lines.append(f'• {g["symbol"]} {yon}  [{", ".join(_TRIGGER_TXT.get(t, t) for t in g["_triggers"])}]'
                          f'  skor {g["gozlem_skoru"]:.1f}')
         lines.append("Bunlar tez değildir; sadece sıra dışı hareket bildirimidir.")
-        notifier.send("\n".join(lines))
+        notifier.send("\n".join(lines), tur="rapor_gozlem")
         sections_sent.append("gozlem")
 
     # 4) Portföy (gerçek/deneme ayrı — asla aynı toplamda gösterilmez)
@@ -165,7 +167,7 @@ def build_and_send(market):
                     pnl_txt = "fiyat alınamadı"
                 tez_txt = f' · tez: {status_map.get(p["thesis_id"], "?")}' if p.get("thesis_id") else " · tez yok"
                 lines.append(f'• {p["symbol"]}: {p["quantity"]:g} adet @ {p["entry_price"]} → {pnl_txt}{tez_txt}')
-        notifier.send("\n".join(lines))
+        notifier.send("\n".join(lines), tur="rapor_portfoy")
         sections_sent.append("portfoy")
 
     # Getiri metrikleri anlık görüntüsü (plan 7.4) — dashboard /getiri buradan okur.
@@ -177,6 +179,7 @@ def build_and_send(market):
         import traceback
         print("Getiri metrikleri hesaplanamadı (rapor etkilenmez):")
         traceback.print_exc(limit=2)
+        storage.log_error("report.py:metrikler", "Getiri metrikleri hesaplanamadı", traceback.format_exc())
 
     storage.get_client().table("daily_reports").insert({
         "market": market, "report_date": datetime.now(timezone.utc).date().isoformat(),

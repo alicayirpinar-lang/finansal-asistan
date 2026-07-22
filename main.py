@@ -104,7 +104,8 @@ def _kritik_ozet(aday_sayisi, triage_elenen, sonuclar):
         sebep = "\n".join(satirlar)
     notifier.send("ℹ️ Kritik haber analizi tamamlandı — tez çıkmadı.\n"
                   + sebep +
-                  "\nBu normaldir: her kritik haber yatırılabilir bir tez üretmez.")
+                  "\nBu normaldir: her kritik haber yatırılabilir bir tez üretmez.",
+                  tur="kritik_ozet")
 
 
 def run():
@@ -119,11 +120,13 @@ def run():
     print(f"  {len(items)} haber, {len(errors)} kaynak hatası")
     for name, err in errors:
         print(f"  ! {name}: {err[:100]}")
+        storage.log_error(f"collector:{name}", "RSS kaynağı hatası", err)
 
     print("KAP bildirimleri çekiliyor...")
     kap_disclosures, kap_error = kap.collect_kap()
     if kap_error:
         print(f"  ! KAP: {kap_error[:100]}")
+        storage.log_error("kap.py", "KAP bildirimleri çekilemedi", kap_error)
     else:
         print(f"  {len(kap_disclosures)} KAP bildirimi (ODA)")
 
@@ -143,6 +146,7 @@ def run():
     except Exception:
         print("Geriye dönük tez kuyruğu hatası (pipeline devam ediyor):")
         traceback.print_exc(limit=2)
+        storage.log_error("main.py:retro", "Geriye dönük tez kuyruğu hatası", traceback.format_exc())
 
     portfolio_syms = storage.open_portfolio_symbols()
     events = f1.build_events(clusters, portfolio_syms)
@@ -163,6 +167,7 @@ def run():
     except Exception:
         print("İkinci derece akıl yürütme hatası (pipeline devam ediyor, migration 006 bekliyor olabilir):")
         traceback.print_exc(limit=2)
+        storage.log_error("main.py:ikinci_derece", "İkinci derece akıl yürütme hatası", traceback.format_exc())
 
     # Triage: normal kuyruk toplu ön elemeden geçer (1 Gemini çağrısı, tez
     # kalitesi fazı); kritik hızlı yol elemesiz geçer.
@@ -269,15 +274,17 @@ def run():
                         msg = "🚀 BÜYÜK FIRSAT ADAYI — güçlü katalizör + teknik kurulum + rejim uyumu\n" + msg
                     if engel.get("metin"):
                         msg += f'\n{engel["metin"]}'
-                    notifier.send(msg)
+                    notifier.send(msg, tur=f"yeni_tez_{tier}")
                     print("  -> Telegram bildirimi gönderildi")
         except Exception:
             print(f'  ! {event["symbol"]} işlenirken hata (pipeline devam ediyor):')
             traceback.print_exc(limit=2)
+            storage.log_error("main.py:event", f'{event["symbol"]} işlenirken hata', traceback.format_exc())
 
     print(f"\nBitti: {produced} açık tez. Bugünkü Gemini kullanımı: {storage.gemini_calls_today()}")
     if kritik_tetik and produced == 0:
         _kritik_ozet(aday_sayisi, triage_elenen, sonuclar)
+    brain.sistemik_hata_kontrolu("main.py (tarama.yml)")
 
 
 if __name__ == "__main__":

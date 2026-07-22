@@ -5,22 +5,41 @@ import os
 
 import requests
 
+from src import storage
+
 TIMEOUT = 30
 _EMOJI = {"kritik": "🚨", "orta": "ℹ️"}
 _GUVEN = {"dusuk": "düşük", "orta": "orta", "yuksek": "yüksek"}
 _KURULUM_ADI = {"taban_kirilimi": "taban kırılımı", "sikisma_kirilim_adayi": "sıkışma kırılım adayı"}
 
 
-def send(text):
+def send(text, tur="diger"):
+    """Giden HER mesaj (başarılı/başarısız) mesaj_log'a yazılır — dashboard
+    mesajlaşma merkezinin (/bildirimler) veri kaynağı, faz 12 sonrası eklendi
+    (önceden sadece tez bildirimleri alerts'e loglanıyordu, rapor/teknik
+    fırsat mesajları hiçbir yerde görünmüyordu)."""
     token = os.environ["TELEGRAM_BOT_TOKEN"]
     chat_id = os.environ["TELEGRAM_CHAT_ID"]
-    resp = requests.post(
-        f"https://api.telegram.org/bot{token}/sendMessage",
-        json={"chat_id": chat_id, "text": text, "disable_web_page_preview": True},
-        timeout=TIMEOUT,
-    )
-    resp.raise_for_status()
-    return resp.json()["result"]["message_id"]
+    try:
+        resp = requests.post(
+            f"https://api.telegram.org/bot{token}/sendMessage",
+            json={"chat_id": chat_id, "text": text, "disable_web_page_preview": True},
+            timeout=TIMEOUT,
+        )
+        resp.raise_for_status()
+        msg_id = resp.json()["result"]["message_id"]
+    except Exception as e:
+        _log_mesaj(tur, text, False, None, str(e)[:300])
+        raise
+    _log_mesaj(tur, text, True, msg_id, None)
+    return msg_id
+
+
+def _log_mesaj(tur, text, basarili, telegram_message_id, hata_metni):
+    try:
+        storage.log_mesaj(tur, text[:500], basarili, telegram_message_id, hata_metni)
+    except Exception:
+        pass  # mesaj loglama başarısız oldu diye gönderim akışı bozulmasın
 
 
 def format_thesis(event, draft, redteam, final_confidence, tier):

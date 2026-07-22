@@ -32,7 +32,7 @@ except Exception as e:
 # 3) Telegram
 try:
     from src import notifier
-    notifier.send("✅ Kurulum testi başarılı — Finansal Asistanın hazır!")
+    notifier.send("✅ Kurulum testi başarılı — Finansal Asistanın hazır!", tur="test")
     print("[OK] Telegram mesaji gonderildi (telefonunu kontrol et)")
 except Exception as e:
     ok = False

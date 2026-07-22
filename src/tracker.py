@@ -28,7 +28,7 @@ def _horizon_days(draft):
 def _send_once(alert_type, thesis, text):
     if storage.alert_exists(alert_type, thesis["id"]):
         return False
-    msg_id = notifier.send(text)
+    msg_id = notifier.send(text, tur=alert_type)
     storage.log_alert(alert_type, thesis["id"], msg_id, text.splitlines()[0])
     return True
 
@@ -179,6 +179,7 @@ def run():
             print("  " + check_thesis(t, cap))
         except Exception as e:
             print(f'  ! {t["symbol"]}: hata — {str(e)[:120]} (devam ediliyor)')
+            storage.log_error("tracker.py", f'{t["symbol"]} kontrol hatası', str(e))
 
     # Düşük güven/engel oranı yüzünden hiç açılmamış taslaklar — önceden
     # sonsuza kadar donuk kalıyor, karneye giremiyordu (21 Temmuz bulgusu:
@@ -192,5 +193,7 @@ def run():
                 print("  " + check_thesis(t, cap, sessiz=True))
             except Exception as e:
                 print(f'  ! {t["symbol"]}: hata — {str(e)[:120]} (devam ediliyor)')
+                storage.log_error("tracker.py:taslak", f'{t["symbol"]} kontrol hatası', str(e))
 
     print("Takip turu bitti.")
+    brain.sistemik_hata_kontrolu("tracker.py (takip.yml)")

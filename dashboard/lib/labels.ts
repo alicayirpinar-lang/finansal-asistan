@@ -50,6 +50,29 @@ export const KAYNAK: Record<string, { label: string; cls: string }> = {
   geriye_donuk: { label: "geriye dönük", cls: "bg-zinc-700 text-zinc-300" },
 };
 
+// Mesajlaşma merkezi (/bildirimler) — src/notifier.py'deki tur= etiketleriyle senkron
+export const MESAJ_TUR: Record<string, string> = {
+  yeni_tez_kritik: "🚨 yeni tez (kritik)",
+  yeni_tez_orta: "yeni tez (orta)",
+  kritik_ozet: "kritik özet",
+  teknik_firsat: "📈 teknik fırsat",
+  rapor_ozet: "günlük rapor — özet",
+  rapor_orta_tezler: "günlük rapor — orta tezler",
+  rapor_kurulumlar: "günlük rapor — kurulumlar",
+  rapor_gozlem: "günlük rapor — gözlem",
+  rapor_portfoy: "günlük rapor — portföy",
+  geriye_donuk: "geriye dönük tez",
+  tez_bozuldu: "tez bozuldu",
+  hedef_asildi: "hedef aşıldı",
+  hedef_yaklasti: "hedefe yaklaşıldı",
+  suresi_doldu: "süresi doldu",
+  kurtarma_tam: "kurtarma — tam çıkış",
+  kurtarma_kismi: "kurtarma — kısmi çıkış",
+  sistem_hatasi: "⚠️ sistem hatası",
+  test: "test",
+  diger: "diğer",
+};
+
 export function tarih(iso: string | null): string {
   if (!iso) return "-";
   return new Date(iso).toLocaleString("tr-TR", {

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { db } from "@/lib/supabase";
-import { DURUM, tarih } from "@/lib/labels";
+import { DURUM, MESAJ_TUR, tarih } from "@/lib/labels";
 
 export const dynamic = "force-dynamic";
 
@@ -14,8 +14,8 @@ export default async function OzetPage() {
       .gte("created_at", dun).neq("status", "iptal_edildi")
       .order("created_at", { ascending: false }).limit(8),
     client.from("portfolio").select("id,portfolio_type").eq("status", "acik"),
-    client.from("alerts").select("type,content_summary,sent_at")
-      .order("sent_at", { ascending: false }).limit(5),
+    client.from("mesaj_log").select("tur,icerik,basarili,created_at")
+      .order("created_at", { ascending: false }).limit(5),
   ]);
 
   const gercek = (pozisyonlar.data ?? []).filter((p) => p.portfolio_type === "gercek").length;
@@ -61,18 +61,25 @@ export default async function OzetPage() {
       </section>
 
       <section>
-        <h2 className="text-sm font-semibold text-zinc-400 uppercase mb-3">Son bildirimler</h2>
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-sm font-semibold text-zinc-400 uppercase">Son mesajlar</h2>
+          <Link href="/bildirimler" className="text-xs text-blue-400 hover:underline">
+            tümünü gör →
+          </Link>
+        </div>
         {sonAlertler.data?.length ? (
           <ul className="space-y-1 text-sm">
             {sonAlertler.data.map((a, i) => (
-              <li key={i} className="text-zinc-300">
-                <span className="text-zinc-500 text-xs mr-2">{tarih(a.sent_at)}</span>
-                {a.content_summary}
+              <li key={i} className={a.basarili ? "text-zinc-300" : "text-red-400"}>
+                <span className="text-zinc-500 text-xs mr-2">{tarih(a.created_at)}</span>
+                <span className="text-zinc-500 text-xs mr-2">[{MESAJ_TUR[a.tur] ?? a.tur}]</span>
+                {a.icerik?.split("\n")[0]}
+                {!a.basarili && " — gönderilemedi"}
               </li>
             ))}
           </ul>
         ) : (
-          <p className="text-sm text-zinc-500">Henüz bildirim yok.</p>
+          <p className="text-sm text-zinc-500">Henüz mesaj yok.</p>
         )}
       </section>
     </div>

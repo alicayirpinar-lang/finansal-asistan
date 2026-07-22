@@ -74,7 +74,8 @@ def process_queue(clusters, cap):
                 storage.link_thesis_to_position(pos["id"], existing["id"])
             storage.update_retro(req["id"], "islendi", "mevcut açık teze bağlandı")
             notifier.send(f"🔗 {symbol}: pozisyonun mevcut açık teze bağlandı "
-                          f"(güven: {existing['final_confidence']}). Takip otomatik sürecek.")
+                          f"(güven: {existing['final_confidence']}). Takip otomatik sürecek.",
+                          tur="geriye_donuk")
             print(f"  [{symbol}] mevcut açık teze bağlandı")
             continue
 
@@ -84,7 +85,8 @@ def process_queue(clusters, cap):
                                  "sembol izleme evreninde değil")
             notifier.send(f"ℹ️ {symbol}: geriye dönük tez kurulamadı — sembol "
                           f"izleme listemde yok (30 sembol). Pozisyon 'tez yok' "
-                          f"olarak izlenir; fiyat takibi raporlarda sürer.")
+                          f"olarak izlenir; fiyat takibi raporlarda sürer.",
+                          tur="geriye_donuk")
             print(f"  [{symbol}] izleme evreni dışında")
             continue
 
@@ -96,7 +98,8 @@ def process_queue(clusters, cap):
                                      f"{RETRY_DAYS} gün içinde uygun olay bulunamadı")
                 notifier.send(f"ℹ️ {symbol}: geriye dönük tez kurulamadı — son "
                               f"{RETRY_DAYS} günün haberlerinde bu alımı destekleyecek "
-                              f"bir olay bulamadım. Pozisyon 'tez yok' olarak izlenir.")
+                              f"bir olay bulamadım. Pozisyon 'tez yok' olarak izlenir.",
+                              tur="geriye_donuk")
                 print(f"  [{symbol}] süre doldu, olay yok")
             else:
                 print(f"  [{symbol}] uygun olay yok, sonraki turda tekrar denenecek")
@@ -119,7 +122,8 @@ def process_queue(clusters, cap):
                                      f'beyin reddetti: {draft.get("neden", "")[:150]}')
                 notifier.send(f"ℹ️ {symbol}: geriye dönük tez kurulamadı — bulunan haber "
                               f"gerçek bir katalizör değil ({draft.get('neden', '')[:100]}). "
-                              f"Pozisyon 'tez yok' olarak izlenir.")
+                              f"Pozisyon 'tez yok' olarak izlenir.",
+                              tur="geriye_donuk")
                 continue
             redteam = brain.red_team(event, draft, teknik)
             final, tier, status, neden = brain.merge(event, draft, redteam)
@@ -141,14 +145,17 @@ def process_queue(clusters, cap):
             if status == "acik":
                 notifier.send(f"🧾 {symbol}: geriye dönük tez kuruldu (güven: {final}).\n"
                               f"Dayanak: {event['title'][:120]}\n"
-                              f"Takip otomatik başladı — hedef/stop bildirimleri gelecek.")
+                              f"Takip otomatik başladı — hedef/stop bildirimleri gelecek.",
+                              tur="geriye_donuk")
             else:
                 notifier.send(f"⚠️ {symbol}: geriye dönük tez denendi ama red-team "
                               f"gerekçeyi zayıf buldu (durum: {status}). Dürüst cevap: "
                               f"bu alımı destekleyen güçlü bir olay göremiyorum. "
-                              f"Pozisyon yine de izlenecek.")
+                              f"Pozisyon yine de izlenecek.",
+                              tur="geriye_donuk")
             print(f"  -> güven={final}, durum={status}")
         except Exception:
             import traceback
             print(f"  ! {symbol} geriye dönük tez hatası (kuyruk bekliyor kalıyor):")
             traceback.print_exc(limit=2)
+            storage.log_error("retro.py", f"{symbol} geriye dönük tez hatası", traceback.format_exc())
