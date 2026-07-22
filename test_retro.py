@@ -3,7 +3,6 @@
 Deneme portföyüne test pozisyonu + kuyruk kaydı ekler, haberleri toplayıp
 kuyruğu işler, sonucu yazdırır. Test verisini silmez — temizlik ayrı yapılır.
 """
-import os
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -23,8 +22,7 @@ items, errors = collector.collect_news()
 print(f"{len(items)} haber toplandı ({len(errors)} kaynak hatası)")
 clusters = f1.dedup(items)
 
-cap = int(os.environ.get("DAILY_GEMINI_CAP", "40"))
-retro.process_queue(clusters, cap)
+retro.process_queue(clusters)
 
 son = (storage.get_client().table("retro_thesis_queue").select("*")
        .eq("id", req["id"]).execute().data[0])

@@ -56,7 +56,7 @@ def _expired(req):
     return datetime.now(timezone.utc) - created > timedelta(days=RETRY_DAYS)
 
 
-def process_queue(clusters, cap):
+def process_queue(clusters):
     """Bekleyen geriye dönük tez taleplerini işle. Gemini tavanına saygılıdır."""
     requests = storage.pending_retro_requests()
     if not requests:
@@ -109,9 +109,8 @@ def process_queue(clusters, cap):
         if brain.circuit_acik_mi():
             print("  Gemini bu çalıştırmada tamamen başarısız — kuyruk bekliyor kalıyor")
             break
-        used = storage.gemini_basarili_calls_today()
-        if used + 2 > cap:
-            print(f"  Gemini tavanı doldu ({used}/{cap} başarılı) — kuyruk bekliyor kalıyor")
+        if brain.too_many_attempts_this_run():
+            print("  Bu çalıştırmada çok fazla Gemini denemesi oldu — kuyruk bekliyor kalıyor")
             break
         market = SYMBOLS[symbol]["market"]
         event = _event_from_cluster(symbol, market, cluster)

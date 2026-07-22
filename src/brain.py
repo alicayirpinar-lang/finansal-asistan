@@ -39,6 +39,19 @@ _basarili_sayisi = 0
 _basarisiz_sayisi = 0
 GEMINI_HATA_ESIGI = 5  # bu kadar denemeden sonra başarı hâlâ sıfırsa sistemik say
 
+# 22 Temmuz 2026: günlük sabit sayı tavanı (DAILY_GEMINI_CAP) kaldırıldı — eski
+# bir varsayıma (250/gün) dayanıyordu, gerçek ücretsiz limit artık 500/gün.
+# Yerine ÇALIŞTIRMA-BAŞI bir sonsuz-döngü freni geldi: normal sağlıklı bir koşu
+# ~18-26 çağrı yapar (1 triyaj + 1 ikinci-derece + en fazla 8 tez × ~2-3 çağrı);
+# 60, bunun rahat üstünde ama bir kod hatası binlerce çağrı denemeye kalkarsa
+# hemen durdurur. Google'ın kendi 500 RPD sınırı + model düşüş sırası zaten
+# gerçek günlük hacmin doğal freni.
+MAX_ATTEMPTS_PER_RUN = 60
+
+
+def too_many_attempts_this_run():
+    return (_basarili_sayisi + _basarisiz_sayisi) >= MAX_ATTEMPTS_PER_RUN
+
 
 def _get_client():
     global _client

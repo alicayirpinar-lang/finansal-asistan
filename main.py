@@ -28,7 +28,7 @@ def _teknik_teyit(symbol, market, yon):
     return any(s["yon"] == yon for s in analiz.get("kurulumlar", []))
 
 
-def _ikinci_derece_isle(clusters, cap):
+def _ikinci_derece_isle(clusters):
     """Faz 12 B: eşleşmeyen+çok-kaynaklı kümelerden ikinci derece (dolaylı)
     bağ arar (TEK toplu Gemini çağrısı). Füzyon şartını geçenleri teze
     (kaynak=ikinci_derece) yollar, geçemeyenleri izleme listesine ekler
@@ -36,7 +36,7 @@ def _ikinci_derece_isle(clusters, cap):
     hazır event listesi (triage atlar, zaten iki kapıdan geçti)."""
     promoted = []
     adaylar = f1.unmatched_clusters(clusters, IKINCI_DERECE_MIN_KAYNAK)
-    if not (adaylar and storage.gemini_basarili_calls_today() + 1 <= cap):
+    if not (adaylar and not brain.too_many_attempts_this_run()):
         return promoted
     for b in brain.ikinci_derece(adaylar):
         no = b.get("haber_no")
@@ -109,7 +109,6 @@ def _kritik_ozet(aday_sayisi, triage_elenen, sonuclar):
 
 
 def run():
-    cap = int(os.environ.get("DAILY_GEMINI_CAP", "200"))
     kritik_tetik = os.environ.get("TETIK_KAYNAK", "") == "kritik"
 
     print("Semboller senkronlanıyor...")
@@ -142,7 +141,7 @@ def run():
     # Geriye dönük tez talepleri (dashboard köprüsü) — kullanıcı talebi
     # olduğu için normal olaylardan ÖNCE, kota önceliğiyle işlenir.
     try:
-        retro.process_queue(clusters, cap)
+        retro.process_queue(clusters)
     except Exception:
         print("Geriye dönük tez kuyruğu hatası (pipeline devam ediyor):")
         traceback.print_exc(limit=2)
@@ -162,7 +161,7 @@ def run():
     # (triage atlar, zaten iki kapıdan geçti); geçemeyenler izlemede kalır.
     promoted_b = []
     try:
-        promoted_b += _ikinci_derece_isle(clusters, cap)
+        promoted_b += _ikinci_derece_isle(clusters)
         promoted_b += _izleme_kontrol()
     except Exception:
         print("İkinci derece akıl yürütme hatası (pipeline devam ediyor, migration 006 bekliyor olabilir):")
@@ -176,7 +175,7 @@ def run():
     kritik = [e for e in events if e["priority_lane"] == "kritik"]
     normal_havuzu = [e for e in events if e["priority_lane"] != "kritik"]
     normal = f1.select_diverse(normal_havuzu, TRIAGE_BATCH_SIZE, TRIAGE_KUME_BASI_MAKS)
-    if normal and storage.gemini_basarili_calls_today() + 1 <= cap:
+    if normal and not brain.too_many_attempts_this_run():
         normal, triage_elenen = brain.triage(normal)
         if triage_elenen:
             print(f"  triage: {triage_elenen} olay elendi, {len(normal)} kaldı")
@@ -205,9 +204,11 @@ def run():
         if brain.circuit_acik_mi():
             print("Gemini bu çalıştırmada tamamen başarısız — kalan olaylar 30 dk sonraki koşuya bırakılıyor.")
             break
-        used = storage.gemini_basarili_calls_today()
-        if used + 2 > cap:
-            print(f"Günlük Gemini tavanı doldu ({used}/{cap} başarılı) — kalan olaylar arşivleniyor (kuyruklanmaz).")
+        if brain.too_many_attempts_this_run():
+            mesaj = (f"bu çalıştırmada {brain.MAX_ATTEMPTS_PER_RUN}+ Gemini denemesi yapıldı — "
+                     f"normalin çok üstünde, muhtemel bir döngü hatası. Kalan olaylar bırakılıyor.")
+            print(mesaj)
+            storage.log_error("main.py:too_many_attempts", mesaj, seviye="kritik")
             break
         if storage.recent_thesis_exists(event["symbol"]):
             continue  # aynı sembolde 48 saat içinde tez var: mükerrer önleme
@@ -288,7 +289,7 @@ def run():
             storage.log_error("main.py:event", f'{event["symbol"]} işlenirken hata', traceback.format_exc())
 
     print(f"\nBitti: {produced} açık tez. Bugünkü Gemini kullanımı: "
-          f"{storage.gemini_basarili_calls_today()}/{cap} başarılı "
+          f"{storage.gemini_basarili_calls_today()} başarılı "
           f"({storage.gemini_calls_today()} toplam deneme)")
     if kritik_tetik and produced == 0:
         _kritik_ozet(aday_sayisi, triage_elenen, sonuclar)
