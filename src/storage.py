@@ -71,15 +71,20 @@ def ensure_symbols(symbols_config):
         print(f"  symbols tablosuna {len(rows)} yeni sembol eklendi")
 
 
-def recent_thesis_exists(symbol, hours=48, kaynak=None):
+def recent_thesis_exists(symbol, hours=48, kaynak=None, sadece_acik=False):
     """Aynı sembol için son N saatte tez var mı? (mükerrer tez önleme, v1 basit hali)
     kaynak verilirse sadece o kaynaktan (örn. 'teknik') gelen tezlere bakar —
-    faz 12: teknik radar kendi soğuma penceresini haber tezlerinden ayrı tutar."""
+    faz 12: teknik radar kendi soğuma penceresini haber tezlerinden ayrı tutar.
+    sadece_acik=True iken SADECE status='acik' sayılır (23 Temmuz 2026 bulgusu:
+    status filtresi yoktu, reddedilmiş ('iptal_edildi') bir deneme bile sembolü
+    48 saat kilitliyordu — main.py'nin haber-güdümlü yolu bunu kullanır)."""
     from datetime import timedelta, timezone
     cutoff = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat()
     q = get_client().table("theses").select("id").eq("symbol", symbol).gte("created_at", cutoff)
     if kaynak:
         q = q.eq("kaynak", kaynak)
+    if sadece_acik:
+        q = q.eq("status", "acik")
     return len(q.execute().data) > 0
 
 

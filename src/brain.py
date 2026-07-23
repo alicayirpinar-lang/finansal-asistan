@@ -200,8 +200,7 @@ KURALLAR:
 - Güven değerleri SADECE şunlar olabilir: "dusuk", "orta", "yuksek".
 - Toplam güven zincirin EN ZAYIF halkasına göre belirlenir, ortalamaya göre değil.
 - Emin olmadığın şeyi yüksek güvenle işaretleme. Abartılı hedef verme; {market} piyasasında
-  bu tür olaylar için gerçekçi büyüklük aralığı kullan. Beklenen etki %2'den küçükse
-  bu bir tez değildir — {{"tez_yok": true, "neden": "etki çok küçük"}} döndür.
+  bu tür olaylar için gerçekçi büyüklük aralığı kullan. {buyukluk_kural}
 - PİYASA DURUMU'nu dikkate al: fiyat olayı zaten yansıtmış görünüyorsa güveni düşür.
 - SADECE geçerli JSON döndür, başka hiçbir şey yazma.
 
@@ -373,6 +372,23 @@ def _snapshot_text(snapshot):
     return ", ".join(parts) or "veri alınamadı"
 
 
+MIN_ETKI_PCT_US = 0.5  # bkz. MIN_ETKI_NOTU
+
+MIN_ETKI_NOTU = """23 Temmuz 2026: sabit %2 eşiği kendi kanıtlı BIST kurulumlarımızın
+(taban_kirilimi %1.75, sikisma_kirilim_adayi %1.59) getirisinden bile yüksekti.
+BIST'te tamamen kaldırıldı (engel_kontrol zaten enflasyon/mevduat kıyasıyla
+doğal bir fren uyguluyor). ABD'de engel_kontrol hiç bloklamıyor (Ayarlar'da
+sadece TL enflasyon/mevduat alanı var, USD risksiz oranı tanımlı değil) — o
+yüzden ABD'de gürültü-seviyesi bir taban (%0.5) bırakıldı."""
+
+
+def _buyukluk_kural(market):
+    if market == "BIST":
+        return "Aşırı küçük/anlamsız bir etki bekliyorsan bunu düşük güvenle işaretle."
+    return (f'Beklenen etki %{MIN_ETKI_PCT_US:g}\'ten küçükse bu bir tez değildir — '
+            '{"tez_yok": true, "neden": "etki çok küçük"} döndür.')
+
+
 def draft_chain(event, snapshot=None):
     from config import SYMBOLS
     prompt = DRAFT_PROMPT.format(
@@ -380,6 +396,7 @@ def draft_chain(event, snapshot=None):
         symbol=event["symbol"], name=SYMBOLS[event["symbol"]]["name"],
         market=event["market"], category=event["category"],
         source_count=event["source_count"], snapshot=_snapshot_text(snapshot),
+        buyukluk_kural=_buyukluk_kural(event["market"]),
     )
     return _parse_json(_call(prompt, call_type="taslak"))
 
@@ -405,7 +422,8 @@ def merge(event, draft, redteam):
       koşulsuz iptal de ediyordu — aynı sinyali çifte cezalandırıyordu, en
       güvenilir adayı bile otomatik öldürüyordu. Artık tek ceza güven zincirine
       işleniyor, geri kalanı final==düşük kontrolü belirliyor)
-    - hedef üst < %2 -> tez değil (iptal)
+    - hedef üst < eşik -> tez değil (iptal); eşik BIST'te 0 (engel_kontrol zaten
+      aşağıda çalışıyor), ABD'de %0.5 (bkz. MIN_ETKI_NOTU)
     - final=düşük -> 'taslak': kayıt durur ama takip edilmez, karneye girmez
     """
     level = min(_ORDER.get(draft.get("taslak_guven", "dusuk"), 0),
@@ -428,8 +446,9 @@ def merge(event, draft, redteam):
         ust = abs(float(draft["buyukluk_araligi_pct"][1]))
     except (TypeError, ValueError, IndexError, KeyError):
         ust = 0.0
-    if ust < 2.0:
-        return final, "gozlem", "iptal_edildi", f"hedef aralığı anlamsız (üst %{ust:g} < %2)"
+    esik = 0.0 if event["market"] == "BIST" else MIN_ETKI_PCT_US
+    if ust < esik:
+        return final, "gozlem", "iptal_edildi", f"hedef aralığı anlamsız (üst %{ust:g} < %{esik:g})"
 
     kosul = ((redteam.get("gecersiz_kilma_kosulu") or {}).get("kosul") or "").strip()
     if len(kosul) < 10:  # belirsiz geçersiz kılma koşulu: yayınlanmaz (v1'de retry yok)

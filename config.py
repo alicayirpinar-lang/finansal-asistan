@@ -119,6 +119,13 @@ RUTIN_KAP_KONU = [
     "yönetim kurulu komiteleri", "bağımsız denetim kuruluşunun belirlenmesi",
     "ilişkili taraf işlemleri", "ünvan değişikliği",
     "genel kurul işlemlerine ilişkin bildirim", "esas sözleşme tadili",
+    # 23 Temmuz 2026 bulgusu: en yüksek hacimli KAP kategorisi (bir günde
+    # 384 bildirimin 131'i) hiç filtrelenmiyordu — rutin tahvil/borçlanma
+    # ihracı, triyaj kotasını (25) dolduruyordu.
+    "pay dışında sermaye piyasası aracı işlemlerine ilişkin bildirim",
+    "ihraç tavanına ilişkin bildirim",
+    "kayıtlı sermaye tavanı işlemlerine ilişkin bildirim",
+    "kurumsal yönetim ilkelerine uyum derecelendirmesi",
 ]
 
 # --- RSS kaynakları (tema bazlı, plan bölüm 4) ----------------------------
