@@ -1,15 +1,17 @@
 # Genel tarama + tez üretimi — plan bölüm 11, workflow #1
 # Hafta içi 06:00-21:00 UTC arası 15 dakikada bir (BIST + ABD seans saatlerini kapsar).
-# Not: GitHub Actions cron gecikmeli çalışabilir; kritik hızlı yol ayrı sistemde (sonraki faz).
+# Not: GitHub Actions'ın kendi `schedule:` tetikleyicisi sık (15 dk) cron'larda
+# güvenilir çalışmıyor (23 Temmuz 2026 bulgusu, ayrıntı: proje notları) — kaldırıldı.
+# Gerçek zamanlayıcı artık dışarıda: cron-job.org -> tarama-periyodik (Supabase
+# Edge Function) -> bu workflow'u workflow_dispatch ile tetikliyor. Kritik hızlı
+# yol da aynı şekilde (kritik-tarama Edge Function) workflow_dispatch kullanıyor.
 name: tarama
 
 on:
-  schedule:
-    - cron: "*/15 6-21 * * 1-5"
-  workflow_dispatch:      # elle tetikleme (test) + kritik hızlı yol (edge function)
+  workflow_dispatch:      # elle tetikleme (test) + periyodik/kritik dış tetikleyiciler
     inputs:
       kaynak:
-        description: "Tetik kaynağı (kritik = 7/24 nöbetçi)"
+        description: "Tetik kaynağı (periyodik = cron-job.org, kritik = 7/24 nöbetçi)"
         required: false
         default: "elle"
 
