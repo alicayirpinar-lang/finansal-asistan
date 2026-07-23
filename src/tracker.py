@@ -7,7 +7,7 @@ Bildirimler alerts tablosuyla teklenir — aynı tez için aynı uyarı bir kez 
 import re
 from datetime import datetime, timezone
 
-from src import brain, metrics, notifier, prices, storage
+from src import analytics, brain, metrics, notifier, prices, storage
 
 _UFUK_GUN = {"gun": 1, "hafta": 7, "ay": 30}
 
@@ -40,7 +40,7 @@ def _bildir(sessiz, alert_type, thesis, text):
     return _send_once(alert_type, thesis, text)
 
 
-def check_thesis(thesis, sessiz=False):
+def check_thesis(thesis, sessiz=False, rejimler=None):
     tid, sym, market = thesis["id"], thesis["symbol"], thesis["market"]
     direction = thesis["direction"]
     sign = 1 if direction == "yukselis" else -1
@@ -127,6 +127,16 @@ def check_thesis(thesis, sessiz=False):
         storage.insert_thesis_check(tid, price, snapshot, "normal")
         return f"{sym}: normal (%{gain_pct:.1f}, gün {elapsed}/{horizon_days})"
 
+    # Açık tez takibi tez kurulurken kullanılan teknik analizi hiç görmüyordu
+    # (23 Temmuz 2026 bulgusu) — sadece fiyat/stop/süre heuristikleriyle
+    # çalışıyordu. Aynı fonksiyonlar (tez kurulumundakiyle aynı) burada da
+    # kullanılır: hem yeni bir sinyal kaynağı olarak hem de kurtarma
+    # değerlendirmesine bağlam olarak.
+    try:
+        analiz = analytics.sembol_analiz(sym, market)
+    except Exception:
+        analiz = None
+
     signals = []
     if stop:
         stop_dist = abs(entry - float(stop))
@@ -135,14 +145,26 @@ def check_thesis(thesis, sessiz=False):
             signals.append("fiyat stop mesafesinin yarısını geçti")
     if elapsed >= horizon_days / 2 and gain_pct < low * 0.25:
         signals.append("ufkun yarısı geçti, beklenen yönde anlamlı hareket yok")
+    if analiz and analiz["vektor"].get("trend_dizilim"):
+        ters_yon = "asagi" if direction == "yukselis" else "yukari"
+        if analiz["vektor"]["trend_dizilim"] == ters_yon:
+            signals.append("teknik trend tez yönünün tersine döndü")
 
     if len(signals) >= 2 and not storage.kurtarma_exists_recent(tid):
         if brain.too_many_attempts_this_run():
             result = "kurtarma gerekli ama bu çalıştırmada çok fazla Gemini denemesi oldu"
         else:
             try:
+                if rejimler is not None:
+                    if market not in rejimler:
+                        rejimler[market] = analytics.rejim(market)
+                    rejim_bilgi = rejimler[market]
+                else:
+                    rejim_bilgi = analytics.rejim(market)
+                teknik = analytics.prompt_blok(analiz, rejim_bilgi)
                 verdict = brain.kurtarma_degerlendir(
-                    thesis, price, entry, stop, low, high, elapsed, horizon_days, signals)
+                    thesis, price, entry, stop, low, high, elapsed, horizon_days, signals,
+                    teknik=teknik)
                 karar = verdict.get("karar", "yanlis_alarm")
                 oran = verdict.get("cikis_orani")
                 storage.insert_kurtarma(tid, {"signals": signals, **snapshot}, karar, oran)
@@ -171,10 +193,11 @@ def check_thesis(thesis, sessiz=False):
 
 def run():
     theses = storage.open_theses()
+    rejimler = {}  # pazar başına bir kez hesapla (main.py'deki desenle aynı)
     print(f"{len(theses)} açık tez kontrol ediliyor...")
     for t in theses:
         try:
-            print("  " + check_thesis(t))
+            print("  " + check_thesis(t, rejimler=rejimler))
         except Exception as e:
             print(f'  ! {t["symbol"]}: hata — {str(e)[:120]} (devam ediliyor)')
             storage.log_error("tracker.py", f'{t["symbol"]} kontrol hatası', str(e))

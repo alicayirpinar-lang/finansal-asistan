@@ -102,7 +102,7 @@ def compute_signals(market):
     for start in range(0, len(symbols), CHUNK):
         tickers = {yf_ticker(s, market): s for s in symbols[start:start + CHUNK]}
         try:
-            data = yf.download(list(tickers), period="1y", group_by="ticker",
+            data = yf.download(list(tickers), period="2y", group_by="ticker",
                                auto_adjust=True, progress=False, threads=True)
         except Exception:
             continue  # bir parça çökerse diğerleri devam eder

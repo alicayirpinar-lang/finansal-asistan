@@ -262,6 +262,9 @@ GİRİŞ REFERANS FİYATI: {entry} | GÜNCEL FİYAT: {price} | STOP SEVİYESİ: 
 HEDEF: %{low}-{high} | GEÇEN SÜRE: {elapsed} gün / ufuk {horizon_days} gün
 TETİKLENEN SİNYALLER: {signals}
 
+GÜNCEL TEKNİK GÖRÜNÜM:
+{teknik}
+
 KURALLAR:
 - "yanlis_alarm": tez hâlâ sağlam, sinyaller gürültü (özellikle sadece zaman sinyali varsa mekanizma
   yavaş işliyor olabilir)
@@ -316,14 +319,15 @@ def ikinci_derece(clusters):
         return []
 
 
-def kurtarma_degerlendir(thesis, price, entry, stop, low, high, elapsed, horizon_days, signals):
+def kurtarma_degerlendir(thesis, price, entry, stop, low, high, elapsed, horizon_days, signals,
+                         teknik="veri alınamadı"):
     draft = thesis["draft_chain"]
     prompt = KURTARMA_PROMPT.format(
         symbol=thesis["symbol"], market=thesis["market"], direction=thesis["direction"],
         chain=json.dumps(draft.get("zincir", []), ensure_ascii=False),
         entry=entry, price=price, stop=stop, low=low, high=high,
         elapsed=elapsed, horizon_days=horizon_days,
-        signals=", ".join(signals),
+        signals=", ".join(signals), teknik=teknik,
     )
     return _parse_json(_call(prompt, call_type="kurtarma"))
 
