@@ -218,6 +218,28 @@ def close_izleme(izleme_id, status):
     }).eq("id", izleme_id).execute()
 
 
+def daha_once_denendi_mi(pairs):
+    """[(symbol,url), ...] listesinden hangileri daha önce triyaj/taslak
+    aşamasında reddedilmiş? TEK toplu sorgu (23 Temmuz 2026 bulgusu: aynı
+    yüksek-skorlu haberler her ~15 dk'da bir yeniden denenip reddediliyordu —
+    ikinci_derece_izleme'deki 22 Temmuz düzeltmesiyle aynı desen). url'siz
+    olaylar hiç kontrol edilmez, daima tekrar denenebilir kalır."""
+    urls = [u for _, u in pairs if u]
+    if not urls:
+        return set()
+    rows = (get_client().table("triaj_denemeleri").select("symbol,url")
+            .in_("url", urls).execute().data)
+    return {(r["symbol"], r["url"]) for r in rows}
+
+
+def insert_triaj_denemesi(symbol, url, sonuc, neden):
+    if not url:
+        return
+    get_client().table("triaj_denemeleri").insert({
+        "symbol": symbol, "url": url, "sonuc": sonuc, "neden": (neden or "")[:200],
+    }).execute()
+
+
 def get_settings():
     """user_settings satırı (engel oranı vb.). Kolon henüz yoksa boş döner."""
     try:

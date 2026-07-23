@@ -342,7 +342,9 @@ def triage(events):
         rejected = {v["no"] for v in verdicts if not v.get("gecer", True)}
         for v in verdicts:
             if not v.get("gecer", True) and 1 <= v["no"] <= len(events):
-                print(f'  triage eledi: [{events[v["no"] - 1]["symbol"]}] {v.get("neden", "")}')
+                e = events[v["no"] - 1]
+                print(f'  triage eledi: [{e["symbol"]}] {v.get("neden", "")}')
+                storage.insert_triaj_denemesi(e["symbol"], e.get("url"), "triaj_eledi", v.get("neden"))
         passed = [e for i, e in enumerate(events) if (i + 1) not in rejected]
         return passed, len(events) - len(passed)
     except Exception as e:
@@ -394,7 +396,11 @@ def merge(event, draft, redteam):
     """Birleştirme — saf kod, AI yok (plan 5.3).
 
     Dönüş: (final_confidence, tier, status, neden). Tez kalitesi kuralları:
-    - önemlilik=hayır veya fiyatlanmış=evet -> tez açılmaz (iptal, nedeni kayıtlı)
+    - önemlilik=hayır -> tez açılmaz (iptal, nedeni kayıtlı)
+    - fiyatlanmış=evet -> güven 1 basamak düşer (23 Temmuz 2026: eskiden ayrıca
+      koşulsuz iptal de ediyordu — aynı sinyali çifte cezalandırıyordu, en
+      güvenilir adayı bile otomatik öldürüyordu. Artık tek ceza güven zincirine
+      işleniyor, geri kalanı final==düşük kontrolü belirliyor)
     - hedef üst < %2 -> tez değil (iptal)
     - final=düşük -> 'taslak': kayıt durur ama takip edilmez, karneye girmez
     """
@@ -413,8 +419,6 @@ def merge(event, draft, redteam):
     onemlilik = redteam.get("onemlilik") or {}
     if onemlilik.get("onemli_mi") is False:
         return final, "gozlem", "iptal_edildi", f'red-team: olay önemsiz — {onemlilik.get("aciklama", "")[:150]}'
-    if fiyatlanmis:
-        return final, "gozlem", "iptal_edildi", "red-team: zaten fiyatlanmış"
 
     try:
         ust = abs(float(draft["buyukluk_araligi_pct"][1]))

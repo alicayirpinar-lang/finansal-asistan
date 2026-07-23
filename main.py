@@ -157,6 +157,21 @@ def run():
                         key=lambda e: (e["priority_lane"] != "kritik", -e["relevance_score"]))
     print(f"  {len(events)} skorlu olay adayı")
 
+    # Daha önce triyaj/taslakta reddedilenleri filtrele (23 Temmuz 2026 bulgusu:
+    # havuz her koşuda sıfırdan skorlanıyor, reddedilen bir haber "denendi" diye
+    # işaretlenmediği için aynı yüksek-skorlu ~25 aday her ~15 dk'da bir yeniden
+    # deneniyor, geri kalan yüzlerce aday hiç sıraya giremiyordu).
+    try:
+        denenmis = storage.daha_once_denendi_mi([(e["symbol"], e.get("url")) for e in events])
+        if denenmis:
+            oncesi = len(events)
+            events = [e for e in events if (e["symbol"], e.get("url")) not in denenmis]
+            print(f"  {oncesi - len(events)} olay daha önce reddedilmiş, tekrar denenmiyor")
+    except Exception:
+        print("Daha-önce-denendi kontrolü hatası (pipeline devam ediyor):")
+        traceback.print_exc(limit=2)
+        storage.log_error("main.py:denenmis", "Daha-önce-denendi kontrolü hatası", traceback.format_exc())
+
     # Faz 12 B — ikinci derece akıl yürütme: eşleşmeyen+çok-kaynaklı kümeler
     # + bekleyen izleme listesi. Füzyon şartını geçenler doğrudan teze gider
     # (triage atlar, zaten iki kapıdan geçti); geçemeyenler izlemede kalır.
@@ -227,6 +242,8 @@ def run():
                 print(f'  -> taslak beyni reddetti: {draft.get("neden", "?")[:100]}')
                 sonuclar.append(f'{event["symbol"]}: tez kurulamadı — '
                                 f'{draft.get("neden", "?")[:90]}')
+                storage.insert_triaj_denemesi(event["symbol"], event.get("url"),
+                                              "taslak_reddetti", draft.get("neden"))
                 continue
             redteam = brain.red_team(event, draft, teknik)
             final, tier, status, neden = brain.merge(event, draft, redteam)
