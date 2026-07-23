@@ -7,7 +7,7 @@ Bildirimler alerts tablosuyla teklenir — aynı tez için aynı uyarı bir kez 
 import re
 from datetime import datetime, timezone
 
-from src import brain, notifier, prices, storage
+from src import brain, metrics, notifier, prices, storage
 
 _UFUK_GUN = {"gun": 1, "hafta": 7, "ay": 30}
 
@@ -192,6 +192,15 @@ def run():
             except Exception as e:
                 print(f'  ! {t["symbol"]}: hata — {str(e)[:120]} (devam ediliyor)')
                 storage.log_error("tracker.py:taslak", f'{t["symbol"]} kontrol hatası', str(e))
+
+    # Getiri anlık görüntüsü tez kapanışlarında da tazelensin, sadece günlük
+    # rapor anında değil (23 Temmuz 2026 bulgusu: BIST için ~15 saate varan
+    # gecikme oluyordu). Hata rapor turu düşürmesin.
+    try:
+        metrics.compute_and_store()
+    except Exception as e:
+        print(f"Getiri metrikleri hesaplanamadı (takip etkilenmez): {str(e)[:120]}")
+        storage.log_error("tracker.py:metrikler", "Getiri metrikleri hesaplanamadı", str(e))
 
     print("Takip turu bitti.")
     brain.sistemik_hata_kontrolu("tracker.py (takip.yml)")

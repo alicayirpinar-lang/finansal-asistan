@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from config import SYMBOLS
-from src import storage
+from src import metrics, storage
 
 
 def cmd_ekle(args):
@@ -41,6 +41,10 @@ def cmd_kapat(args):
         print(f"{args.sembol} için açık pozisyon bulunamadı.")
     else:
         print(f'{args.sembol} kapatıldı' + (f' (kısmi: {args.adet})' if args.adet else ' (tamamı)'))
+        try:
+            metrics.compute_and_store()
+        except Exception as e:
+            print(f"Getiri metrikleri hesaplanamadı: {str(e)[:120]}")
 
 
 def cmd_durum(args):
