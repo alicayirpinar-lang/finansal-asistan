@@ -455,9 +455,14 @@ def merge(event, draft, redteam):
         return final, "gozlem", "iptal_edildi", "geçersiz kılma koşulu belirsiz"
 
     if final == "dusuk":
-        # Düşük güven = tez değil, kayıtlı gözlem. Takip ve karne dışı (kullanıcı
-        # kararı: "tezler bu kadar yoğun ve anlamsız olmamalı").
-        return final, "gozlem", "taslak", "düşük güven — takip edilmiyor"
+        # Düşük güven = tez değil, kayıtlı gözlem. Bildirim gitmez (kullanıcı
+        # kararı: "tezler bu kadar yoğun ve anlamsız olmamalı") ama tracker.py
+        # sessizce (sessiz=True) takip eder ve sonuçlanınca karneye girer —
+        # 21 Temmuz 2026 düzeltmesi (TUPRS taslağı %10 kazandırmış ama sistem
+        # hiç bakmamıştı). Not metni eskiden "takip edilmiyor" diyordu, bu artık
+        # yanlıştı (24 Temmuz 2026 bulgusu — kullanıcı sitede bu metni görüp
+        # gerçekten takip edilmediğini düşündü).
+        return final, "gozlem", "taslak", "düşük güven — bildirim gönderilmiyor, sessizce takip ediliyor"
 
     if final == "yuksek" and event["category"] in ("jeopolitik", "makro"):
         tier = "kritik"
