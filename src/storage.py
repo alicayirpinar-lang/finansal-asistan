@@ -71,20 +71,24 @@ def ensure_symbols(symbols_config):
         print(f"  symbols tablosuna {len(rows)} yeni sembol eklendi")
 
 
-def recent_thesis_exists(symbol, hours=48, kaynak=None, sadece_acik=False):
+def recent_thesis_exists(symbol, hours=48, kaynak=None, iptal_haric=False):
     """Aynı sembol için son N saatte tez var mı? (mükerrer tez önleme, v1 basit hali)
     kaynak verilirse sadece o kaynaktan (örn. 'teknik') gelen tezlere bakar —
     faz 12: teknik radar kendi soğuma penceresini haber tezlerinden ayrı tutar.
-    sadece_acik=True iken SADECE status='acik' sayılır (23 Temmuz 2026 bulgusu:
-    status filtresi yoktu, reddedilmiş ('iptal_edildi') bir deneme bile sembolü
-    48 saat kilitliyordu — main.py'nin haber-güdümlü yolu bunu kullanır)."""
+
+    iptal_haric=True iken SADECE 'iptal_edildi' statüsü sayılmaz (23 Temmuz 2026
+    bulgusu: eski hali status filtresi olmadan her statüyü sayıyordu, kesin
+    reddedilen bir deneme bile sembolü 48 saat kilitliyordu). 'taslak' HÂLÂ
+    sayılır — ilk düzeltme yanlışlıkla onu da hariç tutmuştu (24 Temmuz 2026
+    bulgusu: aynı haber MIATK için her koşuda yeniden düşük-güvenli bir taslak
+    üretip 6 kopya tez açtı, çünkü hiçbir şey onu tekrar denemekten alıkoymuyordu)."""
     from datetime import timedelta, timezone
     cutoff = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat()
     q = get_client().table("theses").select("id").eq("symbol", symbol).gte("created_at", cutoff)
     if kaynak:
         q = q.eq("kaynak", kaynak)
-    if sadece_acik:
-        q = q.eq("status", "acik")
+    if iptal_haric:
+        q = q.neq("status", "iptal_edildi")
     return len(q.execute().data) > 0
 
 

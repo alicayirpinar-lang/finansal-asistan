@@ -226,7 +226,7 @@ def run():
             print(mesaj)
             storage.log_error("main.py:too_many_attempts", mesaj, seviye="kritik")
             break
-        if storage.recent_thesis_exists(event["symbol"], sadece_acik=True):
+        if storage.recent_thesis_exists(event["symbol"], iptal_haric=True):
             continue  # aynı sembolde 48 saat içinde tez var: mükerrer önleme
         try:
             print(f'\n[{event["symbol"]}] {event["title"][:80]}...')
