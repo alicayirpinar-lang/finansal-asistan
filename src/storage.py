@@ -229,15 +229,22 @@ def close_izleme(izleme_id, status):
 
 def daha_once_denendi_mi(pairs):
     """[(symbol,url), ...] listesinden hangileri daha önce triyaj/taslak
-    aşamasında reddedilmiş? TEK toplu sorgu (23 Temmuz 2026 bulgusu: aynı
-    yüksek-skorlu haberler her ~15 dk'da bir yeniden denenip reddediliyordu —
+    aşamasında reddedilmiş? (23 Temmuz 2026 bulgusu: aynı yüksek-skorlu
+    haberler her ~15 dk'da bir yeniden denenip reddediliyordu —
     ikinci_derece_izleme'deki 22 Temmuz düzeltmesiyle aynı desen). url'siz
-    olaylar hiç kontrol edilmez, daima tekrar denenebilir kalır."""
-    urls = [u for _, u in pairs if u]
-    if not urls:
+    olaylar hiç kontrol edilmez, daima tekrar denenebilir kalır.
+
+    Son 48 saatteki TÜM kayıtları TEK sorguyla çekip Python'da eşleştirir —
+    24 Temmuz 2026 bulgusu: eski hali `.in_("url", urls)` kullanıyordu, aday
+    havuzu büyüdüğünde (200+ olay) URL listesi PostgREST'in sorgu boyutu
+    sınırını aşıp "JSON could not be generated" (400) hatası veriyordu,
+    dedup o koşularda sessizce devre dışı kalıyordu."""
+    if not any(u for _, u in pairs):
         return set()
+    from datetime import timedelta, timezone
+    cutoff = (datetime.now(timezone.utc) - timedelta(hours=48)).isoformat()
     rows = (get_client().table("triaj_denemeleri").select("symbol,url")
-            .in_("url", urls).execute().data)
+            .gte("created_at", cutoff).execute().data)
     return {(r["symbol"], r["url"]) for r in rows}
 
 
