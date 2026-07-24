@@ -425,9 +425,17 @@ def merge(event, draft, redteam):
     - hedef üst < eşik -> tez değil (iptal); eşik BIST'te 0 (engel_kontrol zaten
       aşağıda çalışıyor), ABD'de %0.5 (bkz. MIN_ETKI_NOTU)
     - final=düşük -> 'taslak': kayıt durur ama takip edilmez, karneye girmez
+
+    24 Temmuz 2026: taslak_güveni ile red-team_güveni'nin MIN()'i alınıyordu —
+    red-team bilerek şüpheci (tezin güvenini görmeden bağımsız karar veriyor),
+    tek başına "düşük" demesi diğer taraf ne kadar emin olursa olsun tüm tezi
+    dibe çekiyordu (KCAER örneği: taslak=orta, redteam=düşük -> min=düşük).
+    Artık yukarı yuvarlanan ORTALAMA kullanılıyor — ikisi de zayıfsa hâlâ
+    düşük kalır, ama tek taraf zayıf/diğeri güçlüyse ortadan başlıyor.
     """
-    level = min(_ORDER.get(draft.get("taslak_guven", "dusuk"), 0),
-                _ORDER.get(redteam.get("redteam_guven", "dusuk"), 0))
+    taslak_lvl = _ORDER.get(draft.get("taslak_guven", "dusuk"), 0)
+    redteam_lvl = _ORDER.get(redteam.get("redteam_guven", "dusuk"), 0)
+    level = (taslak_lvl + redteam_lvl + 1) // 2  # tam sayı ortalaması, yukarı yuvarlar
 
     taban = (redteam.get("taban_orani") or {}).get("basari_orani_pct")
     if taban is not None and taban < 40:
