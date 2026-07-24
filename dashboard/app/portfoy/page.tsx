@@ -136,7 +136,7 @@ function TemaMaruziyeti({ positions, fiyatlar, temaMap, maxTemaPct }: {
   );
 }
 
-function EkleFormu({ acikTezler }: { acikTezler: any[] }) {
+function EkleFormu({ secilebilirTezler }: { secilebilirTezler: any[] }) {
   const input = "rounded border border-zinc-700 bg-zinc-800 px-2 py-1.5 text-sm w-full";
   const bugun = new Date().toISOString().slice(0, 10);
   return (
@@ -194,9 +194,10 @@ function EkleFormu({ acikTezler }: { acikTezler: any[] }) {
             <span>Sistem tezine bağla (opsiyonel)</span>
             <select name="tez" className={input} defaultValue="">
               <option value="">— tez yok (dışarıdan alım) —</option>
-              {acikTezler.map((t) => (
+              {secilebilirTezler.map((t) => (
                 <option key={t.id} value={t.id}>
                   {t.symbol} · {t.direction === "yukselis" ? "↑" : "↓"} · güven: {t.final_confidence}
+                  {t.status === "taslak" ? " · taslak" : ""}
                 </option>
               ))}
             </select>
@@ -227,8 +228,8 @@ export default async function PortfoyPage({
   const [{ data: rows }, { data: tezRows }, { data: settings }] = await Promise.all([
     db().from("portfolio").select("*")
       .eq("status", "acik").order("entry_date", { ascending: false }),
-    db().from("theses").select("id,symbol,direction,final_confidence")
-      .eq("status", "acik").order("created_at", { ascending: false }).limit(50),
+    db().from("theses").select("id,symbol,direction,final_confidence,status")
+      .in("status", ["acik", "taslak"]).order("created_at", { ascending: false }).limit(50),
     db().from("user_settings").select("max_tema_pct").eq("id", 1).single(),
   ]);
   const positions = rows ?? [];
@@ -265,7 +266,7 @@ export default async function PortfoyPage({
       <Grup baslik="Deneme portföyü" fiyatlar={fiyatlar}
         rows={positions.filter((p) => p.portfolio_type === "deneme")}
         uyari="Sanal — gerçek para değildir, gerçek toplamlara asla dahil edilmez." />
-      <EkleFormu acikTezler={tezRows ?? []} />
+      <EkleFormu secilebilirTezler={tezRows ?? []} />
       <p className="text-xs text-zinc-500">
         Fiyatlar ~5 dk önbellekli güncel piyasa fiyatıdır; alınamazsa son takip
         turu fiyatına düşülür. &quot;Kapat&quot; butonu tam veya kısmi satışı destekler.
