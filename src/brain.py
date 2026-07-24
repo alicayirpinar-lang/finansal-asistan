@@ -458,11 +458,11 @@ def merge(event, draft, redteam):
         # Düşük güven = tez değil, kayıtlı gözlem. Bildirim gitmez (kullanıcı
         # kararı: "tezler bu kadar yoğun ve anlamsız olmamalı") ama tracker.py
         # sessizce (sessiz=True) takip eder ve sonuçlanınca karneye girer —
-        # 21 Temmuz 2026 düzeltmesi (TUPRS taslağı %10 kazandırmış ama sistem
-        # hiç bakmamıştı). Not metni eskiden "takip edilmiyor" diyordu, bu artık
-        # yanlıştı (24 Temmuz 2026 bulgusu — kullanıcı sitede bu metni görüp
-        # gerçekten takip edilmediğini düşündü).
-        return final, "gozlem", "taslak", "düşük güven — bildirim gönderilmiyor, sessizce takip ediliyor"
+        # 21 Temmuz 2026 düzeltmesi. Not metni kısa tutulur (24 Temmuz 2026:
+        # önceki "takip edilmiyor" ifadesi yanlıştı; "sessizce takip ediliyor"
+        # da gereksizdi — takip geçmişi sayfada zaten diğer tezlerle aynı
+        # şekilde görünüyor, ayrıca belirtmeye gerek yok, kullanıcı isteği).
+        return final, "gozlem", "taslak", "düşük güven"
 
     if final == "yuksek" and event["category"] in ("jeopolitik", "makro"):
         tier = "kritik"
