@@ -136,7 +136,12 @@ function TemaMaruziyeti({ positions, fiyatlar, temaMap, maxTemaPct }: {
   );
 }
 
-function EkleFormu({ secilebilirTezler }: { secilebilirTezler: any[] }) {
+function EkleFormu({
+  secilebilirTezler, bilinenSemboller,
+}: {
+  secilebilirTezler: any[];
+  bilinenSemboller: string[];
+}) {
   const input = "rounded border border-zinc-700 bg-zinc-800 px-2 py-1.5 text-sm w-full";
   const bugun = new Date().toISOString().slice(0, 10);
   return (
@@ -146,8 +151,11 @@ function EkleFormu({ secilebilirTezler }: { secilebilirTezler: any[] }) {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           <label className="text-xs text-zinc-400 space-y-1">
             <span>Sembol</span>
-            <input name="sembol" required placeholder="THYAO / NVDA"
-              className={`${input} uppercase`} maxLength={10} />
+            <input name="sembol" required placeholder="THYAO / NVDA" list="sembol-listesi"
+              autoComplete="off" className={`${input} uppercase`} maxLength={10} />
+            <datalist id="sembol-listesi">
+              {bilinenSemboller.map((s) => <option key={s} value={s} />)}
+            </datalist>
           </label>
           <label className="text-xs text-zinc-400 space-y-1">
             <span>Adet</span>
@@ -225,13 +233,15 @@ export default async function PortfoyPage({
   const { ok, hata } = await searchParams;
   const mesaj = MESAJ[ok ?? hata ?? ""];
 
-  const [{ data: rows }, { data: tezRows }, { data: settings }] = await Promise.all([
-    db().from("portfolio").select("*")
-      .eq("status", "acik").order("entry_date", { ascending: false }),
-    db().from("theses").select("id,symbol,direction,final_confidence,status")
-      .in("status", ["acik", "taslak"]).order("created_at", { ascending: false }).limit(50),
-    db().from("user_settings").select("max_tema_pct").eq("id", 1).single(),
-  ]);
+  const [{ data: rows }, { data: tezRows }, { data: settings }, { data: bilinenSemboller }] =
+    await Promise.all([
+      db().from("portfolio").select("*")
+        .eq("status", "acik").order("entry_date", { ascending: false }),
+      db().from("theses").select("id,symbol,direction,final_confidence,status")
+        .in("status", ["acik", "taslak"]).order("created_at", { ascending: false }).limit(50),
+      db().from("user_settings").select("max_tema_pct").eq("id", 1).single(),
+      db().from("symbols").select("symbol").order("symbol"),
+    ]);
   const positions = rows ?? [];
   // Önce canlı fiyat (~5 dk önbellek); alınamayan semboller takip turu fiyatına düşer.
   const canli = await guncelFiyatlar(
@@ -266,7 +276,8 @@ export default async function PortfoyPage({
       <Grup baslik="Deneme portföyü" fiyatlar={fiyatlar}
         rows={positions.filter((p) => p.portfolio_type === "deneme")}
         uyari="Sanal — gerçek para değildir, gerçek toplamlara asla dahil edilmez." />
-      <EkleFormu secilebilirTezler={tezRows ?? []} />
+      <EkleFormu secilebilirTezler={tezRows ?? []}
+        bilinenSemboller={(bilinenSemboller ?? []).map((r: any) => r.symbol)} />
       <p className="text-xs text-zinc-500">
         Fiyatlar ~5 dk önbellekli güncel piyasa fiyatıdır; alınamazsa son takip
         turu fiyatına düşülür. &quot;Kapat&quot; butonu tam veya kısmi satışı destekler.
