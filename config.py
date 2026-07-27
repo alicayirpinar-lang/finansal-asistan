@@ -161,7 +161,23 @@ RSS_SOURCES = [
 DEDUP_TITLE_THRESHOLD = 85      # rapidfuzz benzerlik eşiği (0-100)
 RELEVANCE_MIN_SCORE   = 0.25    # bunun altındaki olaylar Aşama 2'ye gitmez
 MAX_THESES_PER_RUN    = 8       # tek çalıştırmada üretilecek max yeni tez (faz 12: 5->8, günlük kota sayacı zaten üst sınırı korur)
-FRESHNESS_HALFLIFE_H  = 12      # tazelik yarı ömrü (saat)
+FRESHNESS_HALFLIFE_H  = 12      # tazelik yarı ömrü (saat) — SADECE tema yolu için (bkz. DIRECT_FRESHNESS_HALFLIFE_H)
+
+# 27 Temmuz 2026 bulgusu: canlı ölçüm (build_events skor formülü, tek koşu
+# üzerinde) gösterdi ki direkt (proximity=1.0) eşleşmelerin 12 saatlik yarı
+# ömürle puanlanması onları neredeyse tamamen eliyor — 26.100 (küme,sembol)
+# adayından sadece 10'u eşiği geçiyordu, hepsi direkt. Sebep: RSS_SOURCES'ın
+# çoğu Google News ARAMA sorgusu (gerçek zamanlı akış değil), aynı makale
+# saatler/günler sonra bile "en iyi eşleşme" olarak dönebiliyor — 12h yarı
+# ömür bunu gerçek bayatlık sanıp cezalandırıyor. Aynı haberi sonsuza kadar
+# tekrar deneme riski zaten storage.daha_once_denendi_mi() (48h sembol+URL
+# hafızası) tarafından ayrıca engelleniyor, ayrıca TRIAGE_PROMPT/DRAFT_PROMPT
+# kendi "bu haber YENİ mi" kontrolünü de yapıyor — tazelik cezası burada tek
+# savunma hattı değil. Sadece direkt eşleşmeler için yarı ömür uzatıldı (72h:
+# 25 olay, 168h: 52 olay, ceza yok: 91 olay — 168h dengeli varsayılan seçildi).
+# Tema yolu kasıtlı olarak DEĞİŞMEDİ (zaten neredeyse hiç geçemiyor, gevşetmek
+# JPM/BAC tipi aşırı-genişlik riskini tüm 630 sembole yayar).
+DIRECT_FRESHNESS_HALFLIFE_H = 168  # direkt eşleşme tazelik yarı ömrü (saat) — 1 hafta
 
 # Faz 12 D — çeşitlilik onarımı: triyaj tavanı tek toplu çağrı olduğu için
 # yükseltmenin kota maliyeti yok; küme başı sınır tek haberin (örn. tek ECB

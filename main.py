@@ -148,8 +148,9 @@ def run():
         traceback.print_exc(limit=2)
         storage.log_error("main.py:retro", "Geriye dönük tez kuyruğu hatası", traceback.format_exc())
 
+    huni = {}  # 27 Temmuz 2026: huni telemetrisi (bkz. storage.insert_pipeline_calistirma)
     portfolio_syms = storage.open_portfolio_symbols()
-    events = f1.build_events(clusters, portfolio_syms)
+    events = f1.build_events(clusters, portfolio_syms, stats=huni)
     kap_events = f1.build_kap_events(kap_disclosures, portfolio_syms) if kap_disclosures else []
     if kap_events:
         print(f"  {len(kap_events)} KAP olayı (rutin bildirimler elendi)")
@@ -191,6 +192,7 @@ def run():
     kritik = [e for e in events if e["priority_lane"] == "kritik"]
     normal_havuzu = [e for e in events if e["priority_lane"] != "kritik"]
     normal = f1.select_diverse(normal_havuzu, TRIAGE_BATCH_SIZE, TRIAGE_KUME_BASI_MAKS)
+    huni["triaj_batch"] = len(kritik) + len(normal)
     if normal and not brain.too_many_attempts_this_run():
         normal, triage_elenen = brain.triage(normal)
         if triage_elenen:
@@ -207,6 +209,8 @@ def run():
         return rejimler[market]
 
     produced = 0
+    draft_reddetti = 0
+    redteam_iptal = 0
     sonuclar = []     # kritik kapanış özeti için kısa sonuç satırları
     per_cluster = {}  # aynı haber kümesinden en fazla 2 tez (kopya tez freni)
     for event in events:
@@ -239,6 +243,7 @@ def run():
 
             draft = brain.draft_chain(event, teknik)
             if draft.get("tez_yok"):
+                draft_reddetti += 1
                 print(f'  -> taslak beyni reddetti: {draft.get("neden", "?")[:100]}')
                 sonuclar.append(f'{event["symbol"]}: tez kurulamadı — '
                                 f'{draft.get("neden", "?")[:90]}')
@@ -247,6 +252,8 @@ def run():
                 continue
             redteam = brain.red_team(event, draft, teknik)
             final, tier, status, neden = brain.merge(event, draft, redteam)
+            if status == "iptal_edildi":
+                redteam_iptal += 1
 
             # Engel oranı: yıllık eşdeğer risksiz alternatifi yenmiyorsa tez açılmaz
             engel = analytics.engel_kontrol(draft, event["market"], settings)
@@ -309,6 +316,16 @@ def run():
     print(f"\nBitti: {produced} açık tez. Bugünkü Gemini kullanımı: "
           f"{storage.gemini_basarili_calls_today()} başarılı "
           f"({storage.gemini_calls_today()} toplam deneme)")
+    storage.insert_pipeline_calistirma(
+        haber_sayisi=len(items), kume_sayisi=len(clusters),
+        eslesen_kume=huni.get("eslesen_kume"),
+        event_cifti_toplam=huni.get("event_cifti_toplam"),
+        event_cifti_gecti=huni.get("event_cifti_gecti"),
+        triaj_batch=huni.get("triaj_batch"), triaj_elenen=triage_elenen,
+        draft_reddetti=draft_reddetti, redteam_iptal=redteam_iptal,
+        acik_uretilen=produced, gemini_basarili=storage.gemini_basarili_calls_today(),
+        gemini_toplam=storage.gemini_calls_today(),
+    )
     if kritik_tetik and produced == 0:
         _kritik_ozet(aday_sayisi, triage_elenen, sonuclar)
     brain.sistemik_hata_kontrolu("main.py (tarama.yml)")

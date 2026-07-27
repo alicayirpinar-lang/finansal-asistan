@@ -12,7 +12,7 @@ from rapidfuzz import fuzz
 from config import (
     SYMBOLS, CORE_SYMBOLS, THEME_KEYWORDS, CRITICAL_KEYWORDS, RUTIN_KAP_KONU,
     DEDUP_TITLE_THRESHOLD, RELEVANCE_MIN_SCORE,
-    FRESHNESS_HALFLIFE_H, KATEGORI_AGIRLIK,
+    FRESHNESS_HALFLIFE_H, DIRECT_FRESHNESS_HALFLIFE_H, KATEGORI_AGIRLIK,
 )
 from src.kap import publish_datetime_utc
 
@@ -98,28 +98,45 @@ def is_critical(text):
     return any(k in text for k in CRITICAL_KEYWORDS)
 
 
-def _freshness(published_at):
+def _freshness(published_at, halflife_h=FRESHNESS_HALFLIFE_H):
+    """27 Temmuz 2026: halflife artık sabit değil — direkt eşleşmeler çok
+    daha uzun bir yarı ömür kullanır (bkz. config.DIRECT_FRESHNESS_HALFLIFE_H
+    yorumu), tema yolu eski 12h'de kalır."""
     if not published_at:
         return 0.5
     age_h = max(0.0, (datetime.now(timezone.utc) - published_at).total_seconds() / 3600)
-    return math.pow(0.5, age_h / FRESHNESS_HALFLIFE_H)
+    return math.pow(0.5, age_h / halflife_h)
 
 
-def build_events(clusters, portfolio_symbols=frozenset()):
-    """Kümelerden skorlu olay listesi üret (sembol başına bir olay)."""
+def build_events(clusters, portfolio_symbols=frozenset(), stats=None):
+    """Kümelerden skorlu olay listesi üret (sembol başına bir olay).
+
+    stats verilirse (main.py telemetrisi, 27 Temmuz 2026) huninin bu
+    aşamasındaki ham sayılar yerinde doldurulur: eslesen_kume (sembol/temaya
+    bağlanan küme sayısı, eşik öncesi) ve event_cifti_toplam (üretilen tüm
+    (küme,sembol) aday çifti sayısı, eşik öncesi)."""
     events = []
+    eslesen_kume = 0
+    event_cifti_toplam = 0
     for cluster_id, cluster in enumerate(clusters):
         rep = cluster["rep"]
         text = rep["title"] + " " + rep.get("summary", "")
         matches = _match_symbols(text)
         if not matches:
             continue
+        eslesen_kume += 1
+        event_cifti_toplam += len(matches)
         category = _guess_category(text)
         critical = is_critical(text)
         spread = min(1.0 + 0.05 * (len(cluster["members"]) - 1), 1.5)  # yaygınlık, üst sınırlı
+        # Direkt (proximity=1.0) ve tema yolu farklı tazelik yarı ömrü kullanır
+        # (bkz. config.DIRECT_FRESHNESS_HALFLIFE_H yorumu, 27 Temmuz 2026).
+        taze_direkt = _freshness(rep["published_at"], DIRECT_FRESHNESS_HALFLIFE_H)
+        taze_tema = _freshness(rep["published_at"], FRESHNESS_HALFLIFE_H)
         for symbol, proximity in matches.items():
+            taze = taze_direkt if proximity == 1.0 else taze_tema
             score = (KATEGORI_AGIRLIK[category] * proximity * rep["reliability"]
-                     * _freshness(rep["published_at"]) * spread)
+                     * taze * spread)
             if symbol in portfolio_symbols:
                 score *= 1.2  # portföy bonusu
             if score < RELEVANCE_MIN_SCORE and not critical:
@@ -140,6 +157,10 @@ def build_events(clusters, portfolio_symbols=frozenset()):
             })
     # kritikler öne, sonra skora göre
     events.sort(key=lambda e: (e["priority_lane"] != "kritik", -e["relevance_score"]))
+    if stats is not None:
+        stats["eslesen_kume"] = eslesen_kume
+        stats["event_cifti_toplam"] = event_cifti_toplam
+        stats["event_cifti_gecti"] = len(events)
     return events
 
 

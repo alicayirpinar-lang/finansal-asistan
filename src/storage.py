@@ -248,6 +248,17 @@ def daha_once_denendi_mi(pairs):
     return {(r["symbol"], r["url"]) for r in rows}
 
 
+def insert_pipeline_calistirma(**sayaclar):
+    """27 Temmuz 2026: huninin her aşamasındaki sayıyı tek satırda kaydeder
+    (bkz. db/migrations/011_pipeline_telemetry.sql) — "neden hala tez yok"
+    sorusu artık log kazısı değil tek bir SQL sorgusu. Migration henüz
+    uygulanmadıysa (tablo yoksa) sessizce atlar, ana akışı durdurmaz."""
+    try:
+        get_client().table("pipeline_calistirmalari").insert(sayaclar).execute()
+    except Exception:
+        pass
+
+
 def insert_triaj_denemesi(symbol, url, sonuc, neden):
     if not url:
         return
