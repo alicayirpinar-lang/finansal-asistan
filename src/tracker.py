@@ -205,13 +205,19 @@ def run():
     # Düşük güven/engel oranı yüzünden hiç açılmamış taslaklar — önceden
     # sonsuza kadar donuk kalıyor, karneye giremiyordu (21 Temmuz bulgusu:
     # TUPRS taslağı %10 kazandırmış ama sistem hiç bakmamıştı). Artık
-    # sessizce (bildirimsiz) kontrol edilip bir sonuca bağlanıyorlar.
+    # sessizce (bildirimsiz) kontrol edilip bir sonuca bağlanıyorlar —
+    # AMA (27 Temmuz 2026) kullanıcı bu tezlerden birine portföyünde
+    # (gerçek ya da deneme) pozisyon açtıysa artık "hiç önerilmedi" demek
+    # yanlış olur: normal tezlerle aynı şekilde bildirim gönderilir.
+    portfoy_tez_idleri = storage.open_portfolio_thesis_ids()
     taslaklar = storage.taslak_gozlem_theses()
     if taslaklar:
-        print(f"{len(taslaklar)} taslak/gözlem tez sessizce kontrol ediliyor (karne için)...")
+        print(f"{len(taslaklar)} taslak/gözlem tez kontrol ediliyor "
+              f"({sum(1 for t in taslaklar if t['id'] in portfoy_tez_idleri)} tanesi portföyde, bildirimli)...")
         for t in taslaklar:
+            sessiz = t["id"] not in portfoy_tez_idleri
             try:
-                print("  " + check_thesis(t, sessiz=True))
+                print("  " + check_thesis(t, sessiz=sessiz, rejimler=rejimler))
             except Exception as e:
                 print(f'  ! {t["symbol"]}: hata — {str(e)[:120]} (devam ediliyor)')
                 storage.log_error("tracker.py:taslak", f'{t["symbol"]} kontrol hatası', str(e))

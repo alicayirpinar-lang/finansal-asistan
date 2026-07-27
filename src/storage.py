@@ -314,6 +314,16 @@ def open_portfolio_symbols():
     return frozenset(r["symbol"] for r in rows)
 
 
+def open_portfolio_thesis_ids():
+    """27 Temmuz 2026: kullanıcı taslak/düşük-güvenli tezleri de (gerçek ya da
+    deneme) portföyüne ekleyebiliyor — artık "hiç önerilmedi" değil, gerçek
+    para/deneme bağlı. tracker.py bu tezleri sessiz modundan çıkarmak için
+    kullanır (bkz. tracker.run())."""
+    rows = (get_client().table("portfolio").select("thesis_id")
+            .eq("status", "acik").execute().data)
+    return frozenset(r["thesis_id"] for r in rows if r.get("thesis_id"))
+
+
 def add_position(symbol, market, quantity, entry_price, entry_date,
                  portfolio_type, thesis_id=None):
     row = {
