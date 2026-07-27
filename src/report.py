@@ -55,42 +55,58 @@ def build_and_send(market):
     # Giriş/stop/hedef kod ile (AI hikayesi yok); ayrı "📈 TEKNİK FIRSAT" mesajı gider.
     rejim_bilgi = analytics.rejim(market)
     acilan_semboller = set()
+    # 27 Temmuz 2026 bulgusu: 10 günde 3614 sinyal hesaplamasının sadece 1'i
+    # (AEFES, 21 Temmuz, skor 80) kanıtlı eşiği geçti — ve o tek fırsatın bile
+    # bildirime dönüşüp dönüşmediği bu bölümde HİÇ log satırı olmadığı için
+    # geriye dönük kanıtlanamadı. Artık her adım görünür + her aday kendi
+    # try/except'inde (biri patlarsa diğerleri ve rapor etkilenmesin).
     try:
-        for aday in signals.teknik_pozisyon_adaylari(signal_rows, market, rejim_bilgi)[:TEKNIK_RADAR_GUNLUK_CAP]:
-            if storage.recent_thesis_exists(aday["symbol"], hours=24 * TEKNIK_RADAR_SOGUMA_GUN, kaynak="teknik"):
-                continue  # soğuma penceresi (~10 gün): aynı sembolde tekrar açma
-            s = aday["kurulum"]
-            draft = {
-                "yon": "yukselis",
-                "buyukluk_araligi_pct": [aday["hedef_dusuk"], aday["hedef_yuksek"]],
-                "ufuk": "ay", "ufuk_deger": 1,
-                "zincir": [{
-                    "adim_no": 1,
-                    "mekanizma": f'Teknik kurulum: {s["ad"]} (backtest kanıtlı, AI yorumu yok) — '
-                                 + "; ".join(s["kosullar"]),
-                    "guven": "orta", "dayanak": f'skor {s["skor"]}, örneklem-dışı backtest (bkz. tools/backtest_kurulum.py)',
-                }],
-                "teknik_gorunum": {
-                    "katalizor": "teknik", "buyuk_firsat": False,
-                    "rejim": rejim_bilgi.get("rejim"), "kurulumlar": [s], "tepki": None, "engel": "",
-                },
-            }
-            redteam = {"gecersiz_kilma_kosulu": {
-                "kosul": f'kapanış fiyatı {aday["stop"]} altına düşerse (2×ATR stop)',
-                "izleme_yontemi": "fiyat_seviyesi", "stop_fiyat": aday["stop"],
-            }}
-            event = {"symbol": aday["symbol"], "market": market, "category": "teknik"}
-            storage.insert_thesis(event, draft, redteam, "orta", "orta", "acik",
-                                  entry_price_ref=aday["entry"],
-                                  note="teknik radar (faz 12, Gemini kullanılmadı)",
-                                  kaynak="teknik")
-            acilan_semboller.add(aday["symbol"])
-            notifier.send(notifier.format_teknik_firsat(aday, market, rejim_bilgi), tur="teknik_firsat")
+        adaylar = signals.teknik_pozisyon_adaylari(signal_rows, market, rejim_bilgi)[:TEKNIK_RADAR_GUNLUK_CAP]
+        print(f'Teknik radar [{market}]: rejim={rejim_bilgi.get("rejim")}, {len(adaylar)} kanıtlı aday')
+        for aday in adaylar:
+            try:
+                if storage.recent_thesis_exists(aday["symbol"], hours=24 * TEKNIK_RADAR_SOGUMA_GUN, kaynak="teknik"):
+                    print(f'  {aday["symbol"]}: soğuma penceresinde, atlanıyor')
+                    continue  # soğuma penceresi (~10 gün): aynı sembolde tekrar açma
+                s = aday["kurulum"]
+                draft = {
+                    "yon": "yukselis",
+                    "buyukluk_araligi_pct": [aday["hedef_dusuk"], aday["hedef_yuksek"]],
+                    "ufuk": "ay", "ufuk_deger": 1,
+                    "zincir": [{
+                        "adim_no": 1,
+                        "mekanizma": f'Teknik kurulum: {s["ad"]} (backtest kanıtlı, AI yorumu yok) — '
+                                     + "; ".join(s["kosullar"]),
+                        "guven": "orta", "dayanak": f'skor {s["skor"]}, örneklem-dışı backtest (bkz. tools/backtest_kurulum.py)',
+                    }],
+                    "teknik_gorunum": {
+                        "katalizor": "teknik", "buyuk_firsat": False,
+                        "rejim": rejim_bilgi.get("rejim"), "kurulumlar": [s], "tepki": None, "engel": "",
+                    },
+                }
+                redteam = {"gecersiz_kilma_kosulu": {
+                    "kosul": f'kapanış fiyatı {aday["stop"]} altına düşerse (2×ATR stop)',
+                    "izleme_yontemi": "fiyat_seviyesi", "stop_fiyat": aday["stop"],
+                }}
+                event = {"symbol": aday["symbol"], "market": market, "category": "teknik"}
+                storage.insert_thesis(event, draft, redteam, "orta", "orta", "acik",
+                                      entry_price_ref=aday["entry"],
+                                      note="teknik radar (faz 12, Gemini kullanılmadı)",
+                                      kaynak="teknik")
+                acilan_semboller.add(aday["symbol"])
+                notifier.send(notifier.format_teknik_firsat(aday, market, rejim_bilgi), tur="teknik_firsat")
+                print(f'  {aday["symbol"]}: tez açıldı + bildirim gönderildi (skor {s["skor"]})')
+            except Exception:
+                import traceback
+                print(f'  {aday["symbol"]}: teknik aday işlenirken hata:')
+                traceback.print_exc(limit=2)
+                storage.log_error("report.py:teknik_radar_aday",
+                                  f'{aday["symbol"]} teknik aday işlenirken hata', traceback.format_exc())
         if acilan_semboller:
             sections_sent.append("teknik_pozisyon")
     except Exception:
-        # 'kaynak' kolonu henüz yoksa (migration 005 bekliyor) ya da başka bir
-        # hata olursa rapor devam etsin (metrikler bölümüyle aynı dayanıklılık ilkesi).
+        # signals/rejim hesabı çökerse (ör. migration 005 henüz yoksa) rapor
+        # devam etsin (metrikler bölümüyle aynı dayanıklılık ilkesi).
         import traceback
         print("Teknik radar hatası (rapor devam ediyor):")
         traceback.print_exc(limit=2)
