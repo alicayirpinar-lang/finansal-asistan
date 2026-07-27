@@ -48,6 +48,9 @@ TICKER_STOP = {
     "nice", "real", "land", "pool", "main", "core", "data", "form", "fund",
     "gold", "life", "mind", "news", "path", "peak", "rare", "safe", "star",
     "step", "turn", "wave", "wise", "work", "care", "keys", "tech", "best",
+    # 27 Temmuz 2026 bulgusu: DECK ("earnings ON DECK" ifadesiyle rastgele
+    # şirketlere bağlanıyordu) — aynı riski taşıyan diğer sözlük kelimeleri.
+    "deck", "echo", "fang", "gild", "lite", "flex",
 }
 # Kurallara takılan ama haberde geçen büyük isimler için elle ekler
 EXTRA_VARIANTS = {
@@ -59,7 +62,14 @@ EXTRA_VARIANTS = {
 # Karışık sektörlerde muhafazakar davranılır; boş liste = sadece ad eşleşmesi.
 SECTOR_THEMES_US = {
     "Energy": ["enerji", "petrol"],
-    "Financials": ["banka", "faiz"],
+    # 27 Temmuz 2026 bulgusu: "Financials" GICS sektörü sigorta (AIG, ALL, AFL),
+    # varlık yönetimi (BLK, ARES, APO) ve borsa operatörü (NDAQ, CBOE) gibi
+    # bankacılıkla doğrudan ilgisiz alt sektörleri de kapsıyor — genel "faiz
+    # kararı/enflasyon" haberi bunların hiçbirine gerçek bir katalizör değil,
+    # sadece triyaj kotasını dolduran gürültü üretiyordu. Tema kaldırıldı,
+    # sadece ad eşleşmesiyle (JPM, BAC gibi CORE_SYMBOLS zaten temayı koruyor,
+    # o tanımlar bu evreni ezer) çalışsınlar.
+    "Financials": [],
     "Information Technology": ["teknoloji"],
     "Health Care": ["saglik"],
     "Industrials": ["sanayi"],

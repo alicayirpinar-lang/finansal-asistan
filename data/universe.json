@@ -95,10 +95,7 @@
    "name": "Aflac",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "aflac"
    ]
@@ -208,10 +205,7 @@
    "name": "Allstate",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "allstate"
    ]
@@ -301,10 +295,7 @@
    "name": "American Express",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "american express"
    ]
@@ -313,10 +304,7 @@
    "name": "American International Group",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "american international"
    ]
@@ -345,10 +333,7 @@
    "name": "Ameriprise Financial",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "ameriprise financial"
    ]
@@ -402,10 +387,7 @@
    "name": "Aon plc",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "aon plc"
    ]
@@ -426,10 +408,7 @@
    "name": "Apollo Global Management",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "apollo global management"
    ]
@@ -485,10 +464,7 @@
    "name": "Arch Capital Group",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "acgl",
     "arch capital"
@@ -509,10 +485,7 @@
    "name": "Ares Management",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "ares",
     "ares management"
@@ -534,10 +507,7 @@
    "name": "Arthur J. Gallagher & Co.",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "arthur j gallagher"
    ]
@@ -546,10 +516,7 @@
    "name": "Assurant",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "assurant"
    ]
@@ -669,10 +636,7 @@
    "name": "Bank of America",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "bank of america"
    ]
@@ -703,10 +667,7 @@
    "name": "Berkshire Hathaway",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "berkshire hathaway",
     "brk-b"
@@ -750,10 +711,7 @@
    "name": "BlackRock",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "blackrock"
    ]
@@ -762,10 +720,7 @@
    "name": "Blackstone Inc.",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "blackstone"
    ]
@@ -774,10 +729,7 @@
    "name": "Block, Inc.",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "block, inc"
    ]
@@ -786,10 +738,7 @@
    "name": "BNY Mellon",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "bny mellon"
    ]
@@ -865,10 +814,7 @@
    "name": "Brown & Brown",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "brown & brown"
    ]
@@ -954,10 +900,7 @@
    "name": "Capital One",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "capital one"
    ]
@@ -1035,10 +978,7 @@
    "name": "Cboe Global Markets",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "cboe",
     "cboe global markets"
@@ -1123,10 +1063,7 @@
    "name": "Charles Schwab Corporation",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "charles schwab",
     "schw"
@@ -1171,10 +1108,7 @@
    "name": "Chubb Limited",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "chubb limited"
    ]
@@ -1217,10 +1151,7 @@
    "name": "Cincinnati Financial",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "cincinnati financial",
     "cinf"
@@ -1254,10 +1185,7 @@
    "name": "Citigroup",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "citigroup"
    ]
@@ -1266,10 +1194,7 @@
    "name": "Citizens Financial Group",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "citizens financial"
    ]
@@ -1289,10 +1214,7 @@
    "name": "CME Group",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "cme group"
    ]
@@ -1347,10 +1269,7 @@
    "name": "Coinbase",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "coin",
     "coinbase"
@@ -1473,10 +1392,7 @@
    "name": "Corpay",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "corpay",
     "cpay"
@@ -1633,7 +1549,6 @@
     "perakende"
    ],
    "variants": [
-    "deck",
     "deckers brands"
    ]
   },
@@ -1704,8 +1619,7 @@
     "petrol"
    ],
    "variants": [
-    "diamondback energy",
-    "fang"
+    "diamondback energy"
    ]
   },
   "DLR": {
@@ -1869,7 +1783,6 @@
     "telekom"
    ],
    "variants": [
-    "echo",
     "echostar"
    ]
   },
@@ -2019,10 +1932,7 @@
    "name": "Erie Indemnity",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "erie",
     "erie indemnity"
@@ -2052,10 +1962,7 @@
    "name": "Everest Group",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "everest group"
    ]
@@ -2166,10 +2073,7 @@
    "name": "FactSet",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "factset"
    ]
@@ -2233,10 +2137,7 @@
    "name": "Fidelity National Information Services",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "fidelity national information"
    ]
@@ -2245,10 +2146,7 @@
    "name": "Fifth Third Bancorp",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "fifth third bancorp",
     "fitb"
@@ -2281,10 +2179,7 @@
    "name": "Fiserv",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "fiserv",
     "fisv"
@@ -2297,9 +2192,7 @@
    "themes": [
     "teknoloji"
    ],
-   "variants": [
-    "flex"
-   ]
+   "variants": []
   },
   "F": {
    "name": "Ford Motor Company",
@@ -2361,10 +2254,7 @@
    "name": "Franklin Resources",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "franklin resources"
    ]
@@ -2512,7 +2402,6 @@
     "saglik"
    ],
    "variants": [
-    "gild",
     "gilead sciences"
    ]
   },
@@ -2520,10 +2409,7 @@
    "name": "Global Payments",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "global payments"
    ]
@@ -2532,10 +2418,7 @@
    "name": "Globe Life",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "globe life"
    ]
@@ -2556,10 +2439,7 @@
    "name": "Goldman Sachs",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "goldman sachs"
    ]
@@ -2580,10 +2460,7 @@
    "name": "Hartford (The)",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "hartford"
    ]
@@ -2767,10 +2644,7 @@
    "name": "Huntington Bancshares",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "hban",
     "huntington bancshares"
@@ -2883,10 +2757,7 @@
    "name": "Interactive Brokers",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "ibkr",
     "interactive brokers"
@@ -2896,10 +2767,7 @@
    "name": "Intercontinental Exchange",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "intercontinental exchange"
    ]
@@ -2954,10 +2822,7 @@
    "name": "Invesco",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "invesco"
    ]
@@ -3019,10 +2884,7 @@
    "name": "Jack Henry & Associates",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "jack henry &",
     "jkhy"
@@ -3065,10 +2927,7 @@
    "name": "JPMorgan Chase",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "jpmorgan chase"
    ]
@@ -3100,10 +2959,7 @@
    "name": "KeyCorp",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "keycorp"
    ]
@@ -3155,10 +3011,7 @@
    "name": "KKR & Co.",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "kkr &"
    ]
@@ -3323,10 +3176,7 @@
    "name": "Loews Corporation",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "loews"
    ]
@@ -3362,7 +3212,6 @@
     "teknoloji"
    ],
    "variants": [
-    "lite",
     "lumentum"
    ]
   },
@@ -3381,10 +3230,7 @@
    "name": "M&T Bank",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "m&t bank"
    ]
@@ -3416,10 +3262,7 @@
    "name": "Marsh McLennan",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "marsh mclennan",
     "mrsh"
@@ -3463,10 +3306,7 @@
    "name": "Mastercard",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "mastercard"
    ]
@@ -3541,10 +3381,7 @@
    "name": "MetLife",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "metlife"
    ]
@@ -3678,10 +3515,7 @@
    "name": "Moody's Corporation",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "moody's"
    ]
@@ -3690,10 +3524,7 @@
    "name": "Morgan Stanley",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "morgan stanley"
    ]
@@ -3724,10 +3555,7 @@
    "name": "MSCI Inc.",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "msci"
    ]
@@ -3736,10 +3564,7 @@
    "name": "Nasdaq, Inc.",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "nasdaq",
     "ndaq"
@@ -3862,10 +3687,7 @@
    "name": "Northern Trust",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "northern trust",
     "ntrs"
@@ -4131,10 +3953,7 @@
    "name": "PayPal",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "paypal",
     "pypl"
@@ -4222,10 +4041,7 @@
    "name": "PNC Financial Services",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "pnc financial services"
    ]
@@ -4256,10 +4072,7 @@
    "name": "Principal Financial Group",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "principal financial"
    ]
@@ -4279,10 +4092,7 @@
    "name": "Progressive Corporation",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "progressive corporation"
    ]
@@ -4300,10 +4110,7 @@
    "name": "Prudential Financial",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "prudential financial"
    ]
@@ -4410,10 +4217,7 @@
    "name": "Raymond James Financial",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "raymond james financial"
    ]
@@ -4463,10 +4267,7 @@
    "name": "Regions Financial Corporation",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "regions financial"
    ]
@@ -4509,10 +4310,7 @@
    "name": "Robinhood Markets",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "hood",
     "robinhood markets"
@@ -4578,10 +4376,7 @@
    "name": "S&P Global",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "s&p global",
     "spgi"
@@ -4791,10 +4586,7 @@
    "name": "State Street Corporation",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "state street"
    ]
@@ -4849,10 +4641,7 @@
    "name": "Synchrony Financial",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "synchrony financial"
    ]
@@ -4896,10 +4685,7 @@
    "name": "T. Rowe Price",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "t rowe price",
     "trow"
@@ -5113,10 +4899,7 @@
    "name": "Travelers Companies (The)",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "travelers companies"
    ]
@@ -5137,10 +4920,7 @@
    "name": "Truist Financial",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "truist financial"
    ]
@@ -5171,10 +4951,7 @@
    "name": "U.S. Bancorp",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "u s bancorp"
    ]
@@ -5406,10 +5183,7 @@
    "name": "Visa Inc.",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "visa inc"
    ]
@@ -5440,10 +5214,7 @@
    "name": "W. R. Berkley Corporation",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "w r berkley"
    ]
@@ -5540,10 +5311,7 @@
    "name": "Wells Fargo",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "wells fargo"
    ]
@@ -5615,10 +5383,7 @@
    "name": "Willis Towers Watson",
    "market": "US",
    "sector": "Financials",
-   "themes": [
-    "banka",
-    "faiz"
-   ],
+   "themes": [],
    "variants": [
     "willis towers watson"
    ]

@@ -146,7 +146,10 @@ RSS_SOURCES = [
     # katalizör türlerinin (bilanço sürprizi, birleşme/satın alma, sözleşme
     # kazanımı) İngilizce hiç kaynağı yoktu — ABD tarafı sadece genel makro
     # temalarla besleniyordu.
-    ("gnews_en_earnings",  GOOGLE_NEWS_EN.format(q="earnings+beat+OR+miss+stock"), "en", 0.6),
+    # 27 Temmuz 2026: "earnings+beat+OR+miss" çoğunlukla "yarın bilanço açıklanacak"
+    # önizleme/takvim haberleri getiriyordu (henüz gerçekleşmemiş, fiyatlanmamış
+    # bir olay yok) — tam ifadelerle GERÇEK açıklanmış sonuçlara daraltıldı.
+    ("gnews_en_earnings",  GOOGLE_NEWS_EN.format(q="%22beats+estimates%22+OR+%22misses+estimates%22+OR+%22beats+earnings%22"), "en", 0.6),
     ("gnews_en_ma",        GOOGLE_NEWS_EN.format(q="acquisition+OR+merger+billion"), "en", 0.6),
     ("gnews_en_contracts", GOOGLE_NEWS_EN.format(q="%22contract+award%22+OR+%22wins+deal%22"), "en", 0.6),
     ("cnbc_business",      "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147", "en", 0.9),
