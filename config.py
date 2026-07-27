@@ -142,6 +142,14 @@ RSS_SOURCES = [
     ("gnews_en_fed",       GOOGLE_NEWS_EN.format(q="Federal+Reserve+rates"),      "en", 0.6),
     ("gnews_en_geopol",    GOOGLE_NEWS_EN.format(q="geopolitical+tension+market"),"en", 0.6),
     ("gnews_en_tech",      GOOGLE_NEWS_EN.format(q="semiconductor+export+chips"), "en", 0.6),
+    # 27 Temmuz 2026 bulgusu: KATALIZOR_KURALLARI'ndaki en güçlü şirket-özel
+    # katalizör türlerinin (bilanço sürprizi, birleşme/satın alma, sözleşme
+    # kazanımı) İngilizce hiç kaynağı yoktu — ABD tarafı sadece genel makro
+    # temalarla besleniyordu.
+    ("gnews_en_earnings",  GOOGLE_NEWS_EN.format(q="earnings+beat+OR+miss+stock"), "en", 0.6),
+    ("gnews_en_ma",        GOOGLE_NEWS_EN.format(q="acquisition+OR+merger+billion"), "en", 0.6),
+    ("gnews_en_contracts", GOOGLE_NEWS_EN.format(q="%22contract+award%22+OR+%22wins+deal%22"), "en", 0.6),
+    ("cnbc_business",      "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147", "en", 0.9),
     ("bloomberght",        "https://www.bloomberght.com/rss",                     "tr", 1.0),
     ("aa_ekonomi",         "https://www.aa.com.tr/tr/rss/default?cat=ekonomi",    "tr", 1.0),
 ]
