@@ -24,8 +24,15 @@ CORE_SYMBOLS = {
     "AAPL":  {"name": "Apple",             "market": "US",   "themes": ["teknoloji"],                  "variants": ["apple"]},
     "MSFT":  {"name": "Microsoft",         "market": "US",   "themes": ["teknoloji"],                  "variants": ["microsoft"]},
     "NVDA":  {"name": "Nvidia",            "market": "US",   "themes": ["teknoloji", "yapay_zeka"],    "variants": ["nvidia"]},
-    "JPM":   {"name": "JPMorgan",          "market": "US",   "themes": ["banka", "faiz"],              "variants": ["jpmorgan", "jp morgan"]},
-    "BAC":   {"name": "Bank of America",   "market": "US",   "themes": ["banka", "faiz"],              "variants": ["bank of america"]},
+    # 27 Temmuz 2026 bulgusu: "banka"/"faiz" teması, güvenilirliği 1.0 olan
+    # aa_ekonomi/bloomberght'ten gelen HER Fed/TCMB haberinde tetikleniyordu —
+    # son 10 günde 549 triyaj/taslak denemesinin 168'i (%30) JPM+BAC içindi,
+    # neredeyse tamamı "genel/dolaylı" diye reddedildi (JPM'nin kârı tek bir
+    # Fed kararına BIST bankaları kadar duyarlı değil — bkz. finansal-asistan
+    # hafıza notu). İsim varyantları (jpmorgan/bank of america) etkilenmiyor,
+    # sadece tema-yoluyla gelen genel makro gürültü kesiliyor.
+    "JPM":   {"name": "JPMorgan",          "market": "US",   "themes": [],                              "variants": ["jpmorgan", "jp morgan"]},
+    "BAC":   {"name": "Bank of America",   "market": "US",   "themes": [],                              "variants": ["bank of america"]},
     "BA":    {"name": "Boeing",            "market": "US",   "themes": ["havacilik", "savunma"],       "variants": ["boeing"]},
     "LMT":   {"name": "Lockheed Martin",   "market": "US",   "themes": ["savunma"],                    "variants": ["lockheed"]},
     "PFE":   {"name": "Pfizer",            "market": "US",   "themes": ["saglik"],                     "variants": ["pfizer"]},
