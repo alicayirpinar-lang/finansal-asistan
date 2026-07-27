@@ -47,6 +47,15 @@ def _norm_text(text):
 
 _symbol_patterns = None  # {symbol: compiled_regex} — ilk kullanımda derlenir
 
+# 27 Temmuz 2026: finansal haberler şirketi genelde bir kez tam adıyla anıp
+# gerisinde borsa-kotasyon etiketiyle ("(NASDAQ: ABNB)") ya da cashtag'le
+# ("$ABNB") kısaltıyor — NDAQ bugundaki çıplak "nasdaq" kelimesinin aksine bu
+# YÜKSEK hassasiyetli bir sinyal (borsa öneki/$ işareti belirsizliği kaldırır),
+# bu yüzden AMBIGUOUS_EN/TICKER_STOP kısıtlarını (çıplak kelime riskine karşı
+# konmuşlardı) bypass edip doğrudan SYMBOLS üyeliğine bakar.
+_EXCHANGE_TICKER_PAT = re.compile(r"\((?:nasdaq|nyse|nyse american|bist)\s*:?\s*([a-z.]{1,6})\)")
+_CASHTAG_PAT = re.compile(r"\$([a-z]{2,6})(?!\w)")
+
 
 def _patterns():
     """600 sembollük evrende substring eşleşme yanlış pozitif patlatır
@@ -70,6 +79,12 @@ def _match_symbols(text):
     for symbol, pattern in _patterns().items():
         if pattern.search(text):
             matches[symbol] = 1.0
+    # Borsa-kotasyon/cashtag: "(NASDAQ: ABNB)" / "$ABNB" — bkz. yorum yukarıda
+    for pat in (_EXCHANGE_TICKER_PAT, _CASHTAG_PAT):
+        for m in pat.finditer(text):
+            ticker = m.group(1).upper()
+            if ticker in SYMBOLS:
+                matches[ticker] = 1.0
     # Tema yolu: tüm evren (sektörden türetilmiş temalar dahil); anahtar
     # kelimeler kasıtlı substring ("faiz karar" -> "faiz kararı" da yakalasın).
     # Çekirdek semboller temada hafif önde (0.4 > 0.35): tema günü kota, sektörün
