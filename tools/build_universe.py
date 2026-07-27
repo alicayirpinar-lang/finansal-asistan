@@ -36,6 +36,10 @@ AMBIGUOUS_EN = {
     "match", "news", "live", "host", "extra", "state", "street", "west",
     "block", "smart", "delta", "union", "crown", "globe", "quest",
     "booking", "carnival", "mosaic", "waters", "dover", "everest", "tapestry",
+    # 27 Temmuz 2026 bulgusu: "nasdaq" ABD haberlerinde HER ZAMAN borsa kotasyon
+    # etiketi olarak geçiyor ("(NASDAQ: HOPE)" gibi) — Nasdaq, Inc.'in kendi
+    # haberinden çok daha sık, alakasız onlarca şirkete yanlış bağlanıyordu.
+    "nasdaq",
 }
 AMBIGUOUS_TR = {
     "türk", "türkiye", "anadolu", "ulusal", "milli", "global", "yapı",
