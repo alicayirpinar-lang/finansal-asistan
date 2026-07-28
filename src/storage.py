@@ -92,6 +92,35 @@ def recent_thesis_exists(symbol, hours=48, kaynak=None, iptal_haric=False):
     return len(q.execute().data) > 0
 
 
+def tez_kilitli_mi(symbol, url, hours=48):
+    """28 Temmuz 2026 bulgusu: recent_thesis_exists() sembol bazlı kördü —
+    aynı sembolde son `hours` saatte HERHANGİ bir tez varsa, o sembolde
+    çıkan FARKLI bir katalizörü de (örn. TSLA'nın bilanço haberi, bir önceki
+    gün faiz haberiyle tez almışken) tamamen engelliyordu. Artık: aynı
+    sembolde son N saatte tez varsa VE (url yoksa YA DA aynı url zaten bir
+    tez üretmişse) kilitli sayılır — farklı bir URL'den gelen olay
+    engellenmez, karar sonraki kalite kapılarına (triyaj/taslak/red-team)
+    bırakılır. `kaynak_url` kolonu henüz yoksa (migration 012 bekliyor)
+    veya mevcut tezlerin hiçbirinde url kaydı yoksa (eski satırlar) eski,
+    sembol-geniş kilide güvenli tarafta kalınarak düşülür."""
+    if not recent_thesis_exists(symbol, iptal_haric=True):
+        return False
+    if not url:
+        return True
+    from datetime import timedelta, timezone
+    cutoff = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat()
+    try:
+        rows = (get_client().table("theses").select("kaynak_url")
+                .eq("symbol", symbol).gte("created_at", cutoff)
+                .neq("status", "iptal_edildi").execute().data)
+    except Exception:
+        return True  # kolon yok: eski davranışa düş
+    urls = {r["kaynak_url"] for r in rows if r.get("kaynak_url")}
+    if not urls:
+        return True  # mevcut tezler eski (url kaydı yok), ayırt edilemiyor
+    return url in urls
+
+
 def insert_thesis(event, draft, redteam, final_confidence, tier, status,
                   entry_price_ref=None, note=None, kaynak="haber"):
     low, high = draft["buyukluk_araligi_pct"]
@@ -101,6 +130,7 @@ def insert_thesis(event, draft, redteam, final_confidence, tier, status,
         "market": event["market"],
         "category": event["category"],
         "kaynak": kaynak,
+        "kaynak_url": event.get("url"),
         "draft_chain": draft,
         "redteam_output": redteam,
         "final_confidence": final_confidence,
@@ -112,7 +142,11 @@ def insert_thesis(event, draft, redteam, final_confidence, tier, status,
         "entry_price_ref": entry_price_ref,
         "status": status,
     }
-    return get_client().table("theses").insert(row).execute().data[0]
+    try:
+        return get_client().table("theses").insert(row).execute().data[0]
+    except Exception:
+        row.pop("kaynak_url", None)  # migration 012 henüz uygulanmadıysa kolonsuz dene
+        return get_client().table("theses").insert(row).execute().data[0]
 
 
 # --- tez takibi yardımcıları (plan bölüm 7) --------------------------------

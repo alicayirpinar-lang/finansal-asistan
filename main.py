@@ -230,8 +230,8 @@ def run():
             print(mesaj)
             storage.log_error("main.py:too_many_attempts", mesaj, seviye="kritik")
             break
-        if storage.recent_thesis_exists(event["symbol"], iptal_haric=True):
-            continue  # aynı sembolde 48 saat içinde tez var: mükerrer önleme
+        if storage.tez_kilitli_mi(event["symbol"], event.get("url")):
+            continue  # aynı sembolde aynı haber (ya da ayırt edilemeyen) zaten tez almış
         try:
             print(f'\n[{event["symbol"]}] {event["title"][:80]}...')
             # Analitik motor: grafik okumasını KOD yapar, AI yorumlar (faz 11)
