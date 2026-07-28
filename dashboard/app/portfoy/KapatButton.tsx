@@ -16,9 +16,12 @@ export default function KapatButton({ id, symbol, adet }: { id: string; symbol: 
           e.preventDefault();
           return;
         }
+        const netlik = "\n\n(Bu GERÇEK bir satış olarak kaydedilecek ve bağlı tez " +
+          "varsa 'kullanıcı sattı' işaretlenecek — yanlış girişse bunun yerine " +
+          "'Sil'i kullan.)";
         const onayMetin = adetGiris.trim()
-          ? `${symbol}: ${adetGiris} adet satılacak. Emin misin?`
-          : `${symbol} pozisyonunun TAMAMI kapatılacak. Emin misin?`;
+          ? `${symbol}: ${adetGiris} adet satılacak. Emin misin?${netlik}`
+          : `${symbol} pozisyonunun TAMAMI kapatılacak. Emin misin?${netlik}`;
         if (!window.confirm(onayMetin)) {
           e.preventDefault();
           return;

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { db } from "@/lib/supabase";
 import { guncelFiyatlar } from "@/lib/fiyat";
 import KapatButton from "./KapatButton";
+import DuzenleButton from "./DuzenleButton";
+import SilButton from "./SilButton";
 
 export const dynamic = "force-dynamic";
 
@@ -15,6 +17,8 @@ const MESAJ: Record<string, { text: string; ok: boolean }> = {
   },
   kapatildi: { text: "Pozisyon kapatıldı. Bağlı tez varsa 'kullanıcı sattı' olarak işaretlendi.", ok: true },
   kismikapatildi: { text: "Kısmi kapama yapıldı — pozisyon kalan adetle açık kalıyor.", ok: true },
+  duzenlendi: { text: "Pozisyon güncellendi.", ok: true },
+  silindi: { text: "Pozisyon silindi. Bağlı tez varsa etkilenmedi, kendi haline devam ediyor.", ok: true },
   sembol: { text: "Sembol geçersiz (örn. THYAO, NVDA — en fazla 10 karakter).", ok: false },
   pazar: { text: "Pazar seçilmedi.", ok: false },
   adet: { text: "Adet 0'dan büyük bir sayı olmalı.", ok: false },
@@ -25,6 +29,11 @@ const MESAJ: Record<string, { text: string; ok: boolean }> = {
   kapat: { text: "Pozisyon kapatılamadı (bulunamadı veya zaten kapalı).", ok: false },
   kapatfiyat: { text: "Satış fiyatı geçersiz — sayı gir veya boş bırak.", ok: false },
   kapatadet: { text: "Satılan adet geçersiz — pozitif bir sayı gir veya boş bırak.", ok: false },
+  duzenle: { text: "Pozisyon düzenlenemedi (bulunamadı veya kapalı).", ok: false },
+  duzenleadet: { text: "Adet geçersiz — pozitif bir sayı gir.", ok: false },
+  duzenlefiyat: { text: "Alış fiyatı geçersiz — pozitif bir sayı gir.", ok: false },
+  duzenletarih: { text: "Tarih geçersiz (gelecek tarih olamaz).", ok: false },
+  sil: { text: "Pozisyon silinemedi (bulunamadı veya kapalı — kapalı pozisyon silinemez).", ok: false },
 };
 
 async function sonFiyatlar(symbols: string[]): Promise<Record<string, number>> {
@@ -75,7 +84,10 @@ function Grup({ baslik, rows, fiyatlar, uyari }: {
                 ) : (
                   <span className="text-xs text-zinc-600">tez yok</span>
                 )}
+                <DuzenleButton id={p.id} symbol={p.symbol} adet={Number(p.quantity)}
+                  fiyat={Number(p.entry_price)} tarih={p.entry_date} />
                 <KapatButton id={p.id} symbol={p.symbol} adet={Number(p.quantity)} />
+                <SilButton id={p.id} symbol={p.symbol} />
               </li>
             );
           })}
@@ -280,7 +292,9 @@ export default async function PortfoyPage({
         bilinenSemboller={(bilinenSemboller ?? []).map((r: any) => r.symbol)} />
       <p className="text-xs text-zinc-500">
         Fiyatlar ~5 dk önbellekli güncel piyasa fiyatıdır; alınamazsa son takip
-        turu fiyatına düşülür. &quot;Kapat&quot; butonu tam veya kısmi satışı destekler.
+        turu fiyatına düşülür. &quot;Kapat&quot; gerçek satış (bağlı tezi
+        &apos;kullanıcı sattı&apos; yapar), &quot;Düzenle&quot; yanlış adet/fiyat/tarihi
+        düzeltir, &quot;Sil&quot; yanlış girişi tamamen kaldırır (tezi etkilemez).
       </p>
     </div>
   );
