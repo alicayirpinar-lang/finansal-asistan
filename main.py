@@ -230,8 +230,8 @@ def run():
             print(mesaj)
             storage.log_error("main.py:too_many_attempts", mesaj, seviye="kritik")
             break
-        if storage.tez_kilitli_mi(event["symbol"], event.get("url")):
-            continue  # aynı sembolde aynı haber (ya da ayırt edilemeyen) zaten tez almış
+        if storage.tez_kilitli_mi(event["symbol"], event.get("url"), event.get("title")):
+            continue  # aynı sembolde aynı olay (URL ya da başlık benzerliği) zaten tez almış
         try:
             print(f'\n[{event["symbol"]}] {event["title"][:80]}...')
             # Analitik motor: grafik okumasını KOD yapar, AI yorumlar (faz 11)

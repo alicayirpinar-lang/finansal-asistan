@@ -65,6 +65,12 @@ export default async function TezDetayPage({
             🚀 büyük fırsat adayı
           </span>
         ) : null}
+        {t.dogrulama_sayisi > 0 ? (
+          <span className="text-xs rounded px-2 py-0.5 bg-sky-900 text-sky-200"
+            title="Aynı olay farklı haber kaynaklarında da tekrar görüldü, yeni tez açmak yerine bu sayaç arttı">
+            ✓ {t.dogrulama_sayisi} ek kaynaktan doğrulandı
+          </span>
+        ) : null}
         <span className="ml-auto text-xs text-zinc-500">{tarih(t.created_at)}</span>
       </div>
 

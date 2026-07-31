@@ -92,7 +92,7 @@ def recent_thesis_exists(symbol, hours=48, kaynak=None, iptal_haric=False):
     return len(q.execute().data) > 0
 
 
-def tez_kilitli_mi(symbol, url, hours=48):
+def tez_kilitli_mi(symbol, url, title=None, hours=48):
     """28 Temmuz 2026 bulgusu: recent_thesis_exists() sembol bazlı kördü —
     aynı sembolde son `hours` saatte HERHANGİ bir tez varsa, o sembolde
     çıkan FARKLI bir katalizörü de (örn. TSLA'nın bilanço haberi, bir önceki
@@ -100,25 +100,55 @@ def tez_kilitli_mi(symbol, url, hours=48):
     sembolde son N saatte tez varsa VE (url yoksa YA DA aynı url zaten bir
     tez üretmişse) kilitli sayılır — farklı bir URL'den gelen olay
     engellenmez, karar sonraki kalite kapılarına (triyaj/taslak/red-team)
-    bırakılır. `kaynak_url` kolonu henüz yoksa (migration 012 bekliyor)
-    veya mevcut tezlerin hiçbirinde url kaydı yoksa (eski satırlar) eski,
-    sembol-geniş kilide güvenli tarafta kalınarak düşülür."""
+    bırakılır.
+
+    31 Temmuz 2026 bulgusu: bu gevşetme kendi başına yeni bir soruna yol
+    açtı — aynı gerçek olayı (ör. bir bilanço haberi) 5 farklı kaynak 5
+    farklı URL'yle işleyince sistem 5 AYRI tez açtı (AMZN vakası: aynı giriş
+    fiyatı, 10 saat içinde 5 tez, hepsi aynı sonuçla kapandı). Artık URL'nin
+    yanı sıra BAŞLIK benzerliği de kontrol ediliyor (dedup()'takiyle aynı
+    rapidfuzz eşiği, DEDUP_TITLE_THRESHOLD) — aynı olayın farklı kaynaktan
+    gelmesi yeni bir tez AÇMAZ, mevcut tezin `dogrulama_sayisi`nı artırır:
+    çoklu kaynak doğrulaması (gerçekten olduğunu teyit eden sinyal) kaybolmaz,
+    sadece tek bir teze toplanır.
+
+    Kolonlar henüz yoksa (migration 012/013 bekliyor) ya da mevcut tezlerin
+    hiçbirinde url/başlık kaydı yoksa (eski satırlar) eski, sembol-geniş
+    kilide güvenli tarafta kalınarak düşülür."""
     if not recent_thesis_exists(symbol, iptal_haric=True):
         return False
-    if not url:
-        return True
     from datetime import timedelta, timezone
     cutoff = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat()
     try:
-        rows = (get_client().table("theses").select("kaynak_url")
+        rows = (get_client().table("theses")
+                .select("id,kaynak_url,kaynak_baslik,dogrulama_sayisi")
                 .eq("symbol", symbol).gte("created_at", cutoff)
                 .neq("status", "iptal_edildi").execute().data)
     except Exception:
         return True  # kolon yok: eski davranışa düş
-    urls = {r["kaynak_url"] for r in rows if r.get("kaynak_url")}
-    if not urls:
-        return True  # mevcut tezler eski (url kaydı yok), ayırt edilemiyor
-    return url in urls
+    if not rows:
+        return True
+
+    if url and any(r.get("kaynak_url") == url for r in rows):
+        return True  # ayni haberin tam tekrari
+
+    if title:
+        from config import DEDUP_TITLE_THRESHOLD
+        from rapidfuzz import fuzz
+        for r in rows:
+            if r.get("kaynak_baslik") and fuzz.token_set_ratio(
+                    title.lower(), r["kaynak_baslik"].lower()) >= DEDUP_TITLE_THRESHOLD:
+                try:
+                    get_client().table("theses").update(
+                        {"dogrulama_sayisi": (r.get("dogrulama_sayisi") or 0) + 1}
+                    ).eq("id", r["id"]).execute()
+                except Exception:
+                    pass
+                return True  # ayni olay, farkli kaynak: yeni tez degil, dogrulama
+
+    if not any(r.get("kaynak_url") or r.get("kaynak_baslik") for r in rows):
+        return True  # eski satırlar (url/başlık kaydı yok), ayırt edilemiyor
+    return False
 
 
 def insert_thesis(event, draft, redteam, final_confidence, tier, status,
@@ -131,6 +161,7 @@ def insert_thesis(event, draft, redteam, final_confidence, tier, status,
         "category": event["category"],
         "kaynak": kaynak,
         "kaynak_url": event.get("url"),
+        "kaynak_baslik": event.get("title"),
         "draft_chain": draft,
         "redteam_output": redteam,
         "final_confidence": final_confidence,
@@ -145,8 +176,14 @@ def insert_thesis(event, draft, redteam, final_confidence, tier, status,
     try:
         return get_client().table("theses").insert(row).execute().data[0]
     except Exception:
-        row.pop("kaynak_url", None)  # migration 012 henüz uygulanmadıysa kolonsuz dene
+        pass
+    row.pop("kaynak_baslik", None)  # migration 013 henüz uygulanmadıysa kolonsuz dene
+    try:
         return get_client().table("theses").insert(row).execute().data[0]
+    except Exception:
+        pass
+    row.pop("kaynak_url", None)  # migration 012 de henüz uygulanmadıysa
+    return get_client().table("theses").insert(row).execute().data[0]
 
 
 # --- tez takibi yardımcıları (plan bölüm 7) --------------------------------
