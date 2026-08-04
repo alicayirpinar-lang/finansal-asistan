@@ -147,11 +147,36 @@ def portfolio_scope(ptype):
     }
 
 
+def _isabet_hesapla(gains):
+    """Bir kazanç/kayıp listesinden isabet/ortalama/expectancy hesaplar —
+    thesis_scope() ve segment kırılımı aynı formülü paylaşır."""
+    n = len(gains)
+    kazananlar = [g for g in gains if g > 0]
+    kaybedenler = [abs(g) for g in gains if g <= 0]
+    isabet = len(kazananlar) / n
+    ort_kazanc = sum(kazananlar) / len(kazananlar) if kazananlar else 0.0
+    ort_kayip = sum(kaybedenler) / len(kaybedenler) if kaybedenler else 0.0
+    return {
+        "n": n,
+        "isabet_orani": round(isabet, 3),
+        "ort_kazanc_pct": round(ort_kazanc, 2),
+        "ort_kayip_pct": round(ort_kayip, 2),
+        "expectancy_pct": round(isabet * ort_kazanc - (1 - isabet) * ort_kayip, 2),
+    }
+
+
 def thesis_scope():
     """Çözülmüş tezlerden isabet + expectancy (plan 7.4). Deneme portföyünden
-    bağımsızdır — sistemin öğrenme/başarı ölçüsü tezlerin kendisidir."""
+    bağımsızdır — sistemin öğrenme/başarı ölçüsü tezlerin kendisidir.
+
+    31 Temmuz 2026: harmanlanmış tek sayı, "düşük güven/hiç önerilmemiş"
+    tezlerin (çoğunluk) "orta/kritik" (gerçekten bildirim giden) tezlerin
+    performansını gizlemesine yol açıyordu (ör. ABD makro/düşük segmenti
+    %0 isabetliyken genel oran %71 görünüyordu). `segmentler` alanı
+    (kaynak × güven kırılımı, isabet_karnesi view'ıyla aynı gruplama ama
+    yüzdesel büyüklüklerle) bunu görünür kılar."""
     resolved = (storage.get_client().table("theses")
-                .select("id,symbol,direction,status,entry_price_ref")
+                .select("id,symbol,direction,status,entry_price_ref,kaynak,final_confidence")
                 .in_("status", ["hedefe_ulasti", "tez_bozuldu", "suresi_doldu"])
                 .not_.is_("entry_price_ref", "null").execute().data)
     gains = []
@@ -164,8 +189,12 @@ def thesis_scope():
         ref = float(t["entry_price_ref"])
         son = float(checks[0]["price_at_check"])
         sign = 1 if t["direction"] == "yukselis" else -1
-        gains.append({"symbol": t["symbol"], "status": t["status"],
-                      "pct": round((son - ref) / ref * 100 * sign, 2)})
+        gains.append({
+            "symbol": t["symbol"], "status": t["status"],
+            "kaynak": t.get("kaynak") or "haber",
+            "final_confidence": t.get("final_confidence") or "dusuk",
+            "pct": round((son - ref) / ref * 100 * sign, 2),
+        })
 
     n = len(gains)
     out = {"cozulmus_tez": n, "notlar": []}
@@ -174,17 +203,21 @@ def thesis_scope():
                              f"expectancy ≥{MIN_THESES} tezle hesaplanır")
         return out
 
-    kazananlar = [g["pct"] for g in gains if g["pct"] > 0]
-    kaybedenler = [abs(g["pct"]) for g in gains if g["pct"] <= 0]
-    isabet = len(kazananlar) / n
-    ort_kazanc = sum(kazananlar) / len(kazananlar) if kazananlar else 0.0
-    ort_kayip = sum(kaybedenler) / len(kaybedenler) if kaybedenler else 0.0
-    out.update({
-        "isabet_orani": round(isabet, 3),
-        "ort_kazanc_pct": round(ort_kazanc, 2),
-        "ort_kayip_pct": round(ort_kayip, 2),
-        "expectancy_pct": round(isabet * ort_kazanc - (1 - isabet) * ort_kayip, 2),
-    })
+    genel = _isabet_hesapla([g["pct"] for g in gains])
+    genel.pop("n", None)  # cozulmus_tez zaten ayni bilgiyi tasiyor
+    out.update(genel)
+
+    segment_gruplari = {}
+    for g in gains:
+        key = (g["kaynak"], g["final_confidence"])
+        segment_gruplari.setdefault(key, []).append(g["pct"])
+    segmentler = []
+    for (kaynak, guven), pcts in segment_gruplari.items():
+        if len(pcts) < 2:  # tek örnekli segment yorum taşımaz, gösterilmez
+            continue
+        segmentler.append({"kaynak": kaynak, "final_confidence": guven, **_isabet_hesapla(pcts)})
+    segmentler.sort(key=lambda s: -s["n"])
+    out["segmentler"] = segmentler
     return out
 
 
